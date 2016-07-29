@@ -14,6 +14,7 @@ class NotebookNote extends Model
     'note_date',
    'notebook_id',
    'notebook_name',
+  'guest_token',
   ];
 
 public function user()

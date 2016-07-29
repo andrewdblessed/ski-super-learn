@@ -150,8 +150,23 @@ public function allnb()
       {
         $notebooks = Notebook::findorFail($id);
 
+        $guest_token = chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . rand(0,9). rand(0,9)
+       . rand(0,9). rand(0,9) . chr(rand(65,90)) ; // random(ish) 18 character token
                  return view('dashboard.notes.newnote', compact('notebooks'))
-
+                 ->with('guest_token', $guest_token)
                  ->with('notebooks', $notebooks);
 
 
@@ -194,6 +209,8 @@ public function allnb()
         'notebook_id' => 'required|min:0',
         'note_date' => 'min:0',
         'notebook_name' => 'required|min:2',
+        'guest_token' => 'required|min:2',
+
 
       ]);
       Auth::user()->notebookNote()->create([
@@ -202,6 +219,7 @@ public function allnb()
         'note_date' => $request->input('note_date'),
         'notebook_id' => $request->input('notebook_id'),
         'notebook_name' => $request->input('notebook_name'),
+        'guest_token' => $request->input('guest_token'),
       ]);
       return redirect()->route('dashboard.notebook.index')->with('notebook-created', 'New note Added.');
 

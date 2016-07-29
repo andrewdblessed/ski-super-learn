@@ -175,6 +175,12 @@ padding: 20px;
         <div class="card__content card__padding">
           <form  action="{{route('post.note')}}" id="new_note" method="post">
             <input type="hidden" name="_token" value="{{ Session::token() }}">
+
+                            <input type="hidden" name="notebook_id" value="{{$notebooks->id}}">
+                            <input type="hidden" name="notebook_name" value="{{$notebooks->notebook_title}}">
+                            <textarea type="hidden" style="display:none;" name="note_date"  id="notedate"> </textarea>
+                            {{--GUEST TOKEN FOR SHARING NOTE --}}
+                        <input type="hidden" name="guest_token" value="{{$guest_token}}">
      <button type="submit" class=" btn btn-raised btn-info goedit">Save</button>
                   <article class="card__article">
 
@@ -183,14 +189,7 @@ padding: 20px;
                 </header>
               <br>
               </article>
-
                 <textarea class="editable note_body" name="note_body"></textarea>
-
-
-                <input type="hidden" name="notebook_id" value="{{$notebooks->id}}">
-                <input type="hidden" name="notebook_name" value="{{$notebooks->notebook_title}}">
-                <textarea type="hidden" style="display:none;" name="note_date"  id="notedate"> </textarea>
-
                </div>
          </form>
     </div>

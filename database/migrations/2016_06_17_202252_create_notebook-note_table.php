@@ -18,6 +18,8 @@ class CreateNotebookNoteTable extends Migration
             $table->integer('notebook_id');
             $table->text('note_title');
             $table->text('note_body');
+            $table->text('note_date');
+            $table->text('guest_token');
             $table->timestamps();
          });
     }

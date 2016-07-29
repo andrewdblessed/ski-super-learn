@@ -153,6 +153,9 @@ public function newNote()
 {
     $title ='Notes';
 
+
+
+
     if (Auth::check()) {
         $note_call = Notes::where(function($query)
             {

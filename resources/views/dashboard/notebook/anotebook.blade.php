@@ -108,6 +108,75 @@
 }
 </style>
 
+<style type="text/css">
+.glyphicon { margin-right:5px; }
+.thumbnail
+{
+    margin-bottom: 20px;
+    padding: 12px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+}
+
+.item.list-group-item
+{
+    float: none;
+    width: 100%;
+    background-color: #fff;
+    margin-bottom: 10px;
+}
+.item.list-group-item:nth-of-type(odd):hover,.item.list-group-item:hover
+{
+    background: #428bca;
+}
+
+.item.list-group-item .list-group-image
+{
+    margin-right: 10px;
+}
+.item.list-group-item .thumbnail
+{
+    margin-bottom: 0px;
+}
+.item.list-group-item .caption
+{
+    padding: 9px 9px 0px 9px;
+}
+.item.list-group-item:nth-of-type(odd)
+{
+    background: #eeeeee;
+}
+
+.item.list-group-item:before, .item.list-group-item:after
+{
+    display: table;
+    content: " ";
+}
+
+.item.list-group-item img
+{
+    float: left;
+}
+.item.list-group-item:after
+{
+    clear: both;
+}
+.list-group-item-text
+{
+    margin: 0 0 11px;
+}
+.col-xs-4 {
+     border-style: none;
+     border-color: none;
+}
+i.material-icons {
+    font-size: 10px;
+}
+.card-raised.card {
+     padding-top: 0px;
+}
+</style>
     <script type="text/javascript">
     $(function() {
       function ajaxfun(welcload, btn, url, loadcom) {
@@ -142,7 +211,7 @@
 
     		<ul>
     			<li><a href="#/noteindex/"><span>Back</span><img class="cd-nva-img" src="/src/vendor/s-nav/img/back.png" alt="" /></a></li>
-    			<li><a href="#notepad"><span>New note</span><img class="cd-nva-img" src="/src/vendor/s-nav/img/compose.png" alt="" /></a></li>
+    			<li><a href="#notepad" id="make-note" ><span>New note</span><img class="cd-nva-img" src="/src/vendor/s-nav/img/compose.png" alt="" /></a></li>
     			<li><a href="#/nbmanager/"><span>Notebook Manager</span><img class="cd-nva-img" src="/src/vendor/s-nav/img/controls.png" alt="" /></a></li>
           <li><a href="#" data-toggle="modal" data-target="#confirmtrash{{$notebooks->id}}" ><span>Delete Notebook</span> <img class="cd-nva-img" src="/src/vendor/s-nav/img/garbage.png" alt="" /></a></li>
     		</ul>
@@ -152,7 +221,7 @@
     </header>
     <!-- <div class="fixed-fab">
       <a href="" class="btn btn-raised btn-fab btn-success goback fix_fab_icon" style="padding:5%;"><i class="fa fa-backward"></i></a>
-      <a href="" id="make-note" style="padding:5%;" class="btn btn-raised btn-fab btn-warning  fix_fab_icon"><i class="fa fa-pencil-square-o"></i></a>
+      <a href="" style="padding:5%;" class="btn btn-raised btn-fab btn-warning  fix_fab_icon"><i class="fa fa-pencil-square-o"></i></a>
       <a href="" style="padding:5%;" class="btn btn-raised btn-fab btn-danger fix_fab_icon"><i class="fa fa-magic"></i></a>
       <a href="#"  style="padding:5%;" class="btn btn-raised btn-fab btn-success fix_fab_icon"><i class="fa fa-trash-o"></i></a>
     </div> -->
@@ -189,18 +258,59 @@
 </div>
 </div>
 @else ($note_all->count())
+<div class="container">
+
 
 <?php // NOTE: IF THE USER AS NOTES FOR NOTEBOOK LOAD ALL NOTES WITH FOR EACH ?>
+<div class="well well-sm card card-raised">
+    <strong>Category Title</strong>
+    <div class="btn-group">
+      <a href="#" id="list" class="btn btn-default btn-sm"><i class="material-icons">view_list</i> List</a>
+      <a href="#" id="grid" class="btn btn-default btn-sm"><i class="material-icons">dashboard</i>Grid</a>
+    </div>
+</div>
+<div id="products" class="row list-group">
+
 <ul  class="list">
 @foreach ($note_all as $notes)
 <?php // NOTE: CHECKING IF THE NOTES BELONG TO THE NOTEBOOK WITH IDS?>
   @if($notes->notebook_id == $notebooks->id)
-  <li>
-<div class="col-md-3">
+  <li class=" li animated fadeIn">
+    <div class="item  col-xs-4 col-lg-4">
+        <div class="thumbnail card card-raised">
+            <!-- <img class="group list-group-image" src="/images/braingame.png" alt="" /> -->
+            <div class="caption">
+                <h4 class="group inner list-group-item-heading note_name"  style="margin:0; cursor: pointer;" id="note_id{{$notes->id}}">
+                    {{$notes->note_title}}
+                  </h4>
+
+                <p class=" note_body group inner list-group-item-text" id="note_id{{$notes->id}}">
+
+             {!!$notes->note_body!!}
+           </p>
+                 <div class="row">
+                    <div class="col-xs-12 col-md-12">
+                          <span class="note_notebook label label-default"
+                           style="cursor: pointer;"
+                           id="notebook{{$notes->notebook_id}}"> <i class="fa fa-bookmark"></i> {{ $notes->notebook_name}}</span>
+
+                                <span class="label label-default"><i class="material-icons">more_horiz</i> more</span>
+
+                                <span class="label label-default"> <i class="material-icons">mode_edit</i> Edit</span>
+                                <span class="label label-default"> <i class="material-icons">share</i> Share</span>
+
+
+                            </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- <div class="col-md-3">
 <div class="card-note radius shadowDepth1">
-    <!-- <div class="card__image border-tlr-radius">
+  <div class="card__image border-tlr-radius">
         <img src="http://lorempixel.com/400/200/sports/" alt="image" class="border-tlr-radius">
-    </div> -->
+    </div>
     <div class="card__content card__padding">
         <div class="card__meta">
           <article class="card__article">
@@ -208,16 +318,20 @@
             <div class="chip"  style="cursor: pointer;" id="notebook{{$notes->notebook_id}}">
                 <img src="svg/bookmark.svg" alt="Person" width="96" height="96">
               <span class="note_notebook">{{$notes->notebook_name}}</span>
-              </div><br>
+              </div>
+              <br>
 
             <h6><span class="text-muted">created at </span><time class="note_time">{{$notes->note_date}}</time></h6>
           </div>
             <div class="text-block note_body" id="note_id{{$notes->id}}">  {!!$notes->note_body!!}</div>
         </article>
     </div>
-</div>
-</div>
-</li>
+    <a href="#" data-tooltip="New note from image" class="tooltip"></a>
+
+  </div>
+  </div> -->
+  </li>
+
   @endif
   @continue
 
@@ -236,6 +350,8 @@
 @endforeach
 </ul>
 @endif
+</div>
+</div>
 </div>
 
 <!-- confirm Core modal -->
@@ -386,7 +502,13 @@ ajaxfun("Loading {{$notebooks->notebook_title}} Notebook", "#goback", "/notebook
 </script>
 <script>
      var options = {
-  valueNames: [ 'note_name', 'note_body', 'note_notebook', 'note_time' ]
+  valueNames: [ 'note_name', 'note_body', 'note_time' ]
 };
-var userList = new List('users', options);
+var userList = new List('skisearch', options);
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#list').click(function(event){event.preventDefault();$('#products .item').addClass('list-group-item');});
+    $('#grid').click(function(event){event.preventDefault();$('#products .item').removeClass('list-group-item');$('#products .item').addClass('grid-group-item');});
+});
 </script>

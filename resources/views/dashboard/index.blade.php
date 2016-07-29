@@ -64,7 +64,21 @@
     Adela
     </a>
         </div>
-        <div class="col-md-3 m-item col-md-push-1">
+
+     <div class="col-md-3 m-item col-md-push-1">
+          <a class="link_def" href="{{route('dashboard.cloudpack')}}">
+          <img src="/svg/folder-19.svg" alt="" class="m-i-svg" />
+            <h6 class="m-i-title">Deep Reasearch</h6>
+          <p class="m-i-text">
+            Take your research further with Deep Reasearch
+          </p>
+        </a>
+    <a class="btn btn-info btn-round btn-raised" href="{{route('dashboard.cloudpack')}}" >
+    Cloud
+    </a>
+        </div>
+
+   <!--      <div class="col-md-3 m-item col-md-push-1">
           <a class="link_def" href="{{route('dashboard.cloudpack')}}">
           <img src="/svg/folder-19.svg" alt="" class="m-i-svg" />
             <h6 class="m-i-title">Cloud</h6>
@@ -75,7 +89,7 @@
     <a class="btn btn-info btn-round btn-raised" href="{{route('dashboard.cloudpack')}}" >
     Cloud
     </a>
-        </div>
+        </div> -->
         <div class="col-md-3 m-item col-md-push-1">
           <a class="link_def" href="{{route('dashboard.notebook.index')}}">
           <img src="/svg/notebook-3.svg" alt="" class="m-i-svg" />
@@ -107,7 +121,7 @@
             </a>
             </div>
 
-    <div class="col-md-3 m-item col-md-push-1">
+<!--     <div class="col-md-3 m-item col-md-push-1">
       <a class="link_def"  href="#gopro">
         <img src="/svg/diamond.svg" alt="" class="m-i-svg" />
         <h6 class="m-i-title">Quest Challenge</h6>
@@ -118,7 +132,7 @@
     <a href="#" disabled  class="btn btn-info btn-raised btn-round">
     Coming soon
     </a>
-    </div>
+    </div> -->
 
 
     <div class="col-md-3 m-item col-md-push-1">

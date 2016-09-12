@@ -101,7 +101,7 @@ background-color: #5cb85c;
     <div class="new-todo">
 
 
-      @if (!$todo_call->count())
+      @if ($todo_call->count())
         <style media="screen">
         .empty_new, .new-lab{
           text-align: center;

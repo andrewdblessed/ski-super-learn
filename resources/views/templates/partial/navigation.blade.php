@@ -1,24 +1,20 @@
 @if (!Auth::check())
   <div class="navbar-fixed">
-  <nav class="blue white-text" role="navigation">
+  <nav class="white blue-text" role="navigation">
     <div class="nav-wrapper">
-      <a id="logo-container" href="{{route('home')}}" class=" white-text brand-logo">SKI LEARN</a>
+      <a id="logo-container" href="{{route('home')}}" class=" blue-text brand-logo">SKI LEARN</a>
       <ul class="right hide-on-med-and-down ">
-        <li><a class="white-text" href="/signup">Sign Up</a></li>
-        <li><a class="white-text" href="signin">Log In</a></li>
-        <li><a class="white-text" href="#">Price</a></li>
-        <li><a class="white-text" href="#">Meet Adela</a></li>
-        <li><a class="white-text" href="#">Learn More</a></li>
+        <li><a class="blue-text" href="/plans">Join</a></li>
+        <li><a class="blue-text" href="signin">Log In</a></li>
+        <li><a class="blue-text" href="#">Schools</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-        <li><a class="white-text" href="/signup">Sign Up</a></li>
-        <li><a class="white-text" href="#">Log In</a></li>
-        <li><a class="white-text" href="#">Price</a></li>
-        <li><a class="white-text" href="#">Meet Adela</a></li>
-        <li><a class="white-text" href="#">Learn More</a></li>
+        <li><a class="blue-text" href="/plans">Join</a></li>
+        <li><a class="blue-text" href="signin">Log In</a></li>
+        <li><a class="blue-text" href="#">Schools</a></li>
             </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+      <a href="#" data-activates="nav-mobile" class="button-collapse blue white-text"><i class="material-icons">menu</i></a>
     </div>
   </nav>
 </div>
@@ -47,8 +43,8 @@ span.nav-ic:hover {
       <a class="navmenu-brand" href="{{route('home')}}"><span class="nav-text">
         <span class="nav-ic"><i class="material-icons">dashboard</i></span>DashBoard</span></a>
       <ul class="nav navmenu-nav">
-        <li><a href="{{route('dashboard.notebook.index')}}"><span class="nav-text">
-          <span class="nav-ic"><i class="material-icons">bookmark</i></span>Notebooks</span></a></li>
+        <li><a href="{{route('dashboard.Ainote.index')}}"><span class="nav-text">
+          <span class="nav-ic"><i class="material-icons">bookmark</i></span>Ainotes</span></a></li>
         <li ><a href="{{route('adela.index')}}"><span class="nav-text">
           <span class="nav-ic"><i class="material-icons">mic</i></span>Adela</span></a></li>
         <li><a href="{{route('dashboard.cloudpack')}}"><span class="nav-text">

@@ -1,0 +1,36 @@
+.ski-noti-drawer {
+    position: fixed;
+    top: 20%;
+    padding: 10px;
+    color: #fff;
+    background-color: #03a9f4;
+    box-shadow: 0 -27px 87px -17px rgba(0, 0, 0, 20.56), 0 4px 0px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+.ski-noti-body {
+  position: fixed;
+  top: 20%;
+    width: 27%;
+    background-color: #fff;
+    height: 386px;
+    z-index: 100;
+}
+.noti-empty{
+  font-size: 1.5em;
+  color: #fff;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background-color:  #03a9f4;
+}
+.noti-empty-font {
+      font-size: -webkit-xxx-large;
+}
+.noti-empty {
+    color: #fff;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: #03a9f4;
+    padding: 82px;
+}

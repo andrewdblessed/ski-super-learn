@@ -23,7 +23,7 @@ $(function() {
 NOTE:: ROUTES BEGIN HERE FOR DEFAULT ROUTES
 **/
     /**
-    NOTE:: NOTEBOOK MANAGER
+    NOTE:: Ainote MANAGER
     **/
     $.routes.add('/nbmanager/', function() {
       location.replace("{{route('nbmanager')}}");
@@ -33,7 +33,7 @@ NOTE:: ROUTES BEGIN HERE FOR DEFAULT ROUTES
     NOTE:: MAIN NOTES INDEX
     **/
     $.routes.add('/noteindex', function() {
-      ajaxfun("Give me a sec", "{{route('dashboard.notebook.allnotebook')}}", "Please select a notebook");
+      ajaxfun("Give me a sec", "{{route('dashboard.Ainote.allAinote')}}", "Please select a Ainote");
         console.log("select a note");
     });
       //
@@ -41,14 +41,14 @@ NOTE:: ROUTES BEGIN HERE FOR DEFAULT ROUTES
     // NOTE:: ALL NOTES
     // **/
     $.routes.add('/allnote/', function() {
-       ajaxfun("Pulling all notes", "/notebooks/callnotes", "pull complete");
+       ajaxfun("Pulling all notes", "/Ainotes/callnotes", "pull complete");
     });
 
     // /**
     // NOTE:: NEW NOTES
     // **/
     $.routes.add('/newnote/', function() {
-      ajaxfun("Give me a sec", "{{route('dashboard.notebook.allnotebook')}}", "Please select a notebook");
+      ajaxfun("Give me a sec", "{{route('dashboard.Ainote.allAinote')}}", "Please select a Ainote");
     });
 
     // /**

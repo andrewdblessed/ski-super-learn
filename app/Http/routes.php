@@ -1,7 +1,16 @@
 <?php
 
+/***REVIEW
+// SCRIPT WRITTEN TO HANDLE ROUTE FUNCUNALITY OF SKI LEARN WEB  BETA VERSION.
+// THIS CODE IS WRITTEN BY ANDREW BEN RICHARD SCRIPT RECORD __ I CANT REMMBER CAME ALONG WITH GIT
+// SCRIPT PIORITY IMPORTANT
+// {{ I LOVE PEACE LIGHT}}
+//REVIEW ENDS
+***/
 
  Route::group(['middleware' => ['web',]], function () {
+
+
 
    // TODO: home
    Route::get('/', [
@@ -10,28 +19,46 @@
    ]);
 // IDEA: TEST DEMO
    Route::get('/test', [
-   'uses' => '\Skilearn\Http\controllers\TestController@Editcode',
-   'middleware' => ['auth'],
+     'uses' => '\Skilearn\Http\controllers\TestController@Editcode',
+     'middleware' => ['auth'],
    ]);
    Route::get('/test/dropzone', [
-   'uses' => '\Skilearn\Http\controllers\TestController@Dropezone',
-   'middleware' => ['auth'],
+     'uses' => '\Skilearn\Http\controllers\TestController@Dropezone',
+     'middleware' => ['auth'],
    ]);
    Route::get('/wikisearch', [
-   'uses' => '\Skilearn\Http\controllers\AdelaController@wiki',
-   'middleware' => ['auth'],
+     'uses' => '\Skilearn\Http\controllers\AdelaController@wiki',
+     'middleware' => ['auth'],
    ]);
    // IDEA: TEST ENDS
 
    // TODO: Authentication
-   Route::get('/signup',[
-     'uses' => '\Skilearn\Http\controllers\AuthController@getSignup',
-     'as' => 'auth.signup',
-     'middleware' => ['guest'],
+   Route::get('/basic',[
+     'uses' => '\Skilearn\Http\controllers\AuthController@basicPlan',
+          'as' => 'basicPlan',
+   'middleware' => ['guest'],
    ]);
 
-   Route::post('/signup',[
+   Route::get('/pro',[
+     'uses' => '\Skilearn\Http\controllers\AuthController@proPlan',
+          'as' => 'proPlan',
+   'middleware' => ['guest'],
+   ]);
+
+   Route::get('/premium',[
+     'uses' => '\Skilearn\Http\controllers\AuthController@premiumPlan',
+          'as' => 'premiumPlan',
+   'middleware' => ['guest'],
+   ]);
+
+   Route::get('/signup',[
+     'uses' => '\Skilearn\Http\controllers\AuthController@getSignup',
+     'as' => 'auth.register',
+     'middleware' => ['guest'],
+   ]);
+   Route::post('/auth/newuser',[
      'uses' => '\Skilearn\Http\controllers\AuthController@postSignup',
+          'as' => 'auth.signup',
    'middleware' => ['guest'],
    ]);
 
@@ -64,11 +91,23 @@
     'as' => 'auth.google',
     ]);
 
-
+// XXX: LOG
      Route::get('/signout',[
      'uses' => '\Skilearn\Http\controllers\AuthController@getSignout',
          'as' => 'auth.signout',
    ]);
+
+   // TODO:: PRICING TABLES
+   Route::get('/plans',[
+     'uses' => '\Skilearn\Http\controllers\AuthController@getpricing',
+     'as' => 'auth.pricing',
+     'middleware' => ['guest'],
+   ]);
+//Schools configuration Starts here VIEW
+Route::get('/schools', [
+'uses' => '\Skilearn\Http\controllers\SchoolsController@index',
+  'as'  => 'school.landing',
+]);
 
  // TODO: User Profile
 
@@ -78,7 +117,7 @@
            'middleware' => ['auth'],
    ]);
                  // TODO: profile editget
-           Route::get('/profile/edit',[
+       Route::get('/profile/edit',[
           'uses' => '\Skilearn\Http\controllers\ProfileController@getEdit',
         'as'  => 'profile.edit',
         'middleware' => ['auth'],
@@ -178,105 +217,111 @@ Route::get('/cloudsetup', [
 'as'  => 'cloudsetup',
 'middleware' => ['auth'],
 ]);
-// NOTE: NOTEBOOKS SECTION
-Route::get('/notebooks', [
-'uses' => '\Skilearn\Http\controllers\NotebookController@index',
-'as'  => 'dashboard.notebook.index',
+// NOTE: AinoteS SECTION
+Route::get('/Ainotes', [
+'uses' => '\Skilearn\Http\controllers\AinoteController@index',
+'as'  => 'dashboard.Ainote.index',
 'middleware' => ['auth'],
 ]);
-Route::get('/notebooks/call_all', [
-'uses' => '\Skilearn\Http\controllers\NotebookController@allNotebooks',
-'as'  => 'dashboard.notebook.allnotebook',
+Route::get('/Ainotes/call_all', [
+'uses' => '\Skilearn\Http\controllers\AinoteController@allAinotes',
+'as'  => 'dashboard.Ainote.allAinote',
 'middleware' => ['auth'],
 ]);
-Route::get('/notebooks/allnb', [
-'uses' => '\Skilearn\Http\controllers\NotebookController@allnb',
+Route::get('/Ainotes/allnb', [
+'uses' => '\Skilearn\Http\controllers\AinoteController@allnb',
 'as'  => 'nbmanager.allnb',
 'middleware' => ['auth'],
 ]);
-Route::get('/notebooks/manager', [
-'uses' => '\Skilearn\Http\controllers\NotebookController@notebookManager',
+Route::get('/Ainotes/manager', [
+'uses' => '\Skilearn\Http\controllers\AinoteController@AinoteManager',
 'as'  => 'nbmanager',
 'middleware' => ['auth'],
 ]);
 
-Route::get('/notebooks/callnotes', [
-'uses' => '\Skilearn\Http\controllers\NotebookController@getallnote',
-'as'  => 'dashboard.notebook.allnote',
+Route::get('/Ainotes/callnotes', [
+'uses' => '\Skilearn\Http\controllers\AinoteController@getallnote',
+'as'  => 'dashboard.Ainote.allnote',
 'middleware' => ['auth'],
 ]);
 
-Route::post('/notebookpost',[
-  'uses' => '\Skilearn\Http\Controllers\NotebookController@postNotebooks',
-  'as' => 'notebooks.post',
+Route::post('/Ainotepost',[
+  'uses' => '\Skilearn\Http\Controllers\AinoteController@postAinotes',
+  'as' => 'Ainotes.post',
   'middleware' => ['auth'],
 ]);
 
-Route::post('/updatenotebook{id}', [
-'uses' => '\Skilearn\Http\controllers\NotebookController@updateNotebook',
-'as' => 'updatenotebook',
+Route::post('/updateAinote{id}', [
+'uses' => '\Skilearn\Http\controllers\AinoteController@updateAinote',
+'as' => 'updateAinote',
 'middleware' => ['auth'],
 ]);
 
-Route::get('/deletenotebook{id}', [
-'uses' => '\Skilearn\Http\controllers\NotebookController@deleteNotebook',
-'as' => 'deletenotebook',
+Route::get('/deleteAinote{id}', [
+'uses' => '\Skilearn\Http\controllers\AinoteController@deleteAinote',
+'as' => 'deleteAinote',
 'middleware' => ['auth'],
 ]);
 
-// XXX: new notebook note post route
+// XXX: new Ainote note post route
 Route::post('/note_post',[
-  'uses' => '\Skilearn\Http\Controllers\NotebookController@postNote',
+  'uses' => '\Skilearn\Http\Controllers\AinoteController@postNote',
   'as' => 'post.note',
   'middleware' => ['auth'],
 ]);
 
 Route::post('/updatenote{id}', [
-'uses' => '\Skilearn\Http\controllers\NotebookController@updateNote',
+'uses' => '\Skilearn\Http\controllers\AinoteController@updateNote',
 'as' => 'updatenote',
 'middleware' => ['auth'],
 ]);
 
 Route::get('/deletenote{id}', [
-'uses' => '\Skilearn\Http\controllers\NotebookController@deleteNote',
+'uses' => '\Skilearn\Http\controllers\AinoteController@deleteNote',
 'as' => 'deletenote',
 'middleware' => ['auth'],
 ]);
 
-Route::get('/trashnotes/{notebook_id}', [
-'uses' => '\Skilearn\Http\controllers\NotebookController@Trashnotes',
+Route::get('/trashnotes/{Ainote_id}', [
+'uses' => '\Skilearn\Http\controllers\AinoteController@Trashnotes',
 'as' => 'trashnotes',
 'middleware' => ['auth'],
 ]);
 // end
 
 Route::get('/shownotes', [
-'uses' => '\Skilearn\Http\controllers\NotebookController@note_all',
+'uses' => '\Skilearn\Http\controllers\AinoteController@note_all',
 'as'  => 'showall',
 'middleware' => ['auth'],
 ]);
-Route::get('/notebooks/{id}',[
-'uses' => '\Skilearn\Http\controllers\NotebookController@getaNotebook',
-'as' => 'dashboard.notebook.anotebook',
+Route::get('/Ainotes/{id}',[
+'uses' => '\Skilearn\Http\controllers\AinoteController@getaAinote',
+'as' => 'dashboard.Ainote.aAinote',
 'middleware' => ['auth'],
 ]);
 
 Route::get('/notesnew',[
-'uses' => '\Skilearn\Http\controllers\NotebookController@makeNotes',
+'uses' => '\Skilearn\Http\controllers\AinoteController@makeNotes',
     'as' => 'newnote',
       'middleware' => ['auth'],
 ]);
 
 Route::get('/notenew/{id}',[
-'uses' => '\Skilearn\Http\controllers\NotebookController@newNote',
+'uses' => '\Skilearn\Http\controllers\AinoteController@newNote',
     'as' => 'dashboard.notes.newnote',
       'middleware' => ['auth'],
 ]);
 
-//NOTE: LOADING THE NOTE WITH A NOTEBOOK ID
-Route::get('/notebooks/{id}',[
-'uses' => '\Skilearn\Http\controllers\NotebookController@getaNotebook',
-'as' => 'dashboard.notebook.anotebook',
+Route::get('/new_note_index',[
+'uses' => '\Skilearn\Http\controllers\AinoteController@new_note_index',
+'as' => 'dashboard.notes.newnote_index',
+'middleware' => ['auth'],
+]);
+
+//NOTE: LOADING THE NOTE WITH A Ainote ID
+Route::get('/Ainotes/{id}',[
+'uses' => '\Skilearn\Http\controllers\AinoteController@getaAinote',
+'as' => 'dashboard.Ainote.aAinote',
 'middleware' => ['auth'],
 ]);
 
@@ -291,27 +336,15 @@ Route::get('/notes/area', [
 'as'  => 'dashboard.notes.notesload',
 'middleware' => ['auth'],
 ]);
-Route::post('/notepost',[
-  'uses' => '\Skilearn\Http\Controllers\NotesController@postNotes',
-  'as' => 'notes.post',
-  'middleware' => ['auth'],
-]);
-
-Route::post('/noteupdate',[
-  'uses' => '\Skilearn\Http\Controllers\NotesController@updateNotes',
-  'as' => 'notes.update',
-  'middleware' => ['auth'],
-]);
-
 Route::get('/notes/{id}',[
-'uses' => '\Skilearn\Http\controllers\NotebookController@getaNote',
+'uses' => '\Skilearn\Http\controllers\AinoteController@getaNote',
     'as' => 'dashboard.notes.view',
       'middleware' => ['auth'],
 ]);
 
 
 Route::get('/guest_note/{guest_token}',[
-'uses' => '\Skilearn\Http\controllers\NotebookController@getguestNote',
+'uses' => '\Skilearn\Http\controllers\AinoteController@getguestNote',
 'as' => 'guest.note',
 
 ]);
@@ -324,6 +357,11 @@ Route::get('/adela/about', [
 // HACK for guests
 ]);
 
+// HACK Adela Ai-notes querry
+Route::get('/adela/query-ai-notes', [
+'uses' => '\Skilearn\Http\controllers\AdelaController@getAi_note',
+'as'  => 'query_ai',
+]);
 Route::post('/adelasetup',[
   'uses' => '\Skilearn\Http\Controllers\AdelaController@postAdela_settings',
   'as' => 'adela.setup.post',
@@ -413,5 +451,58 @@ Route::get('/academic', [
 'as'  => 'academic',
 'middleware' => ['auth'],
 ]);
+
+//Research VIEW
+Route::get('/research', [
+'uses' => '\Skilearn\Http\controllers\DeepResearchController@index',
+  'as'  => 'research',
+  'middleware' => ['auth'],
+]);
+
+//CALENDAR VIEW
+Route::get('/calendar', [
+'uses' => '\Skilearn\Http\controllers\CalendarController@index',
+'as'  => 'calendar',
+'middleware' => ['auth'],
+]);
+
+
+//calendar post
+Route::post('/savesction',['uses' => '\Skilearn\Http\Controllers\CalendarController@postSection',
+  'as' => 'post.section',
+  'middleware' => ['auth'],
+]);
+
+// begin simple calendar
+Route::get('/calendar/simple', [
+'uses' => '\Skilearn\Http\controllers\SimpleCalendarController@simple',
+'as'  => 'calendar.simple',
+'middleware' => ['auth'],
+]);
+// begin simple calendar main viewer
+Route::get('/calendar/simple/events', [
+'uses' => '\Skilearn\Http\controllers\SimpleCalendarController@main',
+'as'  => 'cal.sim.main',
+'middleware' => ['auth'],
+]);
+
+//calendar post
+Route::post('/simple_event',[
+  'uses' => '\Skilearn\Http\Controllers\SimpleCalendarController@postSimpleCal',
+  'as' => 'post.simple_event',
+  'middleware' => ['auth'],
+]);
+
+// begin simple calendar sidebar viewer
+Route::get('/calendar/simple/sidebar', [
+'uses' => '\Skilearn\Http\controllers\SimpleCalendarController@sidebar',
+'as'  => 'cal.sim.sidebar',
+'middleware' => ['auth'],
+]);
+
+
+
+
+
 // REVIEW://do not remove the closing tags below
 });

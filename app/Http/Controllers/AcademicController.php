@@ -1,7 +1,7 @@
 <?php
 
 namespace Skilearn\Http\Controllers;
-
+ 
 /**
 *REVIEW:
 * THIS CONTROLELR CONTROLS THE USER ACADEMIC SECTION
@@ -20,7 +20,7 @@ class AcademicController extends Controller
 
   /**
   *REVIEW:
-  * THE NOTEBOOK INDEX VIEW
+  * THE Ainote INDEX VIEW
   *
   **/
   public function index()

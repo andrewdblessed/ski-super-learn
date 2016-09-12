@@ -147,15 +147,15 @@ class User extends Authenticatable
   {
     return $this->hasMany('Skilearn\Models\Subject', 'user_id');
   }
-  //HACK notebooks
-public function notebooks()
+  //HACK Ainotes
+public function Ainotes()
 {
-  return $this->hasMany('Skilearn\Models\Notebook', 'user_id');
+  return $this->hasMany('Skilearn\Models\Ainote', 'user_id');
 }
-//HACK notebooks----NOTE
-public function notebookNote()
+//HACK Ainotes----NOTE
+public function AinoteNote()
 {
-return $this->hasMany('Skilearn\Models\notebookNote', 'user_id');
+return $this->hasMany('Skilearn\Models\AinoteNote', 'user_id');
 }
 
 //HACK CLOUDUPLOADER
@@ -181,6 +181,18 @@ public function ADELADB()
 {
 return $this->hasMany('Skilearn\Models\AdelaDB', 'user_id');
 }
+
+//HACK CALENDAR
+public function Calendar()
+{
+return $this->hasMany('Skilearn\Models\Calendar', 'user_id');
+}
+//HACK SIMPLE CALENDAR
+public function SimpleCalendar()
+{
+return $this->hasMany('Skilearn\Models\SimpleCalendar', 'user_id');
+}
+
 //HACK EXP
 public function Exp()
 {

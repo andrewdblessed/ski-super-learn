@@ -9,19 +9,22 @@
 <link href="{{ URL::asset('/src/vendor/mfb/mfb.min.css') }}" rel="stylesheet">
 <link href="{{ URL::asset('/css/style.css') }}" rel="stylesheet">
 <link href="{{ URL::asset('/css/snackbar.min.css') }}" rel="stylesheet">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="{{ URL::asset('/css/material-icons.css') }}" rel="stylesheet">
 <link href="{{ URL::asset('/css/font-awesome.min.css') }}" rel="stylesheet">
 <link href="{{ URL::asset('/css/demo.css') }}" rel="stylesheet">
 <link href="{{ URL::asset('/src/vendor/jasny/jasny-bootstrap.css') }}" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{{ URL::asset('/src/ski-vendor/ski-noti/css/style.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ URL::asset('/src/ski-vendor/ski-boarding/css/style.css') }}">
+  <script src="/src/vendor/jBox-0.3.2/src/jBox.min.js"></script>
+<link href="/src/vendor/jBox-0.3.2/src/jBox.css" rel="stylesheet">
+<link href="/src/vendor/datepicker/css/datepicker.css" rel="stylesheet">
+
 <!-- <link href="{{ URL::asset('https://cdn.rawgit.com/Basictechy/skilearn-v2.0/master/public/css/animate.css') }}" rel="stylesheet"> -->
 
-<!-- NOTE: LOADING AI CSS AND JS CONFIGURATION --><link href="{{ URL::asset('/AI/ai.css') }}" rel="stylesheet">
-<script src="{{ URL::asset('/AI/ai_fun.js') }}" ></script>
-<script src="{{ URL::asset('/AI/config.js') }}" ></script>
+
 <script src="{{ URL::asset('/js/classie.js') }}" ></script>
 <!-- <script src="{{ URL::asset('/ai/config.js') }}" ></script>
 <script src="{{ URL::asset('/ai/data.js') }}" ></script> -->
-<link rel="stylesheet" type="text/css" href="{{ URL::asset('/src/vendor/s-nav/css/style.css') }}">
 
 
 </style>

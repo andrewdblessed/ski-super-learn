@@ -3,6 +3,7 @@
 calling the varios scripts when needed from the
 controller and our site -->
 --}}
+<link href="{{ URL::asset('/src/vendor/ski-noti/css/ns-default.css') }}" rel="stylesheet">
 
 <link href="{{ URL::asset('/src/vendor/ski-noti/css/ns-style-other.css') }}" rel="stylesheet">
 <script src="{{ URL::asset('/src/vendor/ski-noti/js/modernizr.custom.js') }}" ></script>
@@ -17,8 +18,9 @@ $(document).ready(function(){
 <!-- XXX: Auth   -->
   // create the notification
   @if (Auth::user()->gender == "male")
+
            var notification = new NotificationFx({
-              message : '<div class="ns-thumb"><img src="/user-tools/profile-default/avatar.png"/></div><div class="ns-content"><p><a href="#">{{Auth::user()-> getFirstNameorUsername() }}</a> {{Session::get('signin') }}.</p></div>',
+              message : '<div class="ns-content"><p><a href="#">{{Auth::user()-> getFirstNameorUsername() }}</a> {{Session::get('signin') }}.</p></div>',
               layout : 'other',
               ttl : 16000,
               effect : 'thumbslider',
@@ -29,9 +31,11 @@ $(document).ready(function(){
             });
 
 @else
-          
+setTimeout( function() {
+
+
       var notification = new NotificationFx({
-              message : '<div class="ns-thumb"><img src="/user-tools/profile-default/avatar-1.png"/></div><div class="ns-content"><p><a href="#">{{Auth::user()-> getFirstNameorUsername() }}</a> {{Session::get('signin') }}.</p></div>',
+              message : '<div class="ns-content"><p><a href="#">{{Auth::user()-> getFirstNameorUsername() }}</a> {{Session::get('signin') }}.</p></div>',
               layout : 'other',
               ttl : 16000,
               effect : 'thumbslider',
@@ -40,6 +44,7 @@ $(document).ready(function(){
                 bttn.disabled = false;
               }
             });
+            }, 1200 );
       @endif
 
 SnackBar.show({
@@ -61,7 +66,7 @@ SnackBar.show({
               }
             });
 
-           
+
 SnackBar.show({
   text: 'Signed out successfull',
   showAction: false,
@@ -134,12 +139,12 @@ pos: 'bottom-center'
 });    </script>
 @endif
 
-<!-- notebook: -->
-@if (Session::has('notebook-created'))
+<!-- Ainote: -->
+@if (Session::has('Ainote-created'))
 <script>
 $(document).ready(function(){
 SnackBar.show({
-text:"{{Session::get('notebook-created') }}",
+text:"{{Session::get('Ainote-created') }}",
 pos: 'bottom-center'
 });
 });    </script>

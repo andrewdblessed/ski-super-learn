@@ -61,7 +61,7 @@ return view ('dashboard.cloudpack')
           })
           ->orderBy('created_at', 'desc')
           ->paginate();
-          // dd($notebook_all);
+          // dd($Ainote_all);
       return view ('cloudload.uploadtest')
 
       ->with('title', $title)

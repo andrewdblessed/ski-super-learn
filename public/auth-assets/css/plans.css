@@ -1,0 +1,149 @@
+
+nav {
+    height: 50px;
+    background: #fff;
+    z-index: 61;
+    position: fixed;
+    width: 100%;
+    border-radius: 2px;
+    border-bottom-color: black;
+    border-bottom-style: solid;
+    border-bottom-width: thin;
+    top: 0%;
+}
+.nav-holder {
+    padding: 11px 31px 6px 36px;
+    font-size: larger;
+    font-weight: 500;
+}
+a.brand {
+    color: rgba(96,125,139,1);
+    text-decoration: none;
+}
+a.brand:hover, a.brand:focus {
+    color: rgba(96,125,139,1);
+    text-decoration: none;
+}
+a.signin.btn.btn-info {
+    background-color: rgba(2,136,209,1);
+    border-color: rgba(2,136,209,1);
+}
+section{
+  padding-top:100px;
+}
+.intro-text {
+    width: 86%;
+    padding-left: 71px;
+    margin-bottom: 52px;
+    text-transform: capitalize;
+}
+.premium-ads {
+    width: 327px;
+    height: 198px;
+    position: absolute;
+    background: #fff;
+    border-radius: 17px;
+    padding: 20px;
+    top: -30px;
+    color: #607d8b;
+}
+img.p-ads-img {
+    width: 59px;
+}
+/*NOTE TABLE BEGINS*/
+
+  * {
+  	box-sizing: border-box;
+  }
+
+
+  /* Create three columns of equal width */
+  .columns {
+  	float: left;
+  	width: 33.3%;
+  	padding: 8px;
+  }
+  .col-md-8.col-md-push-2.all-items {
+    background: #fff;
+}
+
+  /* Style the list */
+  .price {
+  	list-style-type: none;
+  	border: 1px solid #eee;
+  	margin: 0;
+  	padding: 0;
+  	-webkit-transition: 0.3s;
+  	transition: 0.3s;
+  }
+
+  /* Add shadows on hover */
+  .price:hover {
+  	box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2)
+  }
+  a.btn.signup {
+      background: #fff;
+      color: #2196F3;
+  }
+  /* Pricing header */
+  .price .header {
+  	background-color: #111;
+  	color: white;
+  	font-size: 25px;
+  }
+  .price .pro {
+    background-color: #3f51b5;
+  }
+
+  .price .basic {
+  	background-color: #0091ea;
+  }
+  .price .premium {
+    background-color: #607d8b;
+  }
+  /* List items */
+  .price li {
+  	border-bottom: 1px solid #eee;
+  	padding: 20px;
+  	text-align: center;
+  }
+
+  /* Grey list item */
+  .price .grey {
+  	background-color: #eee;
+  	font-size: 20px;
+  }
+
+  /* The "Sign Up" button */
+  .button {
+  	background-color: #4CAF50;
+  	border: none;
+  	color: white;
+  	padding: 10px 25px;
+  	text-align: center;
+  	text-decoration: none;
+  	font-size: 18px;
+  }
+
+  /* Change the width of the three columns to 100%
+  (to stack horizontally on small screens) */
+  @media only screen and (max-width: 600px) {
+  	.columns {
+  			width: 100%;
+  	}
+  }
+  .slide1 {
+    width: 64%;
+    height: 186%;
+    position: fixed;
+    top: 0%;
+    z-index: -1122;
+    -moz-transform: rotate(7.5deg);
+    -o-transform: rotate(7.5deg);
+    -ms-transform: rotate(7.5deg);
+    -webkit-transform: rotate(7.5deg);
+    transform: rotate(7.5deg);
+    right: -114px;
+    overflow: none;
+    background-color: #607d8b;
+}

@@ -139,9 +139,9 @@ textarea.note_body {
                 </header>
 
                   <br>
-                  @foreach ($notebook_all as $notebooks)
-                  <input type="hidden" name="notebook_id" value="{{$notebooks->id}}">
-                   <input type="hidden" name="notebook_name" value="{{$notebooks->notebook_title}}">
+                  @foreach ($Ainote_all as $Ainotes)
+                  <input type="hidden" name="Ainote_id" value="{{$Ainotes->id}}">
+                   <input type="hidden" name="Ainote_name" value="{{$Ainotes->Ainote_title}}">
                    @endforeach
                    <textarea type="hidden" name="note_date"  id="notedate"> </textarea>
               </article></div>

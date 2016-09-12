@@ -2,21 +2,53 @@
 
 namespace Skilearn\Http\Controllers;
 
+/**
+*REVIEW:
+* THIS CONTROLELR CONTROLS OUR Ainote SECTION
+*
+**/
 use Auth;
-use Skilearn\Models\User;
+
+//USING HTTP REQUEST TO MAKE REQUEST
 use Illuminate\Http\Request;
+
+// USING THE USER MODEL TO CALL USER DETAILS
+use Skilearn\Models\User;
+
+//WORKING ON GETTING THE FORM DATA
 use Illuminate\Html;
+
 /**
  *
  */
 class AuthController extends controller
 {
-
+  /**
+  *REVIEW:
+  *VARIOUS PLANS AND THEIR SIGNUP PAGE
+  *
+  **/
 public function getSignup()
   {
-    $title ='Sign up';
-return view ('auth.signup')->with('title', $title);
+return view ('auth.register')->with('title', $title);
   }
+// XXX:   BASIC PLAN
+  public function basicPlan()
+    {
+  return view ('auth.plans.basic');
+    }
+    // XXX:   PRO PLAN
+
+    public function proPlan()
+      {
+    return view ('auth.plans.pro');
+      }
+      // XXX:   PREMIUM PLAN
+
+      public function premiumPlan()
+        {
+      return view ('auth.plans.premium');
+        }
  public function postSignup(Request $request)
 {
 
@@ -66,4 +98,12 @@ return redirect()->route('home')->with('signin', 'you are now signed in');
 
 	return redirect()->route('home')->with('signout', 'you are now signed out');
 }
+
+
+public function getpricing()
+  {
+    $title ='Sign up';
+return view ('auth.pricing')->with('title', $title);
+  }
+
 }

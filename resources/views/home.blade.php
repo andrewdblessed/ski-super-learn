@@ -10,9 +10,10 @@
             <h5 class="header col s12 light">A SINGLE <span class="blue">PLATFORM</span> THAT HELPS YOU <br><span class="blue eager_header"> MANAGE YOUR STUDY LIFE</span>.</h5>
         </div>
         <div class="row center">
-          <a href="/signup" id="download-button" class="btn-large waves-effect waves-light blue lighten-1">Get Started</a>
-          <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light blue lighten-1">Learn More</a>
-        </div>
+          <a href="/ski/pricing" id="download-button" class="btn-large waves-effect waves-light blue lighten-1">Get Started</a>
+          <a href="/siginin" id="download-button" class="btn-large waves-effect waves-light blue lighten-1">Log in</a>
+          <a href="/schools" id="download-button" class="btn-large waves-effect waves-light blue lighten-1">For Schools</a>
+       </div>
         <br><br>
 
       </div>
@@ -25,7 +26,9 @@
 
       <!--   Icon Section   -->
       <div class="row">
-        <div class="col s12 m4">
+
+
+          <div class="col s12 m4">
           <div class="icon-block">
             <div class="center">
             <img src="/landing/svg/ai.png" style="width:80px; height80px;" alt="" />
@@ -43,7 +46,7 @@
           </div>
             <h5 class="center">Create Notes</h5>
 
-            <p class="light"><span class="blue white-text">Create, Save and manage</span> your various notes under your collective notebook. Your notes are not just saved on Ski-Learn you can also <span class="blue white-text">download your notes to your device.</span></p>
+            <p class="light"><span class="blue white-text">Create, Save and manage</span> your various notes under your collective Ainote. Your notes are not just saved on Ski-Learn you can also <span class="blue white-text">download your notes to your device.</span></p>
           </div>
         </div>
 
@@ -88,99 +91,28 @@
 
       <div class="col s12 m4">
         <div class="icon-block">
-          <div class="center">
-          <img src="/landing/svg/diploma.png" style="width:80px; height80px;" alt="" />
-        </div>
-          <h5 class="center">Save and Showcase Your Success </h5>
-
+                <h5 class="center">Save and Showcase Your Success </h5>
           <p class="light">keep track of <span class="white-text blue">your academic success</span> and show case it to your friends, teachers, family and the entire world.</p>
         </div>
       </div>
     </div>
-
   </div>
 </div>
-
   <div class="parallax-container valign-wrapper">
     <div class="section no-pad-bot">
       <div class="container">
         <div class="row center">
-          <h5 class="header col s12 blue white-text">Created for everyone</h5>
+
         </div>
       </div>
     </div>
     <div class="parallax"><img src="/landing/background2.jpg" alt="Unsplashed background img 2"></div>
   </div>
-  <!-- <div class="container">
-    <div class="section"> -->
 
-      <!--   Icon Section   -->
-      <!-- <div class="row">
-        <div class="col s12 m8">
-          <img src="/landing/background4.jpg"n width="600px"  height="400px"alt="UI interface of skilearn Web app" />
-        </div>
 
-        <div class="col s12 m4">
-          <div class="icon-block">
-              <h5 class="center">Simple UI Design</h5>
 
-            <p class="light"><span class="blue white-text">Simple Material Design interface with easy to use dashboard system</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
 
-<!--
-  <div class="parallax-container valign-wrapper">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <div class="row center">
-          <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
-        </div>
-      </div>
-    </div>
-    <div class="parallax"><img src="/landing/background3.jpg" alt="Unsplashed background img 3"></div>
-  </div> -->
-<!--
-  <div class="container">
-    <div class="section">
-        <div class="row">
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <div class="center">
-            <img src="/landing/svg/ai.png" style="width:80px; height80px;" alt="" />
-          </div>
-            <h5 class="center">AI Research Bot (Adela)</h5>
 
-            <p class="light">Adela is an Artificial intelligent bot that has knowledge on some <span class="blue white-text">historic events</span>, has access to <span class="blue white-text">Wikipedia</span>, calculates <span class="blue white-text">random mathematics</span>, translate words to various <span class="blue white-text">languages</span> and as an excellent <span class="blue white-text">communication skills</span>.</p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <div class="center">
-            <img src="/landing/svg/notebook.png" style="width:80px; height80px;" alt="" />
-          </div>
-            <h5 class="center">Create Notes</h5>
-
-            <p class="light"><span class="blue white-text">Create, Save and manage</span> your various notes under your collective notebook. Your notes are not just saved on Ski-Learn you can also <span class="blue white-text">download your notes to your device.</span></p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <div class="center">
-            <img src="/landing/svg/cloud.png" style="width:80px; height80px;" alt="" />
-          </div>
-            <h5 class="center">Save Your Files and Images to the Cloud</h5>
-
-            <p class="light"><span class="blue white-text">Save and access your files</span> and documents anywhere any time. Ski-Learn Cloud-pack plans to be your perfect choice to keep you attach to your Ebooks and documents, keeping them <span class="blue white-text">save in the cloud</span>.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
 
 
   <footer class="page-footer blue">

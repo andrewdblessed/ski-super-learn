@@ -22,12 +22,11 @@ class RouteServiceProvider extends ServiceProvider
      * @param  \Illuminate\Routing\Router  $router
      * @return void
      */
-    public function boot(Router $router)
-    {
-        //
-
-        parent::boot($router);
-    }
+  public function boot(Router $router)
+{
+    $router->pattern('domain', '[a-z0-9.]+');
+    parent::boot($router);
+}
 
     /**
      * Define the routes for the application.

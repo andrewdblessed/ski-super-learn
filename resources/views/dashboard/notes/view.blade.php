@@ -1,173 +1,38 @@
-<style media="screen">
-.note_nav{
-position: fixed;
-}
-.gback{
-  float: left;
-}
-.gedit{
-  float: right;
-}
-/**
- * Card Styles
- */
+@if ($errors->has())
+       <div class="alert alert-danger">
+           @foreach ($errors->all() as $error)
+               {{ $error }}<br>
+           @endforeach
+       </div>
+       @endif
+<div class="col-md-8 col-md-push-31">
+  <div class="jumbotron" style="border-radius:0;">
+      <img class="ainotes_cats_img" src="user-tools/ainote-background/nb_{{$notes->ainote_bg}}.png" alt="" />
+      <div class="edit-ajax">
 
-.card-note {
-    background-color: #fff;
-    margin-bottom: 1.6rem;
-}
+        <form  action="/updatenote{{$notes->id}}" id="new_note" method="post">
 
-.card__padding {
-    padding: 1.6rem;
-}
-
-.card__image {
-    min-height: 100px;
-    background-color: #eee;
-}
-    .card__image img {
-        width: 100%;
-        max-width: 100%;
-        display: block;
-    }
-
-.card__content {
-    position: relative;
-}
-
-/* card meta */
-/*.card__meta time {
-    font-size: 1.5rem;
-    color: #bbb;
-    margin-left: 0.8rem;
-}*/
-
-/* card article */
-.card__article a {
-    text-decoration: none;
-    color: #444;
-    transition: all 0.5s ease;
-}
-    .card__article a:hover {
-        color: #2980b9;
-    }
-
-/* card action */
-.card__action {
-    overflow: hidden;
-    padding-right: 1.6rem;
-    padding-left: 1.6rem;
-    padding-bottom: 1.6rem;
-}
-
-.card__author {}
-
-    .card__author img,
-    .card__author-content {
-        display: inline-block;
-        vertical-align: middle;
-    }
-
-    .card__author img{
-        border-radius: 50%;
-        margin-right: 0.6em;
-    }
-  .chip {
-      padding: 0px 26px;
-      height: 30px;
-      font-size: 12px;
-      line-height: 30px;
-      border-radius: 5px;
-      background-color: #f1f1f1;
-      left: 86px;
-      margin-bottom: 9px;
-      display: inline-block;
-  }
-
-.chip img {
-  float: left;
-  margin: 0 10px 0 -25px;
-  height: 29px;
-  width: 29px;
-  border-radius: 50%;
-}
-/*.main_note{
-  max-height: 200px;
-  overflow-x: scroll;
-}*/
-.goback{
-  float: left;
-      z-index: 10;
-}
-.goedit{
-  float: right;
-      z-index: 10;
-}
-.note_header{
-  text-align: center;
-}
-
-.fixed-fab {
-    position: fixed;
-    top: 89%;
-    left: 36%;
-    z-index: 21;
-    background-color: #fff;
-    padding: 4px 24px 0 24px;
-}
-.card-note {
-    background-color: #fff;
-    margin-bottom: 1.4rem;
-    height: 40em;
-}
-.card__body {
-    overflow-x: hidden;
-    overflow-y: scroll;
-    height: 363px;
-    padding-left: 29px;
-    padding-right: 10px;
-    margin-bottom: 38px;
-}
-header.note_header.text-muted {
-    text-decoration: underline;
-    font-size: xx-large;
-    text-transform: capitalize;
-    padding-top: 12px;
-}
-.fix_fab_icon {
-    padding: 5%;
-}
-</style>
-<div class="animated fadeIn">
-
-<div class="fixed-fab">
-  <a href="#" class="btn btn-raised btn-fab btn-success goback fix_fab_icon" style="padding:5%;"><i class="fa fa-backward"></i></a>
-  <a href="{{route('deletenote',[$notes->id])}}" style="padding:5%;" class="btn btn-raised btn-fab btn-warning  fix_fab_icon"><i class="fa fa-trash-o"></i></a>
-  <a href="#" style="padding:5%;" class="btn btn-raised btn-fab btn-danger fix_fab_icon"><i class="fa fa-pencil"></i></a>
-  <a href="#" style="padding:5%;" class="btn btn-raised btn-fab btn-success fix_fab_icon"><i class="fa fa-download"></i></a>
+          <input type="hidden" name="_token" value="{{ Session::token() }}">
+          <textarea type="hidden" style="display:none;" name="note_date"  id="notedate"> </textarea>
+  <div class="ain-note-title">
+    <input class="note_name note_id31" name="note_title" value="{{$notes->note_title}}">
+  </div>
+  <div class="ain-nb-title">
+    <h5 class="note_Ainote"> {{ $notes->ainote_name}}</h5>
+  </div>
+  <hr>
+  <textarea class="editable ain-note-body ain-note-body{{$notes->id}} note_body" name="note_body">
+{!!$notes->note_body!!}
+</textarea>
+<button type="submit" class="btn btn-info btn-round btn-raised">
+Update
+</button>
+<a href="#" class="btn btn-warning btn-round btn-raised">close</a>
+</form>
+    <hr>
 </div>
-<div class="col-md-8 col-md-push-2">
-  <div class="main_note">
-     <div class="card-note radius shadowDepth1">
-        <div class="card__content card__padding">
-                  <article class="card__article">
-                <header class="note_header text-muted">
-                  {{$notes->note_title}}
-                </header>
-                <div class="chip" style="cursor: pointer;" id="notebook6">
-                    <img src="svg/bookmark.svg" alt="Person" width="96" height="96">
-                  <span class="note_notebook">{{$notes->notebook_name}}</span>
-                  </div><br>
-
-                <h6><span class="text-muted">created at </span><time class="note_time">{{$notes->note_date}}</time></h6>
-              </article>
-            </div>
-                <div class="card__body">
-                  {!!$notes->note_body!!}
-                </div>
-               </div>
-            </div>
-          </div>
+</div>
+</div>
 
 <script type="text/javascript">
 //NOTE
@@ -187,8 +52,7 @@ $(function() {
       });
     });
     }
-ajaxfun("Loading All Notes", ".goback", "/notebooks/callnotes", "Load Completed");
-ajaxfun("Loading {{$notes->notebook_name}} Notebook", "#notebook{{$notes->notebook_id}}", "/notebooks/{{$notes->notebook_id}}", "Load Completed");
+ajaxfun("Loading {{$notes->Ainote_name}} Ainote", "#Ainote{{$notes->Ainote_id}}", "/Ainotes/{{$notes->Ainote_id}}", "Load Completed");
 
   });
 </script>
@@ -204,7 +68,16 @@ ajaxfun("Loading {{$notes->notebook_name}} Notebook", "#notebook{{$notes->notebo
                                      '//www.tinymce.com/css/codepen.min.css'
                                    ]
                                  });
+
+                                 var date = new Date();
+
+                                 var month = date.getMonth();
+                                 var day = date.getDate();
+                                 var year = date.getFullYear();
+
+                                 var monthNames = [ "January", "February", "March", "April", "May", "June",
+                                     "July", "August", "September", "October", "November", "December" ];
+
+                                 document.getElementById("notedate").innerHTML = day+" "+monthNames[month]+" "+year;
+
                          </script>
-  </div>
-</div>
-</div>

@@ -14,7 +14,7 @@ class CommunityController extends controller
     {
       $title ='Study Communities';
        $skiSearch = true;
-    $skiSearch_placehold = "Search Notebooks and notes";
+    $skiSearch_placehold = "Search Ainotes and notes";
        
 
        

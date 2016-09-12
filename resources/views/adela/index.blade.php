@@ -1,5 +1,8 @@
 @extends('templates.default')
 @section('content')
+<!-- NOTE: LOADING AI CSS AND JS CONFIGURATION --><link href="{{ URL::asset('/AI/ai.css') }}" rel="stylesheet">
+<script src="{{ URL::asset('/AI/ai_fun.js') }}" ></script>
+<script src="{{ URL::asset('/AI/config.js') }}" ></script>
 <!--REVIEW:// TESTING THE DB OF ADELA WITH VARIOUS DATAS  -->
 
 <!--REVIEW:// search google  -->
@@ -368,7 +371,7 @@ What to ask
 <!-- REVIEW: We place the gotten content here and make this form field invisible
 this is for notes
  -->
- <form class="noteform" action="{{ route('notes.post')}}" method="post">
+{{-- <form class="noteform" action="{{ route('notes.post')}}" method="post">
    <textarea class="ai2" type="text" name="title" ></textarea>
    <textarea class="ai" name="body" rows="8" cols="40">adela response</textarea>
    <input  type="text" name="subject_select" value="adela">
@@ -376,7 +379,7 @@ this is for notes
 
        <button class="savedb mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary">submit</button>
        <input type="hidden" name="_token" value="{{ Session::token() }}">
- </form>
+ </form> --}}
 </div>
 <!-- The MIC overlay -->
 <div id="myMic" class="overlay">

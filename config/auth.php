@@ -70,9 +70,9 @@ return [
             'model' => Skilearn\Models\User::class,
         ],
 
-        'notebook' => [
+        'Skilearn' => [
             'driver' => 'eloquent',
-            'model' => Skilearn\Models\Notebook::class,
+            'model' => Skilearn\Models\Skilearn::class,
         ],
     ],
 

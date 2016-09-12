@@ -59,6 +59,15 @@ class AdelaController extends Controller
       ->with('skiSearch', $skiSearch)
       ->with('skiSearch_placehold',   $skiSearch_placehold);
     }
+// XXX:: Ai-notes
+public function getAi_note()
+{
+  $bg_number = intval( "0" . rand(1,12)  ); // random(ish) 12 digit int
+
+  return view ('dashboard.ainote.ai-note')
+   ->with('bg_number', $bg_number);
+}
+//XXX AI-NOTES ENDS
 
   public function load_adela()
   {

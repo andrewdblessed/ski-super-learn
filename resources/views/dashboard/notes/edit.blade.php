@@ -174,8 +174,8 @@ textarea.note_body {
                 <textarea class="editable note_body" name="note_body"></textarea>
 
 
-                <input type="hidden" name="notebook_id" value="{{$notebooks->id}}">
-                <input type="hidden" name="notebook_name" value="{{$notebooks->notebook_title}}">
+                <input type="hidden" name="Ainote_id" value="{{$Ainotes->id}}">
+                <input type="hidden" name="Ainote_name" value="{{$Ainotes->Ainote_title}}">
                 <textarea type="hidden" style="display:none;" name="note_date"  id="notedate"> </textarea>
 
                  <input type="hidden" name="_token" value="{{ Session::token() }}">
@@ -203,7 +203,7 @@ $(function() {
       });
     });
     }
-ajaxfun("Loading All Notes", ".goback", "/notebooks/callnotes", "Load Completed");
+ajaxfun("Loading All Notes", ".goback", "/Ainotes/callnotes", "Load Completed");
   });
 </script>
 <script>
@@ -255,7 +255,7 @@ url: $(form).attr('action'),
 data: formData
 })
 .done(function(response) {
-  $(".ajax_point").load("/notebooks/callnotes");
+  $(".ajax_point").load("/Ainotes/callnotes");
 SnackBar.show({text:'Note Added'});
 $(".ski_loader").css("display", "none");
 

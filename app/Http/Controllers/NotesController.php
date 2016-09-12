@@ -2,7 +2,7 @@
 
 namespace Skilearn\Http\Controllers;
 use Auth;
-use Skilearn\Models\Notebook;
+use Skilearn\Models\Ainote;
 use Skilearn\Models\User;
 use Skilearn\Models\Adela;
 use Skilearn\Models\Notes;

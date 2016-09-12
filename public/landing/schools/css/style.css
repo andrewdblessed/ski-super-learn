@@ -1,0 +1,209 @@
+body {
+    background: #eceff1;
+}
+.jumbotron.start-pad {
+    margin-top: 51px;
+    background-color: rgb(92,107,192);
+    color: white;
+    padding-bottom: 148px;
+}
+.sch-wel-img {
+    width: 135px;
+    margin-top: 15px;
+}
+.col-md-6.sch-wel-1 {
+    padding-top: 6%;
+    padding-left: 82px;
+}
+h5.sch-welcome-1 {
+    color: rgb(249,168,37);
+    font-weight: 900;
+}
+h2.sch-welcome-2 {
+    font-weight: 700;
+    text-transform: capitalize;
+}
+h4.sch-welcome-3 {
+    color: rgb(249,168,37);
+    font-weight: 200;
+    font-size: small;
+    padding-right: 36%;
+}
+button.btn.btn-info.sch-signin-btn {
+    min-width: 363px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    border-color: rgb(245,127,23);
+    background: #fff;
+    color: rgb(245,127,23);
+    font-weight: 700;
+}
+button.btn.btn-info.sch-signin-btn:hover {
+    min-width: 363px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    border-color: #fff;
+    background: rgb(245,127,23);
+    color: #fff;
+    font-weight: 700;
+}
+a.btn.btn-info.sch-btn-welcome {
+    margin-top: 10px;
+    min-width: 363px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    border-color: #fff;
+    background: transparent;
+    color: #fff;
+    font-weight: 700;
+}
+a.btn.btn-info.sch-btn-welcome:hover {
+    border-color: #5c6bc0;
+    background: #fff;
+    color: #5c6bc0;
+}
+input.form-control {
+    font-size: larger;
+    height: 58px;
+    margin-bottom: 0;
+    border-radius: 0;
+}
+input.form-control:focus {
+    border-color: #5c6bc0;
+    color: #5c6bc0;
+}
+a.sch-rem-pass {
+    color: #fff;
+    float: right;
+}
+a.sch-rem-pass:hover {
+    color: #fff;
+    float: right;
+    text-decoration: none;
+}
+.scroll-sch {
+    left: 45%;
+    margin-top: 46px;
+    height: 25px;
+    position: absolute;
+    top: 71%;
+    margin-bottom: 18px;
+}
+a.scroll-a {
+    color: rgb(255,143,0);
+    font-size: medium;
+    font-weight: 700;
+    padding-top: 46px;
+    padding-bottom: 34px;
+}
+a.scroll-a:hover {
+    color: rgb(255,143,0);
+  text-decoration: none;
+}
+.scroll-sch {
+    left: 45%;
+    padding-top: 73px;
+    height: 25px;
+    position: absolute;
+    top: 73%;
+    padding-bottom: 18px;
+}
+.sch-product-1 {
+    text-align: center;
+    color: rgb(230,81,0);
+    text-transform: capitalize;
+  }
+.sch-thumbnail.thumbnail {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    padding: 0px;
+    margin-left: 35px;
+}
+.sch-product-img {
+    width: 109px;
+    margin-top: 32px;
+}
+.col-md-3.sch-product-row {
+    text-align: center;
+}
+
+/*hero 2*/
+
+.sch-hero2-thumbnail.thumbnail {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    padding: 0px;
+    margin-left: 35px;
+    position: relative;
+    left: 39%;
+    top: -40px;
+}
+.sch-welcome-1 {
+    color: rgb(249,168,37);
+    font-weight: 900;
+}
+.hero-text1 {
+    text-align: center;
+    position: relative;
+    top: -53px;
+}
+.sch-hero2-img {
+    width: 118px;
+    margin-top: 30px;
+}
+.sch-skithumb.thumbnail {
+    width: 49px;
+    height: 49px;
+    border-radius: 50%;
+    padding: 0px;
+    float: right;
+    margin-top: 20px;
+}
+.sch-skiimg-img {
+    width: 32px;
+    margin-top: 7.5px;
+}
+.sch-price-1{
+    background: #00838f;
+ }
+ .sch-price-2{
+     background: #2196F3;
+ }
+ .sch-price-3{
+    background: #7b1fa2;
+ }
+ .sch-price-4{
+    background: #283593;
+ }
+.price-de {
+    background: #fff;
+    padding: 14px;
+    border-radius: 4%;
+    margin-bottom: 13px;
+    text-align: center;
+}
+a.price-more {
+    color: #fff;
+    font-weight: 900;
+    font-size: large;
+    text-transform: uppercase;
+}
+a.price-more:hover {
+    color: #fff;
+    font-weight: 900;
+    font-size: large;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+h3.price-tag {
+    font-weight: 800;
+    color: #ff6f00;
+}
+.sch-price {
+    padding: 22px;
+    text-align: center;
+    width: 23%;
+    margin-right: 17px;
+}

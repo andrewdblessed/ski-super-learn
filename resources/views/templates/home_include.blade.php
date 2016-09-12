@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
   <html ng-app>
     <head>
@@ -9,14 +11,11 @@
         	<meta name="author" content="Ski Learn">
         	<meta name="description" content="Ski-Learn is a online educational platform the focuses on making learning easy">
 
-  <script src="//fast.eager.io/zjA0V0k7lP.js"></script>
+  
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="/landing/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="/landing/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href='//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' rel='stylesheet'>
-
-
-
   </head>
   <body>
         @include('templates.partial.navigation')
@@ -36,9 +35,8 @@
         <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
       </div>
     </div>
-  <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <!-- 
   <script src="/landing/js/materialize.js"></script>
-  <script src="/landing/js/init.js"></script>
+  <script src="/landing/js/init.js"></script>  Scripts-->
   </body>
 </html>

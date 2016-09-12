@@ -48,6 +48,9 @@ class TodoController extends Controller
 			 public function viewTodo()
 			 {
 			 		$title ='Todo';
+					$skiSearch = true;
+					$skiSearch_placehold = "Search Ainotes and notes";
+
 
 			 		if (Auth::check()) {
 			 				$todo_call = Todo::where(function($query)
@@ -59,6 +62,8 @@ class TodoController extends Controller
 
 			 		return view ('dashboard.todo')
 			 		->with('title', $title)
+					->with('skiSearch', $skiSearch)
+					->with('skiSearch_placehold',   $skiSearch_placehold)
 			 		->with('todo_call', $todo_call);
 
 			 				}

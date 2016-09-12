@@ -1,0 +1,92 @@
+.point {
+    width: 10px;
+    height: 10px;
+    display: block;
+    position: absolute;
+    background: #0e89df;
+    border-radius: 100%;
+    backface-visibility: hidden;
+    pointer-events: none;
+}
+.point:before, .point:after {
+    content: "";
+    display: block;
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    top: -56px;
+    left: -56px;
+    background: rgba(70, 172, 243, 0.5);
+    border: 1px solid #46acf3;
+    border-radius: 50%;
+    z-index: 100;
+    animation: preview-marker-pulsar 1.7s infinite ease-out;
+}
+.point:after {
+  animation: preview-marker-pulsar-inner 1.7s infinite ease-out;
+}
+
+@-webkit-keyframes preview-marker-pulsar {
+  0% {
+    opacity: .65;
+    -webkit-transform: scale(0.1);
+    transform: scale(0.1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@keyframes preview-marker-pulsar {
+  0% {
+    opacity: .65;
+    -webkit-transform: scale(0.1);
+    transform: scale(0.1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@-webkit-keyframes preview-marker-pulsar-inner {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.1);
+    transform: scale(0.1);
+  }
+  24%,90% {
+    opacity: 0;
+  }
+  25% {
+    opacity: .65;
+    -webkit-transform: scale(0.1);
+    transform: scale(0.1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@keyframes preview-marker-pulsar-inner {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.1);
+    transform: scale(0.1);
+  }
+  24%,90% {
+    opacity: 0;
+  }
+  25% {
+    opacity: .65;
+    -webkit-transform: scale(0.1);
+    transform: scale(0.1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}

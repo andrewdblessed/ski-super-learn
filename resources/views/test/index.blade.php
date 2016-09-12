@@ -1,210 +1,65 @@
   @extends('templates.default')
   @section('content')
-  <style type="text/css">
-  .glyphicon { margin-right:5px; }
-  .thumbnail
-  {
-      margin-bottom: 20px;
-      padding: 0px;
-      -webkit-border-radius: 0px;
-      -moz-border-radius: 0px;
-      border-radius: 0px;
-  }
+  <link rel="stylesheet" href="{{ URL::asset('src/ski-vendor/ski-calendar/css/calendar.css') }}" charset="utf-8">
+  <link rel="stylesheet" href="{{ URL::asset('src/ski-vendor/ski-calendar/css/calendar-type1.css') }}" charset="utf-8">
+<script src="{{ URL::asset('src/ski-vendor/ski-calendar/js/calendar.js') }}" charset="utf-8"></script>
 
-  .item.list-group-item
-  {
-      float: none;
-      width: 100%;
-      background-color: #fff;
-      margin-bottom: 10px;
-  }
-  .item.list-group-item:nth-of-type(odd):hover,.item.list-group-item:hover
-  {
-      background: #428bca;
-  }
+<!-- DEV SCRIPT AND STYLE NOT TO BE ADDED TO PRODUCTION -->
+<STYLE TYPE="text/css">
+/*DEV STYLE*/
+button.btn.btn-info.btn-raised.btn-fab {
+    position: fixed;
+    top: 84%;
+    left: 85%;
+}
+</STYLE>
 
-  .item.list-group-item .list-group-image
-  {
-      margin-right: 10px;
-  }
-  .item.list-group-item .thumbnail
-  {
-      margin-bottom: 0px;
-  }
-  .item.list-group-item .caption
-  {
-      padding: 9px 9px 0px 9px;
-  }
-  .item.list-group-item:nth-of-type(odd)
-  {
-      background: #eeeeee;
-  }
+<script>
+// DEV SCRIPT
+$(document).ready(function() {
+  var calType = "loading Simple";
+  var calurl =  "/calendar/simple"; 
+// 
+ $("#cal_point").load(calurl);
+ console.log(calType);
+//
+   $(".reload-cal").click(function(){
+ $("#cal_point").load("/calendar/simple");
+  console.log(calType);
 
-  .item.list-group-item:before, .item.list-group-item:after
-  {
-      display: table;
-      content: " ";
-  }
+              }); 
 
-  .item.list-group-item img
-  {
-      float: left;
-  }
-  .item.list-group-item:after
-  {
-      clear: both;
-  }
-  .list-group-item-text
-  {
-      margin: 0 0 11px;
-  }
-
-  </style>
-
-  <div class="container">
-      <div class="well well-sm">
-          <strong>Category Title</strong>
-          <div class="btn-group">
-            <a href="#" id="list" class="btn btn-default btn-sm"><i class="fa fa-list"></i> List</a>
-            <a href="#" id="grid" class="btn btn-default btn-sm"><i class="fa fa-dashboard"></i>Grid</a>
-          </div>
-      </div>
-      <div id="products" class="row list-group">
-          <div class="item  col-xs-4 col-lg-4">
-              <div class="thumbnail">
-                  <img class="group list-group-image" src="/images/braingame.png" alt="" />
-                  <div class="caption">
-                      <h4 class="group inner list-group-item-heading">
-                          Product title</h4>
-                      <p class="group inner list-group-item-text">
-                          Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                          sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                      <div class="row">
-                          <div class="col-xs-12 col-md-6">
-                              <p class="lead">
-                                  $21.000</p>
-                          </div>
-                          <div class="col-xs-12 col-md-6">
-                              <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="item  col-xs-4 col-lg-4">
-              <div class="thumbnail">
-                  <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
-                  <div class="caption">
-                      <h4 class="group inner list-group-item-heading">
-                          Product title</h4>
-                      <p class="group inner list-group-item-text">
-                          Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                          sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                      <div class="row">
-                          <div class="col-xs-12 col-md-6">
-                              <p class="lead">
-                                  $21.000</p>
-                          </div>
-                          <div class="col-xs-12 col-md-6">
-                              <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="item  col-xs-4 col-lg-4">
-              <div class="thumbnail">
-                  <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
-                  <div class="caption">
-                      <h4 class="group inner list-group-item-heading">
-                          Product title</h4>
-                      <p class="group inner list-group-item-text">
-                          Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                          sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                      <div class="row">
-                          <div class="col-xs-12 col-md-6">
-                              <p class="lead">
-                                  $21.000</p>
-                          </div>
-                          <div class="col-xs-12 col-md-6">
-                              <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="item  col-xs-4 col-lg-4">
-              <div class="thumbnail">
-                  <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
-                  <div class="caption">
-                      <h4 class="group inner list-group-item-heading">
-                          Product title</h4>
-                      <p class="group inner list-group-item-text">
-                          Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                          sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                      <div class="row">
-                          <div class="col-xs-12 col-md-6">
-                              <p class="lead">
-                                  $21.000</p>
-                          </div>
-                          <div class="col-xs-12 col-md-6">
-                              <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="item  col-xs-4 col-lg-4">
-              <div class="thumbnail">
-                  <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
-                  <div class="caption">
-                      <h4 class="group inner list-group-item-heading">
-                          Product title</h4>
-                      <p class="group inner list-group-item-text">
-                          Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                          sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                      <div class="row">
-                          <div class="col-xs-12 col-md-6">
-                              <p class="lead">
-                                  $21.000</p>
-                          </div>
-                          <div class="col-xs-12 col-md-6">
-                              <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="item  col-xs-4 col-lg-4">
-              <div class="thumbnail">
-                  <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
-                  <div class="caption">
-                      <h4 class="group inner list-group-item-heading">
-                          Product title</h4>
-                      <p class="group inner list-group-item-text">
-                          Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                          sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                      <div class="row">
-                          <div class="col-xs-12 col-md-6">
-                              <p class="lead">
-                                  $21.000</p>
-                          </div>
-                          <div class="col-xs-12 col-md-6">
-                              <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-
-
-  <script type="text/javascript">
-  $(document).ready(function() {
-      $('#list').click(function(event){event.preventDefault();$('#products .item').addClass('list-group-item');});
-      $('#grid').click(function(event){event.preventDefault();$('#products .item').removeClass('list-group-item');$('#products .item').addClass('grid-group-item');});
-  });
+  
+});
+  
   </script>
-
+<div class="more-pad"></div>
+  <div id="cal_point">
+  
+   <section class="container wel-cal">
+      <img src="/svg/calendar-2.svg" width="200px">
+      <h3>Calendar
+      </h3> 
+       <h4 class="text-muted"> Manage your Study life</h4>
+        <button class=" begin-cal btn btn-round btn-raised btn-info"><i class="fa fa-calendar"></i>Begin Calendar</button>
+    </section>
+  
+    <div id="grabMe" style="display:none;">
+      <section class="cal-modal">
+      <div class="wel-event">
+        <h3 class="text-info"> Select a Calendar</h3>
+        <span>You can change this later in Calendar settings</span>
+      </div>
+      <row class="cal-type-1">
+      Simple
+      </row>
+      <row class="cal-type-2">
+      School      </row>
+      <row class="cal-type-3">
+        Researcher
+      </row>
+      </section>
+    </div>
+</div>
+<button class=" reload-cal btn btn-info btn-raised btn-fab">r</button>
   @stop

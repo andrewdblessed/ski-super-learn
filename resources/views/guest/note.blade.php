@@ -17,9 +17,9 @@
                 <header class="note_header text-muted">
                   {{$notes->note_title}}
                 </header>
-                <div class="chip" style="cursor: pointer;" id="notebook6">
+                <div class="chip" style="cursor: pointer;" id="Ainote6">
                     <img src="svg/bookmark.svg" alt="Person" width="96" height="96">
-                  <span class="note_notebook">{{$notes->notebook_name}}</span>
+                  <span class="note_Ainote">{{$notes->Ainote_name}}</span>
                   </div><br>
 
                 <h6><span class="text-muted">created at </span><time class="note_time">{{$notes->note_date}}</time></h6>
@@ -50,8 +50,8 @@ $(function() {
       });
     });
     }
-ajaxfun("Loading All Notes", ".goback", "/notebooks/callnotes", "Load Completed");
-ajaxfun("Loading {{$notes->notebook_name}} Notebook", "#notebook{{$notes->notebook_id}}", "/notebooks/{{$notes->notebook_id}}", "Load Completed");
+ajaxfun("Loading All Notes", ".goback", "/Ainotes/callnotes", "Load Completed");
+ajaxfun("Loading {{$notes->Ainote_name}} Ainote", "#Ainote{{$notes->Ainote_id}}", "/Ainotes/{{$notes->Ainote_id}}", "Load Completed");
 
   });
 </script>

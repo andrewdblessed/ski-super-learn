@@ -11,7 +11,7 @@
 <script src="{{ URL::asset('/src/vendor/jquery-routes/jquery.routes.js') }}" ></script>
 <script src="{{ URL::asset('/src/vendor/angular/angular.js') }}" ></script>
 <script src="{{ URL::asset('/src/vendor/angular/controller/controller.js') }}" ></script>
-<script src="{{ URL::asset('/src/vendor/datepicker/js/bootstrap-datepicker.js') }}" ></script>
+<script src="{{ URL::asset('/src/vendor/bootstrap/bootstrap-datepicker.js') }}" ></script>
 
 <?php // XXX: DUPRICATED JS FILES ?>
 <!-- <script src="{{ URL::asset('/src/vendor/kendoui/kendo.all.min.js') }}" ></script> -->

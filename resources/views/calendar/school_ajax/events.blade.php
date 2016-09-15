@@ -1,85 +1,3 @@
-@if (!$cal_event->count())
-<style type="text/css">
-.boarding {
-    width: 102%;
-    height: 100%;
-    position: fixed;
-    top: 7%;
-    border-bottom-right-radius: 380px;
-    background-color: #0caaf4;
-    z-index: -1;
-    left: -1%;
-
-}
-.sim-boarding {
-    text-align: center;
-    padding-top: 37%;
-    text-transform: capitalize;
-    color: #fff;
-    float: right;
-    padding-right: 13%;
-}
-img.board-img-1 {
-    width: 11%;
-    position: absolute;
-    top: 21%;
-    left: 20%;
-}
-img.board-img-2 {
-    width: 11%;
-    position: absolute;
-    top: 46%;
-    left: 81%;
-}
-img.board-img-3 {
-    width: 11%;
-    position: absolute;
-    top: 1%;
-    left: 73%;
-}
-img.board-img-4 {
-    width: 11%;
-    position: absolute;
-    top: 1%;
-    left: 41%;
-}
-img.board-img-5 {
-    width: 11%;
-    position: absolute;
-    top: 64%;
-    left: 1%;
-}
-img.board-img-6 {
-    width: 11%;
-    position: absolute;
-    top: 29%;
-    left: 48%;
-}
-img.board-img-plane {
-    width: 14%;
-    position: absolute;
-    padding-top: 8%;
-    left: 27%;
-}
-</style>
-<div class="boarding"></div>
-				<!-- If the user as no events yet load this view -->
-			<div class="sim-boarding" style="display:block;">
-				<h4>Tap on the indicated button by the right to create your first Event</h4>
-			</div>
-			<div class="sim-intro" style="display:block;">				
-				<h3 class="">lets get things started </h3>
-			</div>
-			<div class="ski-cal-bord-img">
-				<img class="board-img-1 animated shake infinite" src="src/ski-vendor/ski-boarding/image/bell.png">	
-				<img class="board-img-2 animated pulse infinite" src="src/ski-vendor/ski-boarding/image/calendar.png">	
-				<img class="board-img-3 animated pulse infinite" src="src/ski-vendor/ski-boarding/image/clock.png">	
-				<img class="board-img-4 animated pulse infinite" src="src/ski-vendor/ski-boarding/image/high-school.png">	
-				<img class="board-img-5 animated pulse infinite" src="src/ski-vendor/ski-boarding/image/atom.png">	
-				<img class="board-img-6 animated pulse infinite" src="src/ski-vendor/ski-boarding/image/test.png">	
-				<img class="board-img-plane animated pulse infinite" src="src/ski-vendor/ski-boarding/image/paper-plane.png">	
-			</div>
-			@else
 			<!-- innitialize view custom css -->
 			<style type="text/css">
 			.main_view {
@@ -105,7 +23,7 @@ img.board-img-plane {
 });
 
 		
-                // $("#side_point").load("/calendar/simple/sidebar");
+                // $("#side_point").load("/calendar/school/sidebar");
 
 		$('#calendar').fullCalendar({
 			    customButtons: {
@@ -115,7 +33,7 @@ img.board-img-plane {
         //     	   SnackBar.show({text:"Loading",
         //       pos: 'bottom-center',
         //    });
-        //        $("#side_point").load("/calendar/simple/sidebar");
+        //        $("#side_point").load("/calendar/school/sidebar");
         //     }
         // }
     },
@@ -129,6 +47,21 @@ img.board-img-plane {
 			editable: true,
 			eventLimit: true, // allow "more" link when too many events
 			events: [
+			// BACK GROUND EVENTS FOR SCHOOL YEAR, EXAMS, CLASSES
+			@foreach ($school_year as $school_year)
+				
+				{
+					id: '{{ $school_year->id}}',
+					title: '{{ $school_year->year_name}}',
+					start: '{{ $school_year->year_start}}',
+					end: '{{ $school_year->year_end }}',
+					description: '{{ $school_year->year_des }}',
+					overlap: true,
+					rendering: 'background',
+					color: '#b0bec5'
+				},
+				@endforeach
+			// BACKGROUND EVENTS ENDS HERE
 				@foreach ($cal_event as $cal_event)
 				{
 					id: '{{ $cal_event->id}}',
@@ -159,7 +92,7 @@ img.board-img-plane {
            });
 
 
-                $("#side_point").load("simple-event/"+calEvent.id);
+                $("#side_point").load("school-event/"+calEvent.id);
 $('#myModal').modal();
 
         console.log('Event: ' + calEvent.title);
@@ -207,14 +140,3 @@ $('#myModal').modal();
 		</div>
 
       </div>
-<!-- <div style="display: none" id="grabMe">
-side view	
-<div id="sid-cal">
-
-</div>
-</div> -->
-
-
-
-			@endif
-

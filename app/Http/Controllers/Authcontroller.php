@@ -82,11 +82,11 @@ return redirect()->route('auth.signin')->with('signupsuccess', 'your account as 
 	public function postSignin(Request $request)
 	{
 	$this->validate($request, [
-  'email' => 'required',
+  'username' => 'required',
   'password' => 'required',
 ]);
 
-if (!Auth::attempt($request->only(['email', 'password']), $request->has('remember'))) {
+if (!Auth::attempt($request->only(['username', 'password']), $request->has('remember'))) {
 	return redirect()->back()->with('warning', 'Oops; Check the Email and password Again' );
 }
 return redirect()->route('home')->with('signin', 'you are now signed in');

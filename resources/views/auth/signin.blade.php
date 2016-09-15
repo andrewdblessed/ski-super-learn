@@ -230,7 +230,7 @@ button.btn.btn-default.btn-info.btn-lg {
 			<form action="{{route('auth.signin')}}" method="post">
 					<div class="login-ic">
 					<i ></i>
-					<input type="text" name="email"  value="{{ Request::old('email') ?: '' }}" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}"/>
+					<input type="text" name="username"  value="{{ Request::old('username') ?: '' }}" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}"/>
 					<div class="clear"> </div>
 				</div>
 				<div class="login-ic">

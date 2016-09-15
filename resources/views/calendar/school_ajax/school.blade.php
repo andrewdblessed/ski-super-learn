@@ -1,13 +1,11 @@
-  <link rel="stylesheet" href="{{ URL::asset('src/ski-vendor/ski-calendar/css/calendar-type1.css') }}" charset="utf-8">
-
 
 <script>
 $(function() {
 	
 
-   $(".main_view").load("/calendar/simple/events");
+   $(".main_view").load("/calendar/school/events");
 
-   $(".new-simple").click(function(){
+   $(".new-school").click(function(){
                $(".sim-event-window").css("display", "block");
                    $(".sim-intro").css("display", "none");
            });
@@ -41,7 +39,7 @@ $('.datepicker').datepicker({
 
  		 <div class="new_event col-md-12">
 <button class="btn btn-raised pull-right btn-round btn-fab btn-warning close-modal" ><i class="material-icons">close</i></button>
-			<form method="post" id="post_event" action="/simple_event">
+			<form method="post" id="post_event" action="/school_event">
 		  <input type="hidden" name="_token" value="{{ Session::token() }}">
 			<button type="submit" class="btn btn-success btn-raised btn-round post-event" autocomplete="off" data-loading-text="Saving Event...">Save</button>
 		<div class="col-md-8">
@@ -138,7 +136,7 @@ $('.datepicker').datepicker({
 
 
 			</div>
-<!-- 		simple new window event ends
+<!-- 		school new window event ends
  -->
 
  		</div>
@@ -155,7 +153,7 @@ $('.datepicker').datepicker({
                   @endforeach
               </div>
               @endif
-		<!-- simple new event window begins  -->
+		<!-- school new event window begins  -->
 
 	</div>
 </div>
@@ -227,7 +225,7 @@ var form = $('#post_event');
     })
     .done(function(response) {
     	$btn.button('reset');
-    	    $(".main_view").load("/calendar/simple/events");
+    	    $(".main_view").load("/calendar/school/events");
  SnackBar.show({
       text:"Event Added",
       pos: 'bottom-center',

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use Skilearn\Http\Requests;
 
-class CalenderbdController extends Controller
+class DocController extends Controller
 {
     //
 }

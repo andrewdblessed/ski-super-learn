@@ -12,7 +12,7 @@
 
  		 <div class="new_event col-md-12">
 <button class="btn btn-raised pull-right btn-round btn-fab btn-warning close-update" ><i class="material-icons">close</i></button>
-			<form method="post" id="update_event" action="/simple/update_event/{{ $simple_event->id}}">
+			<form method="post" id="update_event" action="/school/update_event/{{ $school_event->id}}">
 		  <input type="hidden" name="_token" value="{{ Session::token() }}">
 			<button  autocomplete="off" data-loading-text="Updating Event..." type="submit" class="btn btn-success btn-raised btn-round update-event">Update</button>
 
@@ -23,26 +23,26 @@
 			<div class="col-md-12" style="padding-left:0;">
 				<div class="form-group">
 				<p class="text-info">Event Name:</p>
-	   			<input type="text" value="{{ $simple_event->event_name}}" name="event_name" class="form-control" />
+	   			<input type="text" value="{{ $school_event->event_name}}" name="event_name" class="form-control" />
 			</div>
 			</div>
 				<div class="col-md-12" style="padding-left:0;">
 				<div class="form-group">
 				<p class="text-info">Event Description:</p>
-	   			<textarea type="text" name="event_des" class="form-control">{{ $simple_event->event_des}} </textarea>
+	   			<textarea type="text" name="event_des" class="form-control">{{ $school_event->event_des}} </textarea>
 			</div>
 			</div>
 			<div class="row">
 			<div class="col-md-6">
 				<div class="form-group">
 					<p class="text-info">Created by</p>
-    				<input type="text" value="{{ $simple_event->created_by}}" name="created_by" class="form-control" />
+    				<input type="text" value="{{ $school_event->created_by}}" name="created_by" class="form-control" />
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
 					<p class="text-info">task link:</p>
-    				<input type="text" value="{{ $simple_event->event_link}}" name="event_link" class="form-control" />
+    				<input type="text" value="{{ $school_event->event_link}}" name="event_link" class="form-control" />
     			</div>
 			  </div>
 			</div>
@@ -50,21 +50,21 @@
 				<div class="form-group">
 					<p class="text-info">priority:</p>
 					<select class="form-control"name="event_priority">
-				@if( $simple_event->event_priority == "High")
+				@if( $school_event->event_priority == "High")
 					<option>
 						High</option>
 						<option>
 						Normal</option>
 						<option>
 						low</option>
-				@elseif( $simple_event->event_priority == "Normal")
+				@elseif( $school_event->event_priority == "Normal")
 					<option>
 						Normal</option>
 					<option>
 						High</option>
 						<option>
 						low</option>
-		@elseif( $simple_event->event_priority == "low")
+		@elseif( $school_event->event_priority == "low")
 					<option>
 						low</option>
 					<option>
@@ -83,7 +83,7 @@
 			<div class="form-group">
 				<p class="text-info">Status:</p>
 				<select class="form-control" name="event_status">
-					@if( $simple_event->event_status == "Not started")
+					@if( $school_event->event_status == "Not started")
 					<option>
 					Not started
 					</option>
@@ -93,7 +93,7 @@
 					<option>
 					Completed
 					</option>
-					@elseif( $simple_event->event_status == "On going")
+					@elseif( $school_event->event_status == "On going")
 					<option>
 					On going</option>
 					<option>
@@ -101,7 +101,7 @@
 					</option>
 					<option>
 					Completed</option>
-					@elseif( $simple_event->event_status == "Completed")
+					@elseif( $school_event->event_status == "Completed")
 					<option>
 					Completed</option>
 					<option>
@@ -118,9 +118,9 @@
 			<div class="form-group">
 				<p class="text-info">Label:</p>
 				<select class="form-control" name="event_label">
-				@if( $simple_event->event_label != "No label")
+				@if( $school_event->event_label != "No label")
 				<option>
-						{{ $simple_event->event_label}}
+						{{ $school_event->event_label}}
 					</option>
 					<option>
 						No label
@@ -128,7 +128,7 @@
 						@foreach ($cal_label as $cal_label)
 					<option>{{$cal_label->label}}</option>
 				@endforeach
-							@elseif( $simple_event->event_label == "No label")
+							@elseif( $school_event->event_label == "No label")
 					<option>
 						No label
 					</option>
@@ -143,8 +143,8 @@
 		<div class="col-md-12">
 			<div class="form-group">
 				<p class="text-info">Start:</p>
-	 			<input type="date" name="event_start" value="{{ $simple_event->event_start}}" class="datepicker form-control">
-	 			<input type="time" name="event_start_time" value="{{ $simple_event->event_start_time}}" class="datepicker form-control">
+	 			<input type="date" name="event_start" value="{{ $school_event->event_start}}" class="datepicker form-control">
+	 			<input type="time" name="event_start_time" value="{{ $school_event->event_start_time}}" class="datepicker form-control">
 
 
 			</div>
@@ -153,14 +153,14 @@
 			<div class="col-md-6">
 					<div class="form-group">
 				<p class="text-info">end Date:</p>
-	 				<input type="date" name="event_end" value="{{ $simple_event->event_end}}" class="datepicker form-control">
+	 				<input type="date" name="event_end" value="{{ $school_event->event_end}}" class="datepicker form-control">
 			</div>
 
 			</div>
 			<div class="col-md-6">
 			<div class="form-group">
 		<p class="text-info">end Time:</p>
-			<input type="time" name="event_end_time" value="{{ $simple_event->event_end_time}}" class="datepicker form-control">
+			<input type="time" name="event_end_time" value="{{ $school_event->event_end_time}}" class="datepicker form-control">
 			</div>
 	</div>
 		</div>
@@ -197,7 +197,7 @@ var form = $('#update_event');
     data: formData
     })
     .done(function(response) {
-    	    $(".main_view").load("/calendar/simple/events");
+    	    $(".main_view").load("/calendar/school/events");
  SnackBar.show({
       text:"Event Updated",
       pos: 'bottom-center',
@@ -230,19 +230,19 @@ var form = $('#update_event');
        	         e.preventDefault();
  var $btn = $(this).button('loading');
           $(".ski_loader").css("display", "block");
-          SnackBar.show({text:'deleting {{ $simple_event->event_name}}',
+          SnackBar.show({text:'deleting {{ $school_event->event_name}}',
             pos: 'top-center',
            duration: '9000',
           });
-        var  durl = "/simple/deleteevent{{ $simple_event->id}}";
+        var  durl = "/school/deleteevent{{ $school_event->id}}";
         $.ajax({
         type: 'GET',
         url: durl,
         })
         .done(function(response) {
         	 $btn.button('reset');
-    	    $(".main_view").load("/calendar/simple/events");
-          SnackBar.show({text:'{{ $simple_event->event_name}} deleted',
+    	    $(".main_view").load("/calendar/school/events");
+          SnackBar.show({text:'{{ $school_event->event_name}} deleted',
             pos: 'top-center',
            duration: '9000',});
           console.log('event deleted');
@@ -256,7 +256,7 @@ var form = $('#update_event');
           pos: 'top-center',
           backgroundColor: '#e53935'
           });
-              	    $(".main_view").load("/calendar/simple/events");
+              	    $(".main_view").load("/calendar/school/events");
 
            $btn.button('reset');
           $(".ski_loader").css("display", "none");

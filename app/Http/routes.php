@@ -466,12 +466,19 @@ Route::get('/calendar', [
 'middleware' => ['auth'],
 ]);
 
+// CALENDAR MANAGER VIEW
+Route::get('/calendar/settings', [
+'uses' => '\Skilearn\Http\controllers\CalendarController@setting',
+'as'  => 'cal.setting',
+'middleware' => ['auth'],
+]);
 
 //calendar post
 Route::post('/savesction',['uses' => '\Skilearn\Http\Controllers\CalendarController@postSection',
   'as' => 'post.section',
   'middleware' => ['auth'],
 ]);
+
 
 // begin simple calendar
 Route::get('/calendar/simple', [
@@ -486,11 +493,25 @@ Route::get('/calendar/simple/events', [
 'middleware' => ['auth'],
 ]);
 
-//calendar post
+//simple event post
 Route::post('/simple_event',[
   'uses' => '\Skilearn\Http\Controllers\SimpleCalendarController@postSimpleCal',
   'as' => 'post.simple_event',
   'middleware' => ['auth'],
+]);
+
+//simple event update
+Route::post('/simple/update_event/{id}',[
+  'uses' => '\Skilearn\Http\Controllers\SimpleCalendarController@updateSimpleCal',
+  'as' => 'post.simple_event',
+  'middleware' => ['auth'],
+]);
+
+// simple event DELETE
+Route::get('/simple/deleteevent{id}', [
+'uses' => '\Skilearn\Http\controllers\SimpleCalendarController@deleteEvent',
+'as' => 'delete.simple.event',
+'middleware' => ['auth'],
 ]);
 
 // begin simple calendar sidebar viewer
@@ -500,6 +521,127 @@ Route::get('/calendar/simple/sidebar', [
 'middleware' => ['auth'],
 ]);
 
+// Getting a simple Event with the id
+
+Route::get('simple-event/{id}',[
+'uses' => '\Skilearn\Http\controllers\SimpleCalendarController@getEvent',
+    'as' => 'dashboard.notes.view',
+      'middleware' => ['auth'],
+]);
+
+// begin school calendar
+Route::get('/calendar/school', [
+'uses' => '\Skilearn\Http\controllers\SchoolCalendarController@school',
+'as'  => 'calendar.school',
+'middleware' => ['auth'],
+]);
+// begin school calendar main viewer
+Route::get('/calendar/school/events', [
+'uses' => '\Skilearn\Http\controllers\SchoolCalendarController@main',
+'as'  => 'cal.sim.main',
+'middleware' => ['auth'],
+]);
+
+//school year post
+Route::post('/post/school_year',[
+  'uses' => '\Skilearn\Http\Controllers\SchoolCalYearController@postSchoolYear',
+  'as' => 'post.school_year',
+  'middleware' => ['auth'],
+]);
+
+//school event post
+Route::post('/school_event',[
+  'uses' => '\Skilearn\Http\Controllers\SchoolCalendarController@postschoolCal',
+  'as' => 'post.school_event',
+  'middleware' => ['auth'],
+]);
+
+//school event update
+Route::post('/school/update_event/{id}',[
+  'uses' => '\Skilearn\Http\Controllers\SchoolCalendarController@updateschoolCal',
+  'as' => 'post.school_event',
+  'middleware' => ['auth'],
+]);
+
+// school event DELETE
+Route::get('/school/deleteevent{id}', [
+'uses' => '\Skilearn\Http\controllers\SchoolCalendarController@deleteEvent',
+'as' => 'delete.school.event',
+'middleware' => ['auth'],
+]);
+
+// begin school calendar sidebar viewer
+Route::get('/calendar/school/sidebar', [
+'uses' => '\Skilearn\Http\controllers\SchoolCalendarController@sidebar',
+'as'  => 'cal.sim.sidebar',
+'middleware' => ['auth'],
+]);
+
+// Getting a school Event with the id
+
+Route::get('school-event/{id}',[
+'uses' => '\Skilearn\Http\controllers\SchoolCalendarController@getEvent',
+    'as' => 'dashboard.notes.view',
+      'middleware' => ['auth'],
+]);
+
+// REVIEW:// LABEL DEFAULT VIEW BEGINS
+
+Route::get('/calendar/labels',[
+'uses' => '\Skilearn\Http\controllers\CalendarController@getLabel',
+    'as' => 'labels',
+      'middleware' => ['auth'],
+]);
+// REVIEW:// LABEL AJAX CALL BEGINS
+
+Route::get('/calendar/label_list',[
+'uses' => '\Skilearn\Http\controllers\CalendarController@getLabelList',
+    'as' => 'label_list',
+      'middleware' => ['auth'],
+]);
+//label post
+Route::post('/post_label',[
+  'uses' => '\Skilearn\Http\Controllers\CalendarController@postLabel',
+  'as' => 'post.label',
+  'middleware' => ['auth'],
+]);
+
+// LABEL DELETE
+Route::get('/deletelabel{id}', [
+'uses' => '\Skilearn\Http\controllers\CalendarController@deleteLabel',
+'as' => 'deleteLabel',
+'middleware' => ['auth'],
+]);
+
+//calendar update
+Route::post('/update_label/{id}',[
+  'uses' => '\Skilearn\Http\Controllers\CalendarController@updateLabel',
+  'as' => 'update.label',
+  'middleware' => ['auth'],
+]);
+
+
+  /**
+  *REVIEW:
+  * DOC SECTION
+  *
+  **/
+// begin doc viewer
+Route::get('/documentation', [
+'uses' => '\Skilearn\Http\controllers\FeedbackController@index',
+'as'  => 'doc',
+]);
+
+Route::post('/doc/signin',[
+     'uses' => '\Skilearn\Http\controllers\FeedbackController@postDocin',
+   'middleware' => ['guest'],
+   ]);
+
+// begin doc account viewer
+Route::get('/doc/account', [
+'uses' => '\Skilearn\Http\controllers\FeedbackController@account',
+'as'  => 'doc',
+]);
 
 
 

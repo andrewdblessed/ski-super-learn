@@ -1,0 +1,102 @@
+.fixed-cal-bar {
+    position: fixed;
+    width: 200px;
+    height: 100%;
+    background: #fff;
+    top: 8%;
+    padding-top: 0.2%;
+    z-index: 200;
+      padding-left: 0;
+    padding-right: 0;
+}
+
+.fixed-page-nav {
+    border-top-style: solid;
+    border-bottom-style: solid;
+    position: fixed;
+    width: 100%;
+    left: 160px;
+    padding-left: 65px;
+    height: 56px;
+    padding-top: 19px;
+    background: #fff;
+    border-width: thin;
+    border-color: #cfd8dc;
+    z-index: 100;
+    top: 48.7px;
+  
+}
+
+.page-brand {
+    padding: 16px;
+    font-size: 31px;
+    font-weight: 600;
+    font-style: italic;
+    color: #03a9f4;
+}
+span.cal-page-back {
+    font-size: 23px;
+    text-transform: uppercase;
+    color: #607d8b;
+    cursor: pointer;
+}
+.main_view {
+    text-transform: capitalize;
+}
+.sim-intro {
+    text-align: center;
+    padding-top: 20%;
+    text-transform: capitalize;
+    color: #fff;
+}
+.new_event {
+    /* margin-top: -12%; */
+    background: #fff;
+    border-radius: 9px;
+    padding: 24px;
+}
+
+.page-nav:hover {
+      margin-left: 16px;
+}
+
+.page-nav {
+    padding: 16px;
+    font-size: 22px;
+    font-weight: 600;
+    font-style: italic;
+    color: #fff;
+    background: #03a9f4;
+    cursor: pointer;
+}
+
+.main-intro {
+                    background: #fff;
+                    position: absolute;
+                    padding: 45px;
+                    margin-top: 1%;
+                }
+                .year-intro{
+                    text-align: center;
+                }
+                p.text-info.help-text {
+                    cursor: pointer;
+                }
+
+.jumbotron.school-data {
+    position: fixed;
+    width: 20%;
+    padding: 12px;
+    left: 78%;
+    top: 37%;
+    height: 60%;
+    z-index: 10;
+}
+.jumbotron.year-data {
+    position: fixed;
+    width: 20%;
+    padding: 12px;
+    left: 78%;
+    top: 11%;
+    z-index: 10;
+}

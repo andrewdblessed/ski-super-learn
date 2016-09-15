@@ -1,5 +1,10 @@
 @extends('templates.default')
 @section('content')
+<style type="text/css">
+.modal {
+    margin-top: -7%;
+}
+</style>
 <script src="{{ URL::asset('/src/vendor/fullcalendar/lib/moment.min.js') }}" ></script>
 
 <script src="{{ URL::asset('/src/vendor/fullcalendar/fullcalendar.min.js') }}" ></script>
@@ -9,7 +14,7 @@
  --><link rel="stylesheet" href="/src/vendor/fullcalendar/_materialFullCalendar.css" charset="utf-8">
 
    <link rel="stylesheet" href="{{ URL::asset('src/ski-vendor/ski-calendar/css/calendar.css') }}" charset="utf-8">
-  <link rel="stylesheet" href="{{ URL::asset('src/ski-vendor/ski-calendar/css/calendar-type1.css') }}" charset="utf-8">
+
 <script src="{{ URL::asset('src/ski-vendor/ski-calendar/js/calendar.js') }}" charset="utf-8"></script>
 
 
@@ -76,10 +81,10 @@ $(function() {
 </script>
     @elseif($cal_section->section == "school")
 <script type="text/javascript">
-        // $(function() {
-        //                 $("#cal_point").load("/calendar/simple");
-        //  });
-</script> school
+        $(function() {
+                        $("#cal_point").load("/calendar/school");
+         });
+</script>
 
     @elseif($cal_section->section == "researcher")
 <script type="text/javascript">
@@ -91,6 +96,48 @@ $(function() {
 
     @endforeach
 <!-- NOTE:: VIEWS IS BASED ON SELECTED CALENDAR -->
+
+<!-- Modal Core -->
+<div class="modal fade" id="settings" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+
+     <div class="new_event col-md-12">
+<button class="btn btn-raised pull-right btn-round btn-fab btn-warning manager" ><i class="material-icons">close</i></button>
+
+    <div class="col-md-8 col-md-push-2">
+      <div class="btn-group" data-toggle="buttons" >
+    
+         <label data-toggle="collapse" data-target="#school" aria-expanded="false"
+aria-controls="school" class="btn btn-info btn-raised">
+          <input type="radio" name="simple" id="simple" autocomplete="off" >
+            School
+        </label>
+      </div>
+
+         <label data-toggle="collapse" data-target="#school" aria-expanded="false"
+aria-controls="school" class="btn btn-info btn-raised">
+          <input type="radio" name="simple" id="simple" autocomplete="off" >
+            School
+        </label>
+      </div>
+
+
+     <div class="collapse" id="school">
+  <h5 class="text-warning">
+Manage Your Study life at ease
+  </h5>
+  <p>Are you sure you want to enable the school calendar. Note this will not effect your saved events in Simple Calendar</p>
+       <button type="submit" class="btn btn-success btn-raised btn-round post-event" autocomplete="off" data-loading-text="Saving Event...">Save</button>
+
+</div>
+          </div>
+  
+     </div>
+   </div>
+  </div>
+
 
 <script type="text/javascript">
 $(function() {

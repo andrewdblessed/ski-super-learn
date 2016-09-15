@@ -38,5 +38,53 @@ $(document).ready(function() {
            });
 });
 
+    var form = $('#post_year');
+
+       
+    $(".post-year").click(function(e) {
+         e.preventDefault();
+         var $btn = $(this).button('loading');
+          $(".ski_loader").css("display", "block");
+
+       SnackBar.show({
+      text:"Adding School year",
+      pos: 'bottom-center',
+      backgroundColor: '#039be5',
+      textColor: '#fff'
+      });
+
+        var formData = $(form).serialize();
+    $.ajax({
+    type: 'POST',
+    url: $(form).attr('action'),
+    data: formData
+    })
+    .done(function(response) {
+      $btn.button('reset');
+          $(".main_view").load("/calendar/school/events");
+ SnackBar.show({
+      text:"chool Year Added",
+      pos: 'bottom-center',
+      backgroundColor: '#039be5',
+      textColor: '#fff'
+      });
+ $('#newevent').modal('toggle');
+
+       $(".wel-cal").css("display", "none");
+
+
+    })
+    .fail(function(data) {
+      SnackBar.show({
+      text:"Opps there seems to be an error",
+      pos: 'top-center',
+      backgroundColor: '#e53935'
+      });
+      $btn.button('reset');
+      $(".adela_loader").css("display", "none");
+
+        });
+    });
+
 });
 

@@ -193,6 +193,23 @@ public function SimpleCalendar()
 return $this->hasMany('Skilearn\Models\SimpleCalendar', 'user_id');
 }
 
+//HACK SIMPLE CALENDAR
+public function SchoolCalendar()
+{
+return $this->hasMany('Skilearn\Models\SchoolCalendar', 'user_id');
+}
+
+//HACK SCHOOL YEAR
+public function SchoolCalYear()
+{
+return $this->hasMany('Skilearn\Models\SchoolCalYear', 'user_id');
+}
+
+//HACK CALENDAR LABEL
+public function label()
+{
+return $this->hasMany('Skilearn\Models\Label', 'user_id');
+}
 //HACK EXP
 public function Exp()
 {

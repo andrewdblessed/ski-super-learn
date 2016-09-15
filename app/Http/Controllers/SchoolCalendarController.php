@@ -5,7 +5,7 @@ namespace Skilearn\Http\Controllers;
 
 /**
 *REVIEW:
-* THIS CONTROLELR CONTROLS THE USER SIMPLE CALENDAR SECTION
+* THIS CONTROLELR CONTROLS THE USER school CALENDAR SECTION
 *
 **/
 use Auth;
@@ -17,17 +17,18 @@ use Illuminate\Http\Request;
 use Skilearn\Models\User;
 use Skilearn\Models\Label;
 use Skilearn\Models\Calendar;
-use Skilearn\Models\SimpleCalendar;
+use Skilearn\Models\SchoolCalendar;
+use Skilearn\Models\SchoolCalYear;
 
-class SimpleCalendarController extends Controller
+class SchoolCalendarController extends Controller
 {
     //
      /**
   *REVIEW:
-  * THE SIMPLE CALENDAR POST FUNCTION
+  * THE school CALENDAR POST FUNCTION
   *
   **/
-  public function postSimpleCal(Request $request)
+  public function postschoolCal(Request $request)
    {
    $this->validate($request, [
      'event_name' => 'required',
@@ -43,7 +44,7 @@ class SimpleCalendarController extends Controller
      'event_end_time' => 'required',
 
    ]);
-   Auth::user()->SimpleCalendar()->create([
+   Auth::user()->SchoolCalendar()->create([
      'event_name' => $request->input('event_name'),
      'event_des' => $request->input('event_name'),
      'created_by' => $request->input('created_by'),
@@ -52,10 +53,10 @@ class SimpleCalendarController extends Controller
      'event_status' => $request->input('event_status'),
      'event_label' => $request->input('event_label'),
      'event_start' => $request->input('event_start'),
-	   'event_end' => $request->input('event_end'),   
+     'event_end' => $request->input('event_end'),   
      'event_start_time' => $request->input('event_start_time'),
      'event_end_time' => $request->input('event_end_time'),
-	   ]);
+     ]);
    return redirect()->route('calendar')
     ->with('signupsuccess', 'event Added');
     }
@@ -64,11 +65,11 @@ class SimpleCalendarController extends Controller
         //
      /**
   *REVIEW:
-  * THE SIMPLE CALENDAR POST FUNCTION
+  * THE school CALENDAR POST FUNCTION
   *
   **/
-  public function updateSimpleCal(Request $request, $id){
-    $updateEvent = SimpleCalendar::find($id);
+  public function updateschoolCal(Request $request, $id){
+    $updateEvent = SchoolCalendar::find($id);
     $this->validate($request, [
      'event_name' => 'required',
      'event_des' => 'required',
@@ -105,11 +106,19 @@ class SimpleCalendarController extends Controller
 
  /**
   *REVIEW:\
-  * THE SIMPLE CALENDAR VIEW
+  * THE school CALENDAR VIEW
   *
   **/
-     public function simple()
+     public function school()
    {
+
+ // NOTE:: PULLING SCHOOL YEAR OF THE USER
+     
+              $school_year = SchoolCalYear::where(function($query)
+                  {
+                    return $query->where('user_id', Auth::user()->id);
+                  })
+                  ->paginate(1);
 
  // NOTE:: PULLING CALENDAR LABELS OF THE USER
      
@@ -119,20 +128,29 @@ class SimpleCalendarController extends Controller
                   })
                   ->paginate();
 
-     return view('calendar.simple')
-      ->with('cal_label', $cal_label);
+
+
+     return view('calendar.school')
+      ->with('cal_label', $cal_label)
+       ->with('school_year', $school_year);
    }
 
 
      public function main()
    {
       if (Auth::check()) {
-              $cal_event = SimpleCalendar::where(function($query)
+              $cal_event = SchoolCalendar::where(function($query)
                   {
                     return $query->where('user_id', Auth::user()->id);
                   })
                   ->paginate();
 
+ // NOTE:: PULLING CALENDAR YEAR OF THE USER
+                  $school_year = SchoolCalYear::where(function($query)
+                  {
+                    return $query->where('user_id', Auth::user()->id);
+                  })
+                  ->paginate(1);
 
  // NOTE:: PULLING CALENDAR LABELS OF THE USER
      
@@ -141,8 +159,9 @@ class SimpleCalendarController extends Controller
                     return $query->where('user_id', Auth::user()->id);
                   })
                   ->paginate();
-        return view('calendar.simple_ajax.events')
+        return view('calendar.school_ajax.events')
      ->with('cal_event', $cal_event)
+     ->with('school_year', $school_year)
      ->with('cal_label', $cal_label);
 
    }
@@ -150,19 +169,19 @@ class SimpleCalendarController extends Controller
 
   /**
   *REVIEW:
-  * THE SIMPLE CALENDAR SIDE BAR VIEW
+  * THE school CALENDAR SIDE BAR VIEW
   *
   **/
      public function sidebar()
    {
        if (Auth::check()) {
-              $cal_event = SimpleCalendar::where(function($query)
+              $cal_event = SchoolCalendar::where(function($query)
                   {
                     return $query->where('user_id', Auth::user()->id);
                   })
                   ->paginate();
 
-     return view('calendar.simple_ajax.sidebar')
+     return view('calendar.school_ajax.sidebar')
      ->with('cal_event', $cal_event);
    }
 }
@@ -175,9 +194,9 @@ class SimpleCalendarController extends Controller
          **/
               public function getEvent($id)
                {
-                 $simple_event = SimpleCalendar::findorFail($id);
+                 $school_event = SchoolCalendar::findorFail($id);
 
-                 if (is_null($simple_event)) {
+                 if (is_null($school_event)) {
 
                    abort(404);
                  }
@@ -190,8 +209,8 @@ class SimpleCalendarController extends Controller
                     return $query->where('user_id', Auth::user()->id);
                   })
                   ->paginate();
-                return view('calendar.simple_ajax.sidebar', compact('simple_event'))
-                ->with('simple_event', $simple_event)
+                return view('calendar.school_ajax.sidebar', compact('school_event'))
+                ->with('school_event', $school_event)
                 ->with('cal_label', $cal_label);
                  // ->with('note_all', $note_all);
 
@@ -205,7 +224,7 @@ class SimpleCalendarController extends Controller
 *
 **/
 public function deleteEvent ($id){
-  $deleteEvent = SimpleCalendar::find($id);
+  $deleteEvent = SchoolCalendar::find($id);
      $deleteEvent->delete();
   return redirect()->to('/calendar');
 }

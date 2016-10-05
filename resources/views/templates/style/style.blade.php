@@ -15,9 +15,6 @@
 <link href="{{ URL::asset('/src/vendor/jasny/jasny-bootstrap.css') }}" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{{ URL::asset('/src/ski-vendor/ski-noti/css/style.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ URL::asset('/src/ski-vendor/ski-boarding/css/style.css') }}">
-<link href="/src/vendor/datepicker/css/datepicker.css" rel="stylesheet">
-  <script src="/src/vendor/jBox-0.3.2/src/jBox.min.js"></script>
-<link href="/src/vendor/jBox-0.3.2/src/jBox.css" rel="stylesheet">
 
 <!-- <link href="{{ URL::asset('https://cdn.rawgit.com/Basictechy/skilearn-v2.0/master/public/css/animate.css') }}" rel="stylesheet"> -->
 

@@ -13,12 +13,12 @@
 
                     <input type="hidden" name="_token" value="{{ Session::token() }}">
 
-                    <input type="hidden" name="Ainote_id" value="{{$Ainotes->id}}">
-                    <input type="hidden" name="Ainote_name" value="{{$Ainotes->ainote_title}}">
-                    <input type="hidden" name="Ainote_bg" value="{{$Ainotes->ainote_bg}}">
-                    <textarea type="hidden" style="display:none;" name="note_date"  id="notedate"> </textarea>
+                    <input  name="Ainote_id" value="{{$Ainotes->id}}">
+                    <input name="Ainote_name" value="{{$Ainotes->ainote_title}}">
+                    <input name="Ainote_bg" value="{{$Ainotes->ainote_bg}}">
+                    <textarea name="note_date"  id="notedate"> </textarea>
                     {{--GUEST TOKEN FOR SHARING NOTE --}}
-                    <input type="hidden" name="guest_token" value="{{$guest_token}}">
+                    <input name="guest_token" value="{{$guest_token}}">
 
                     <div class="ain-note-title">
                   <header class="note_header text-muted">

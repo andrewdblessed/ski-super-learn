@@ -1,188 +1,216 @@
 @if (!$files->count())
 
-<div class="container">
-<div class="col-md-12">
-
+<div class="row">
 <div class="col-md-6 col-md-push-3">
-<div class="card card-raised">
-  <div class="col-md-12 m-p-empty">
-<h3>Welcome to your Cloud pack</h3>
-<p>
-Store ebooks, document files, power point presentations, excell spread sheet</p>
+<div class="card-box">
+<h3 class="cloud-h3">Welcome to your Cloud pack</h3>
+<img class="animated pulse infinite no-file" src="/user-tools/file-type/doc.png">
+<h5>
+Store ebooks, document files, power point presentations, excell spread sheet</h5>
 <button type="button" data-toggle="modal" data-target="#firstfile"
- class="btn btn-info btn-raised btn-round">
-Upload file <i class="material-icons">cloud_upload</i>
+ class="btn btn-primary btn-lg text-center waves-effect w-md btn-rounded">
+Upload file <i class=" mdi mdi-cloud-upload"></i>
 </button>
-
-</div>
-
   </div>
 </div>
 </div>
-</div>
+
 
 @else
-<div class="col-md-10 animated fadeIn col-md-push-1">
-    <div class="card card-raised">
-      <div class="col-md-6">
-    <button data-toggle="modal" data-target="#firstfile" class="btn btn-danger btn-raised btn-round">
-    New
-    </button>
-    <button type="button" class=" reload btn btn-default btn-round"
-    data-toggle="tooltip" data-placement="bottom" title="Reload my pack">
-    <i class="material-icons m-p-icon">autorenew</i>
-    </button>
-    <a  href="#/cloudsetup/" class="btn btn-default btn-round"
-    data-toggle="tooltip" data-placement="bottom" title="Settings"
-    >
-    <i class="material-icons m-p-icon">settings</i>
-  </a>
-    </div>
-      <table class="table ">
-  <tbody class="list">
-    <tr class="t-head">
-        <td class="text-left f-ent">
-          <p>
-            <strong>FILE</strong>
-          </p>
-          </td>
-          <td>
-            <p>
-              <strong>
-              FILE NAME</strong>
-            </p></td>
-          <td class="f-type"><p>
-            <strong>
-            PREVIEW</strong>
-          </p></td>
-          <td class="f-size">
-            <p>
-              <strong>
-              SIZE</strong>
-            </p>
-            </td>
-            <td class="td-actions f-delete">
-              <p>
-                <strong>
-                DELETE</strong>
-              </p>
-        </td>
-    </tr>
-    @foreach($files as $file)
-    @if($file->filetype == 'png')
+
+
+
+  <div class="row">
+                          <div class="col-sm-5">
+                            <div class="card-box">
+                              <h4 class="m-t-0 header-title"><b>Cloud Pack</b></h4>
+                              <p class="text-muted m-b-30 font-13">
+                    View, store and manage your study files at ease
+                  </p>
+
+                     <div class="btn-toolbar m-t-20" role="toolbar">
+                                                        <div class="btn-group">
+                                                            <button data-toggle="modal" data-target="#firstfile" type="button" class="btn btn-primary waves-effect waves-light "><i class=" mdi mdi-plus-circle"></i></button>
+                                                            <button type="button" class=" reload btn btn-primary waves-effect waves-light "><i class=" mdi mdi-reload"></i></button>
+                                                            <a href="javascript:void(0);" class=" right-bar-toggle right-menu-item btn btn-primary waves-effect waves-light "><i class=" mdi mdi-settings"></i></a>
+                                                        </div>
+                   
+                                                    </div>
+
+                              <div class="table-responsive" style="overflow: auto;
+    height: 55%;">
+                                <table id="mainTable" class="table table-striped m-b-0">
+                      <thead>
+                        <tr>
+                          <th>File</th><th>Name</th><th>download</th><th>Size</th><th>Delete</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          @foreach($files as $file)
+                        @if($file->filetype == 'png')
     <tr>
         <td class="text-left f-ent">
+          <a href="#" class="afile{{$file->id}}">
           <img class="file-icon" src="user_uploads/{{$file->filename}}" alt="" />
+          </a>
           </td>
-          <td class="f-name" ><h4 class="f-name">{{$file->filename}}</h4></td>
-          <td class="f-type"><a class="btn btn-raised btn-info btn-sm" href="/user_uploads/{{$file->filename}}">View</a></td>
+      <td class="f-name" >
+            <a href="#" class="afile{{$file->id}}">
+              <p class="f-name">{{$file->filename}}</p>
+            </a>
+            </td>
+          <td class="f-type"><a class="btn btn-primary waves-effect waves-light  btn-sm" href="/user_uploads/{{$file->filename}}"><i class=" mdi mdi-download"></i></a></td>
           <td class="f-size">
             <input class="raw-size{{$file->id}}" type="text" value="{{$file->filesize}}" style="display:none;">
             <p class="file-size{{$file->id}}"></p>
             </td>
             <td class="td-actions f-delete">
-              <a class="btn btn-raised btn-danger btn-sm deleteFile{{$file->id}}" href="#"><i class="fa fa-trash-o"></i></a>
+              <a class="btn waves-effect waves-light btn-danger btn-sm deleteFile{{$file->id}}" href="#"><i class="fa fa-trash-o"></i></a>
         </td>
     </tr>
     @elseif($file->filetype == 'jpg')
     <tr>
         <td class="text-left f-ent">
+                 <a href="#" class="afile{{$file->id}}">
           <img class="file-icon" src="user_uploads/{{$file->filename}}" alt="" />
-          <td class="f-name" ><h4 class="f-name">{{$file->filename}}</h4></td>
-          <td class="f-type"><a class="btn btn-raised btn-info btn-sm" href="/user_uploads/{{$file->filename}}">View</a></td>
+          </a>
+        </td>
+   <td class="f-name" >
+            <a href="#" class="afile{{$file->id}}">
+              <p class="f-name">{{$file->filename}}</p>
+            </a>
+            </td>
+          <td class="f-type"><a class="btn btn-primary waves-effect waves-light  btn-sm" href="/user_uploads/{{$file->filename}}"><i class=" mdi mdi-download"></i></a></td>
           <td class="f-size">
             <input class="raw-size{{$file->id}}" type="text" value="{{$file->filesize}}" style="display:none;">
             <p class="file-size{{$file->id}}"></p>
             </td>
             <td class="td-actions f-delete">
-              <a class="btn btn-raised btn-danger btn-sm deleteFile{{$file->id}}" href="#"><i class="fa fa-trash-o"></i></a>
+              <a class="btn waves-effect waves-light btn-danger btn-sm deleteFile{{$file->id}}" href="#"><i class="fa fa-trash-o"></i></a>
         </td>
     </tr>
     @elseif($file->filetype == 'pdf')
     <tr>
         <td class="text-left f-ent">
+                      <a href="#" class="afile{{$file->id}}">
           <img class="file-icon" src="user-tools/file-type/pdf.png" alt="" />
-          <td class="f-name" ><h4 class="f-name">{{$file->filename}}</h4></td>
-          <td class="f-type"><a class="btn btn-raised btn-info btn-sm" href="/user_uploads/{{$file->filename}}">View</a></td>
+        </a>
+        </td>
+        </td>
+   <td class="f-name" >
+            <a href="#" class="afile{{$file->id}}">
+              <p class="f-name">{{$file->filename}}</p>
+            </a>
+            </td>
+          <td class="f-type"><a class="btn btn-primary waves-effect waves-light  btn-sm" href="/user_uploads/{{$file->filename}}"><i class=" mdi mdi-download"></i></a></td>
           <td class="f-size">
             <input class="raw-size{{$file->id}}" type="text" value="{{$file->filesize}}" style="display:none;">
             <p class="file-size{{$file->id}}"></p>
             </td>
             <td class="td-actions f-delete">
-              <a class="btn btn-raised btn-danger btn-sm deleteFile{{$file->id}}" href="#"><i class="fa fa-trash-o"></i></a>
+              <a class="btn waves-effect waves-light btn-danger btn-sm deleteFile{{$file->id}}" href="#"><i class="fa fa-trash-o"></i></a>
         </td>
     </tr>
     @elseif($file->filetype == 'doc')
     <tr>
         <td class="text-left f-ent">
+                 <a href="#" class="afile{{$file->id}}">
           <img class="file-icon" src="user-tools/file-type/doc.png" alt="" />
-          <td class="f-name" ><h4 class="f-name">{{$file->filename}}</h4></td>
-          <td class="f-type"><a class="btn btn-raised btn-info btn-sm" href="/user_uploads/{{$file->filename}}">View</a></td>
+        </a>
+      </td>
+         <td class="f-name" >
+            <a href="#" class="afile{{$file->id}}">
+              <p class="f-name">{{$file->filename}}</p>
+            </a>
+            </td>
+          <td class="f-type"><a class="btn btn-primary waves-effect waves-light  btn-sm" href="/user_uploads/{{$file->filename}}"><i class=" mdi mdi-download"></i></a></td>
           <td class="f-size">
             <input class="raw-size{{$file->id}}" type="text" value="{{$file->filesize}}" style="display:none;">
             <p class="file-size{{$file->id}}"></p>
             </td>
             <td class="td-actions f-delete">
-              <a class="btn btn-raised btn-danger btn-sm deleteFile{{$file->id}}" href="#"><i class="fa fa-trash-o"></i></a>
+              <a class="btn waves-effect waves-light btn-danger btn-sm deleteFile{{$file->id}}" href="#"><i class="fa fa-trash-o"></i></a>
         </td>
     </tr>
     @elseif($file->filetype == 'docx')
     <tr>
         <td class="text-left f-ent">
-          <img class="file-icon" src="user-tools/file-type/docx.png" alt="" />
-          <td class="f-name" ><h4 class="f-name">{{$file->filename}}</h4></td>
-          <td class="f-type"><a class="btn btn-raised btn-info btn-sm" href="/user_uploads/{{$file->filename}}">View</a></td>
+                 <a href="#" class="afile{{$file->id}}">
+          <img class="file-icon" src="user-tools/file-type/docx.png" alt="" /></a>
+        </td>
+          <td class="f-name" >
+            <a href="#" class="afile{{$file->id}}">
+              <p class="f-name">{{$file->filename}}</p>
+            </a>
+            </td>
+          <td class="f-type"><a class="btn btn-primary waves-effect waves-light  btn-sm" href="/user_uploads/{{$file->filename}}"><i class=" mdi mdi-download"></i></a></td>
           <td class="f-size">
             <input class="raw-size{{$file->id}}" type="text" value="{{$file->filesize}}" style="display:none;">
             <p class="file-size{{$file->id}}"></p>
             </td>
             <td class="td-actions f-delete">
-              <a class="btn btn-raised btn-danger btn-sm deleteFile{{$file->id}}" href="#"><i class="fa fa-trash-o"></i></a>
+              <a class="btn waves-effect waves-light btn-danger btn-sm deleteFile{{$file->id}}" href="#"><i class="fa fa-trash-o"></i></a>
         </td>
     </tr>
     @elseif($file->filetype == 'mp3')
     <tr>
         <td class="text-left f-ent">
-          <img class="file-icon" src="user-tools/file-type/mp3.png" alt="" />
-          <td class="f-name" ><h4 class="f-name">{{$file->filename}}</h4></td>
-          <td class="f-type"><a class="btn btn-raised btn-info btn-sm" href="/user_uploads/{{$file->filename}}">View</a></td>
+          <a href="#" class="afile{{$file->id}}">
+          <img class="file-icon" src="user-tools/file-type/mp3.png" alt="" /></a>
+        </td>
+         <td class="f-name" >
+            <a href="#" class="afile{{$file->id}}">
+              <p class="f-name">{{$file->filename}}</p>
+            </a>
+            </td>
+          <td class="f-type"><a class="btn btn-primary waves-effect waves-light  btn-sm" href="/user_uploads/{{$file->filename}}"><i class=" mdi mdi-download"></i></a></td>
           <td class="f-size">
             <input class="raw-size{{$file->id}}" type="text" value="{{$file->filesize}}" style="display:none;">
             <p class="file-size{{$file->id}}"></p>
             </td>
             <td class="td-actions f-delete">
-              <a class="btn btn-raised btn-danger btn-sm deleteFile{{$file->id}}" href="#"><i class="fa fa-trash-o"></i></a>
+              <a class="btn waves-effect waves-light btn-danger btn-sm deleteFile{{$file->id}}" href="#"><i class="fa fa-trash-o"></i></a>
         </td>
     </tr>
     @elseif($file->filetype == 'zip')
     <tr>
         <td class="text-left f-ent">
-          <img class="file-icon" src="user-tools/file-type/zip.png" alt="" />
-        <td class="f-name" ><h4 class="f-name">{{$file->filename}}</h4></td>
-          <td class="f-type"><a class="btn btn-raised btn-info btn-sm" href="/user_uploads/{{$file->filename}}">View</a></td>
+                 <a href="#" class="afile{{$file->id}}">
+          <img class="file-icon" src="user-tools/file-type/zip.png" alt="" /></a></td>
+       <td class="f-name" >
+            <a href="#" class="afile{{$file->id}}">
+              <p class="f-name">{{$file->filename}}</p>
+            </a>
+            </td>
+          <td class="f-type"><a class="btn btn-primary waves-effect waves-light  btn-sm" href="/user_uploads/{{$file->filename}}"><i class=" mdi mdi-download"></i></a></td>
           <td class="f-size">
             <input class="raw-size{{$file->id}}" type="text" value="{{$file->filesize}}" style="display:none;">
             <p class="file-size{{$file->id}}"></p>
             </td>
             <td class="td-actions f-delete">
-              <a class="btn btn-raised btn-danger btn-sm deleteFile{{$file->id}}" href="#"><i class="fa fa-trash-o"></i></a>
+              <a class="btn waves-effect waves-light btn-danger btn-sm deleteFile{{$file->id}}" href="#"><i class="fa fa-trash-o"></i></a>
         </td>
     </tr>
     @else
     <tr>
         <td class="text-left f-ent">
-          <img class="file-icon" src="user-tools/file-type/file.png" alt="" />
-          <td class="f-name" ><h4 class="f-name">{{$file->filename}}</h4></td>
-          <td class="f-type">No Preview</td>
+                 <a href="#" class="afile{{$file->id}}">
+          <img class="file-icon" src="user-tools/file-type/file.png" alt="" /></a></td>
+          <td class="f-name" >
+            <a href="#" class="afile{{$file->id}}">
+              <p class="f-name">{{$file->filename}}</p>
+            </a>
+            </td>
+          <td class="f-type"><i class=" mdi mdi-download"></i></td>
           <td class="f-size">
             <input class="raw-size{{$file->id}}" type="text" value="{{$file->filesize}}" style="display:none;">
             <p class="file-size{{$file->id}}"></p>
             </td>
             <td class="td-actions f-delete">
-              <a class="btn btn-raised btn-danger btn-sm deleteFile{{$file->id}}" href="#"><i class="fa fa-trash-o"></i></a>
+              <a class="btn waves-effect waves-light  btn-danger btn-sm deleteFile{{$file->id}}" href="#"><i class="fa fa-trash-o"></i></a>
         </td>
     </tr>
-    @endif
+@endif
 
       <script>
       function formatBytes(bytes,decimals) {
@@ -209,69 +237,100 @@ Upload file <i class="material-icons">cloud_upload</i>
       $(function() {
 
         $(".deleteFile{{$file->id}}").click(function(e) {
-          $(".ski_loader").css("display", "block");
-          SnackBar.show({text:'deleting {{$file->filename}}',
-            pos: 'top-center',
-           duration: '9000',
-          });
-          console.log('loading');
-        var  durl = "http://localhost:8000/deletefile{{$file->id}}";
+
+          swal({   title: "Are you sure?", 
+            text: "You will not be able to recover this file!",  
+             type: "warning",   
+             showCancelButton: true,   
+             confirmButtonColor: "#DD6B55",   
+             confirmButtonText: "Yes, delete it!",   
+             closeOnConfirm: false },
+           function(){ 
+                                toastr.info("Deleting File. this should only take a second!");
+
+            // if user hits confirm delete 
+      var  durl = "http://localhost:8000/deletefile{{$file->id}}";
         $.ajax({
         type: 'GET',
         url: durl,
         })
         .done(function(response) {
-          $(".ajax_point").load('/cloudtest');
-          SnackBar.show({text:'{{$file->filename}} deleted',
-            pos: 'top-center',
-           duration: '9000',});
-          console.log('file deleted');
-          $(".ski_loader").css("display", "none");
-        })
-        .fail(function(data) {
-          SnackBar.show({
-          text:"Opps there seems to be an error",
-          pos: 'top-center',
-          backgroundColor: '#e53935'
-          });
-          $(".ski_loader").css("display", "none");
+          // show the swal deleted animations
 
-            });
+             swal("Deleted!", "Your imaginary file has been deleted.", "success"); 
+          $(".ajax_point").load('/cloudtest');
+          toastr.info("Refreshing Files. this should only take a second!");
+
+
+         });
+     
         });
+
+
+
+              });
+
+        // view a file
+               $(".afile{{$file->id}}").click(function(){
+   toastr.info("Loading preview. this Might take a while!");
+        
+                     $(".doc_viwer").load('http://localhost:8000/afile{{$file->id}}');
+           toastr.success("Load Completed.");
 
 
 
 
               });
+
+              });
       </script>
       @endforeach
 
+                      </tbody>
+        
+                    </table>
+                              </div>
+                            </div>
+                          </div>
 
-</tbody>
-</table>
 
-    </div>
-</div>
+                          <div class="col-sm-7">
+                            <div class="card-box">
+
+                             <div class="doc_viwer">
+<!-- main content are loaded with ajax base on the id of the file -->
+                            <div class="doc_viwer_intro text-center">
+
+<img class="no-p" src="/user-tools/file-type/doc.png">
+
+<img class="no-p" src="/user-tools/file-type/pdf.png">
+<img class="no-p" src="/user-tools/file-type/jpg.png">
+<img class="animated pulse infinite no-p" src="/user-tools/file-type/ppt.png">
+
+<img class="no-p" src="/user-tools/file-type/mp3.png">
+
+<img class="no-p" src="/user-tools/file-type/mp4.png">
+<h3 class="text-primary text-center">Preview Your files with ease</h3>
+<p>Click any file for preview</p>
+                            </div>
+                             </div>
+                             </div>
+                          </div>
+                        </div>
 
 @endif
 <script type="text/javascript">
 $(function() {
   function ajaxfun(welcload, btn, url, loadcom) {
     $(btn).click(function(){
-      $(".ski_loader").css("display", "block");
-      SnackBar.show({text:welcload,
-        pos: 'top-center',
-       duration: '9000',
-      });
+toastr.info("Refreshing Files. this should only take a second!");
+     
     console.log('loading');
         $(".ajax_point").load(url);
         $.ajax({
             success:function(re){
-            SnackBar.show({text:loadcom,
-              pos: 'top-center',
-             duration: '9000',});
-            console.log(loadcom);
-            $(".ski_loader").css("display", "none");
+         toastr.success("Reload successful.");
+
 
         }
       });

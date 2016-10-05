@@ -9,12 +9,10 @@
 
 //XXX BEGINING JQUERY READY FUNCTION
 $(document).ready(function(){
+       $("body").css("overflow-y", "hidden");
 $(".btn-ain-icon").draggable
                 $(".ski_loader").css("display", "block");
-            SnackBar.show({text:"Loading Ai notes",
-            pos: 'bottom-center',
-           duration: '9000',
-            });
+           
               $(".ajax_point").load("/Ainotes/callnotes");
               $(".notes_loader").css("display", "none");
 
@@ -22,10 +20,7 @@ $(".btn-ain-icon").draggable
       // NOTE: ALL Ainotes
                 $(".ain-all").click(function(){
                   $(".ain-notebook").css("display", "none");
-              SnackBar.show({text:"Loading Notebooks",
-              pos: 'bottom-center',
-             duration: '9000',
-           });
+            
                 $(".ajax_point").load("/Ainotes/callnotes");
 
                 $(".notes_loader").css("display", "none");
@@ -38,10 +33,7 @@ $(".btn-ain-icon").draggable
       // NOTE: script for new note without notebook
                 $(".make-note").click(function(){
                     $(".notes_loader").css("display", "block");
-                  SnackBar.show({text:"Opeining Skilearn-pad",
-              pos: 'bottom-center',
-             duration: '9000',
-           });
+            
                 $(".newnote_point").load("/new_note_index");
                 $.ajax({
                     success:function(re){
@@ -61,10 +53,6 @@ $(".btn-ain-icon").draggable
             $(".ai-ajax").css("display", "none");
             $(".ai-srt").removeClass("sid-active");
 
-        SnackBar.show({text:"Loading Notebooks",
-        pos: 'bottom-center',
-       duration: '9000',
-     });
           $(".ain_point").load("/Ainotes/call_all");
           $.ajax({
               success:function(re){
@@ -89,10 +77,6 @@ $(".ain-nbs-close").click(function(){
               $(".ain-notebook").css("display", "none");
               $(".ain-nbs").removeClass("sid-active");
 
-        SnackBar.show({text:"Loading...",
-        pos: 'bottom-center',
-       duration: '9000',
-     });
           $(".ai_point").load("/adela/query-ai-notes");
           $.ajax({
               success:function(re){

@@ -1,84 +1,68 @@
 @extends('templates.default')
+
+@section('content')
+
+
+ <!-- Notification css (Toastr) -->
 <script src="{{ URL::asset('/src/vendor/dropzone/dropzone.js') }}" ></script>
 <link rel="stylesheet" href="{{ URL::asset('/src/vendor/dropzone/dropzone.css') }}" media="screen" title="no title" charset="utf-8">
 
 <style media="screen">
-/*.more-pad{
-  padding-top: 19px;
-}*/
-.container-fluid.more-pad {
-    padding-left: 0;
-    padding-right: 0;
-}
-.container-fluid.more-pad.card.card-raised {
-    background: rgb(33,150,243);
-    /*padding-top: 23px;*/
-}
-ul.nav.nav-tabs.nav-tab-info {
-  padding-left: 12%;
-  background: rgb(33,150,243);
-}
-.nav-tabs>li {
-    margin-left: 40px;
-    margin-right: 22px;
-}
-i.material-icons.m-p-icon {
-    font-size: 20px;
-    color: rgb(96,125,139);
-}
-div.m-p-tool {
-    float: right;
-}
-.upload-f-m {
-    font-size: -webkit-xxx-large;
-}
-.m-p-empty {
-    text-align: center;
-    color: rgb(120,144,156);
-    font-family: sans-serif;
-}
-/*HACK FOR TABLE*/
-tr:hover {
-    background-color: rgb(3,169,244);
-    color: #fff;
-}
-.t-head:hover {
-    background-color: #fff;
-    color: black;
-}
-.t-head{
-    background-color: #fff;
-    color: black;
-}
-td.f-delete.td-actions {
-width: 5%;
-}
-td.f-size {
-width: 7%;
-}
-td.f-type {
-width: 2%;
-}
-.card-raised.card {
-padding-top: 10px;
-height: 100%;
-}
+
 img.file-icon {
-    width: 40px;
+    width: 35px;
 }
-td.text-left.f-ent {
-    width: 10%;
+
+/*the new styles*/
+img.animated.infinite.no-file.pulse {
+    width: 137px;
+    margin: 20px 43% 10px 35%;
+}
+h3.cloud-h3 {
+    text-align: center;
+    font-weight: 800;
+}
+.col-sm-7.file_view {
+    padding: 0;
+}
+.doc_viwer {
+    height: 100%;
+}
+.no-p {
+    width: 70px;
+}
+.doc_viwer_intro {
+    margin-top: 26%;
+}
+.file-view {
+    padding: 14px;
+}
+.dropzone {
+    min-height: 150px;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    background: white;
+    padding: 20px 20px;
+    border-style: dashed;
 }
 </style>
-@section('content')
 
-<div class="container more-pad">
+ <div class="row">
+              <div class="col-xs-12">
+                <div class="page-title-box">
+                                    <h4 class="page-title">Cloudpack</h4>
+                                
+                                    <div class="clearfix"></div>
+                                </div>
+              </div>
+            </div>
+
+<div class="container">
 <div class="col-md-12">
 
-
 <div class="ajax_point">
-
+<!-- the point in which the ajax content is pulled to -->
 </div>
+
 </div>
 </div>
 
@@ -86,10 +70,7 @@ td.text-left.f-ent {
 <script type="text/javascript">
 $(document).ready(function(){
         $(".ski_loader").css("display", "block");
-    SnackBar.show({text:"Loading Cloud pack",
-    pos: 'top-center',
-   duration: '10000',
- });
+   
       $(".ajax_point").load("/cloudtest");
       $(".ski_loader").css("display", "none");
 });
@@ -103,31 +84,6 @@ $(document).ready(function(){
 
 
 
-
-
-<!-- FLOATING BUTTON STARTS  -->
-<ul id="menu" class="mfb-component--br mfb-zoomin" data-mfb-toggle="hover">
-      <li class="mfb-component__wrap">
-        <a href="#/cloudsetup/" class="mfb-component__button--main" data-mfb-label="Tools">
-        <i class="mfb-component__main-icon--resting "><i class="fa fa-gear"></i></i>
-          <i class="mfb-component__main-icon--active "><i class="fa fa-gears"></i></i>
-        </a>
-        <ul class="mfb-component__list">
-          <li>
-            <a href="#/help" data-mfb-label="Help" class="mfb-component__button--child">
-              <i class="mfb-component__child-icon "><i class="fa fa-question"></i></i>
-            </a>
-          </li>
-          <li>
-            <a href="#/feedback/" data-mfb-label="Give us Feedback" class="mfb-component__button--child">
-              <i class="mfb-component__child-icon "><i class="fa fa-reply"></i></i>
-            </a>
-          </li>
-        </ul>
-      </li>
-    </ul>
-
-<!-- FLOATING BUTTON ENDS -->
 
 <script src="" charset="utf-8"></script>
 <!-- <form method="post" action="handleupload" enctype="multipart/form-data">
@@ -163,7 +119,7 @@ $(document).ready(function(){
                               </form>
                   </div>
                 <div class="modal-footer">
-                  <a class="btn btn-info btn-raised file-done" data-dismiss="modal">DONE</a>
+                  <a class="btn btn-primary btn-lg text-center waves-effect w-md btn-rounded file-done" data-dismiss="modal"><i class="mdi mdi-upload"></i> <span>DONE</span></a>
                 </form>
                 </div>
               </div>
@@ -173,31 +129,87 @@ $(document).ready(function(){
           $(function() {
             function ajaxfun(welcload, btn, url, loadcom) {
               $(btn).click(function(){
-                $(".ski_loader").css("display", "block");
-                SnackBar.show({text:welcload,
-                  pos: 'top-center',
-                 duration: '9000',
-                });
-              console.log('loading');
+                 toastr["info"](welcload)
                   $(".ajax_point").load(url);
                   $.ajax({
                       success:function(re){
-                      SnackBar.show({text:loadcom,
-                        pos: 'top-center',
-                       duration: '9000',});
-                      console.log(loadcom);
-                      $(".ski_loader").css("display", "none");
-
+                     toastr.success("Sync Complete");
                   }
                 });
               });
               }
                   //NOTE:// NEW note function
           ajaxfun( "Adding accepted files to Cloud pack", ".file-done", "/cloudtest", "files added");
+toastr.success("Loading. this should only take a second");
+ 
+
 
             });
           </script>
 
+  <!-- ============================================================== -->
+            <!-- End Right content here -->
+            <!-- ============================================================== -->
 
+
+            <!-- Right Sidebar -->
+            <div class="side-bar right-bar">
+                <a href="javascript:void(0);" class="right-bar-toggle">
+                    <i class="mdi mdi-close-circle-outline"></i>
+                </a>
+                <h4 class="">Settings</h4>
+                <div class="setting-list nicescroll">
+                    <div class="row m-t-20">
+                        <div class="col-xs-8">
+                            <h5 class="m-0">Notifications</h5>
+                            <p class="text-muted m-b-0"><small>Do you need them?</small></p>
+                        </div>
+                        <div class="col-xs-4 text-right">
+                            <input type="checkbox" checked data-plugin="switchery" data-color="#7fc1fc" data-size="small"/>
+                        </div>
+                    </div>
+
+                    <div class="row m-t-20">
+                        <div class="col-xs-8">
+                            <h5 class="m-0">API Access</h5>
+                            <p class="m-b-0 text-muted"><small>Enable/Disable access</small></p>
+                        </div>
+                        <div class="col-xs-4 text-right">
+                            <input type="checkbox" checked data-plugin="switchery" data-color="#7fc1fc" data-size="small"/>
+                        </div>
+                    </div>
+
+                    <div class="row m-t-20">
+                        <div class="col-xs-8">
+                            <h5 class="m-0">Auto Updates</h5>
+                            <p class="m-b-0 text-muted"><small>Keep up to date</small></p>
+                        </div>
+                        <div class="col-xs-4 text-right">
+                            <input type="checkbox" checked data-plugin="switchery" data-color="#7fc1fc" data-size="small"/>
+                        </div>
+                    </div>
+
+                    <div class="row m-t-20">
+                        <div class="col-xs-8">
+                            <h5 class="m-0">Online Status</h5>
+                            <p class="m-b-0 text-muted"><small>Show your status to all</small></p>
+                        </div>
+                        <div class="col-xs-4 text-right">
+                            <input type="checkbox" checked data-plugin="switchery" data-color="#7fc1fc" data-size="small"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Right-bar -->
+
+        </div>
+        <!-- END wrapper -->
+
+
+
+   <!-- Toastr js -->
+        <script src="/plugins/toastr/toastr.min.js"></script>
+        <!-- Toastr init js (Demo)-->
+        <script src="{{ URL::asset('/src/vendor/new/pages/jquery.toastr.js')}}"></script>
 
 @stop

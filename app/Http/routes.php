@@ -8,6 +8,18 @@
 //REVIEW ENDS
 ***/
 
+/***REVIEW
+// api route 
+***/
+
+$api = app('Dingo\Api\Routing\Router');
+
+$api->version('v1', function ($api) {
+  $api->get('hello', '\Skilearn\Http\controllers\ApiController@index');
+    $api->get('cal', '\Skilearn\Http\controllers\TestController@ApiTest');
+
+});
+
  Route::group(['middleware' => ['web',]], function () {
 
 
@@ -95,7 +107,18 @@
      Route::get('/signout',[
      'uses' => '\Skilearn\Http\controllers\AuthController@getSignout',
          'as' => 'auth.signout',
+         'middleware' => ['auth'],
    ]);
+
+// XXX: LOCK
+     Route::get('/locked',[
+     'uses' => '\Skilearn\Http\controllers\AuthController@getLock',
+         'as' => 'auth.lock',
+   ]);
+   Route::post('/unlock',[
+     'uses' => '\Skilearn\Http\controllers\AuthController@postUnlocked',
+   'middleware' => ['auth'],
+   ]);     
 
    // TODO:: PRICING TABLES
    Route::get('/plans',[
@@ -190,10 +213,15 @@ Route::post('/tododelete{todos}', [
 
 Route::get('/cloudpack', [
 'uses' => '\Skilearn\Http\controllers\CloudpackController@Cloudpack',
-'as'  => 'dashboard.cloudpack',
+'as'  => 'cloudpack',
 'middleware' => ['auth'],
 ]);
 
+Route::get('/cloud/upload', [
+'uses' => '\Skilearn\Http\controllers\CloudpackController@GetUpload',
+'as'  => 'cloudupload',
+'middleware' => ['auth'],
+]);
 
 Route::post('/handleupload', [
 'uses' => '\Skilearn\Http\controllers\CloudpackController@handleupload',
@@ -206,6 +234,11 @@ Route::get('/deletefile{id}', [
 'middleware' => ['auth'],
 ]);
 
+Route::get('/afile{id}', [
+'uses' => '\Skilearn\Http\controllers\CloudpackController@getafile',
+'as' => 'cloudfile',
+'middleware' => ['auth'],
+]);
 Route::get('/cloudtest', [
 'uses' => '\Skilearn\Http\controllers\CloudpackController@Cloudtest',
 'as'  => 'cloudtest',
@@ -220,7 +253,7 @@ Route::get('/cloudsetup', [
 // NOTE: AinoteS SECTION
 Route::get('/Ainotes', [
 'uses' => '\Skilearn\Http\controllers\AinoteController@index',
-'as'  => 'dashboard.Ainote.index',
+'as'  => 'notebook',
 'middleware' => ['auth'],
 ]);
 Route::get('/Ainotes/call_all', [
@@ -446,9 +479,9 @@ Route::get('/all/lib', [
 ]);
 
 //ACADEMIC VIEW
-Route::get('/academic', [
+Route::get('/academia', [
 'uses' => '\Skilearn\Http\controllers\AcademicController@index',
-'as'  => 'academic',
+'as'  => 'academia',
 'middleware' => ['auth'],
 ]);
 

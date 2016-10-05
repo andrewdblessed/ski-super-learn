@@ -1,4 +1,4 @@
-@extends('templates.home_include')
+@extends('guest.template.style')
 @section('content')
 
 @if (!$notes->count())
@@ -31,46 +31,10 @@
                </div>
             </div>
           </div>
+<div class="comments"></div>
 
-<script type="text/javascript">
-//NOTE
-$(function() {
-  function ajaxfun(welcload, btn, url, loadcom) {
-    $(btn).click(function(){
-      $(".ski_loader").css("display", "block");
-
-      SnackBar.show({text:welcload});
-    console.log('loading');
-        $(".ajax_point").load(url);
-        $.ajax({
-            success:function(re){
-            SnackBar.show({text:loadcom});
-            $(".ski_loader").css("display", "none");
-        }
-      });
-    });
-    }
-ajaxfun("Loading All Notes", ".goback", "/Ainotes/callnotes", "Load Completed");
-ajaxfun("Loading {{$notes->Ainote_name}} Ainote", "#Ainote{{$notes->Ainote_id}}", "/Ainotes/{{$notes->Ainote_id}}", "Load Completed");
-
-  });
-</script>
-<script>
-                                 tinymce.init({
-                                   selector: '.editable',
-                                   menubar: false,
-                                   theme: 'modern',
-                                   height: 500,
-                                    toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-                                   content_css: [
-                                     '//fast.fonts.net/cssapi/e6dc9b99-64fe-4292-ad98-6974f93cd2a2.css',
-                                     '//www.tinymce.com/css/codepen.min.css'
-                                   ]
-                                 });
-                         </script>
   </div>
-</div>
-</div>
+
 @endforeach
 @endif
 @stop

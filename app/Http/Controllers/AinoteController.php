@@ -35,11 +35,28 @@ class AinoteController extends Controller
     $skiSearch_placehold = "Search Ainotes and notes";
     $bg_number = intval( "0" . rand(1,12)  ); // random(ish) 12 digit int
 
-     return view('dashboard.Ainote.index')
+   $guest_token = chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . rand(0,9). rand(0,9)
+       . rand(0,9). rand(0,9) . chr(rand(65,90)) ; // random(ish) 18 character token
+        
+      return view('dashboard.Ainote.index')
       ->with('title', $title)
     ->with('skiSearch', $skiSearch)
     ->with('bg_number', $bg_number)
-    ->with('skiSearch_placehold',   $skiSearch_placehold);
+    ->with('skiSearch_placehold',   $skiSearch_placehold)
+     ->with('guest_token', $guest_token);
    }
   //  END
    /**
@@ -241,11 +258,7 @@ public function allnb()
       $this->validate($request, [
         'note_title' => 'required|max:170',
         'note_body' => 'required|min:',
-        'Ainote_id' => 'required|min:0',
         'note_date' => 'min:0',
-        'note_color' => 'min:0',
-        'Ainote_name' => 'required|min:2',
-        'Ainote_bg' => 'required|min:1',
         'guest_token' => 'required|min:2',
 
 
@@ -254,12 +267,9 @@ public function allnb()
         'note_title' => $request->input('note_title'),
         'note_body' => $request->input('note_body'),
         'note_date' => $request->input('note_date'),
-        'Ainote_id' => $request->input('Ainote_id'),
-        'Ainote_name' => $request->input('Ainote_name'),
-        'Ainote_bg' => $request->input('Ainote_bg'),
-        'guest_token' => $request->input('guest_token'),
+         'guest_token' => $request->input('guest_token'),
       ]);
-      return redirect()->route('dashboard.Ainote.index')->with('Ainote-created', 'New note Added.');
+      return redirect()->to('/Ainotes')->with('Ainote-created', 'New note Added.');
 
            }
           //  END
@@ -272,6 +282,22 @@ public function allnb()
          public function getallnote()
          {
            $title ='Notes';
+            $guest_token = chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . rand(0,9). rand(0,9)
+       . rand(0,9). rand(0,9) . chr(rand(65,90)) ; // random(ish) 18 character token
+        
 
            $emp_note = rand(1,4); // random(ish)  character number
 
@@ -285,7 +311,7 @@ public function allnb()
                    ->paginate();
                    //dd($note_all);
            return view ('dashboard.Ainote.allnote')
-           ->with('note_all', $note_all)   ->with('emp_note', $emp_note);
+           ->with('note_all', $note_all)        ->with('guest_token', $guest_token)   ->with('emp_note', $emp_note);
 
                }
 
@@ -450,7 +476,7 @@ public function updateNote (Request $request, $id ){
     'note_body' => $request->input('note_body'),
     // 'Ainote_color' => $request->input('Ainote_color'),
   ]);
-        return redirect()->route('dashboard.Ainote.index')->with('Ainote-created', 'Note updated.');
+        return redirect()->to('/Ainotes')->with('Ainote-created', 'Note updated.');
 
 }
 

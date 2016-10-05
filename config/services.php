@@ -44,6 +44,13 @@ return [
     'client_secret' => '3VitxgDToW3yKAS9ot735i-6',
     'redirect' => 'http://localhost:8000/gooback',
     ],
+    'firebase' => [
+    'api_key' => 'AIzaSyAVbjP__4-WAs418A72KvT3WUy0B5zq1Xw', // Only used for JS integration
+    'auth_domain' => 'skilearn-1272.firebaseapp.com', // Only used for JS integration
+    'database_url' => 'https://skilearn-1272.firebaseio.com',
+    'secret' => 'SrhxfcM3MT2axz3tYA0MprZYBfZivUZdumKEvYj0',
+    'storage_bucket' => 'skilearn-1272.appspot.com', // Only used for JS integration
+],
 
 
 ];

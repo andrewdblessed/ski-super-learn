@@ -56,6 +56,18 @@ class User extends Authenticatable
         }
         return null;
    }
+   //    HACK password
+
+   public function getPassword()
+      {
+                if ($this->password) {
+                    return "{$this->password}";
+                }
+        if ($this->password) {
+          return $this->password;
+        }
+        return null;
+   }
    //    HACK user id
 
       public function getLocation()

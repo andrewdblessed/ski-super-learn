@@ -9,7 +9,10 @@
         "laravel/framework": "5.2.*",
         "laravel/socialite": "~2.0",
         "guzzlehttp/guzzle": "~4.0",
-        "laravelcollective/html": "^5.2"
+        "laravelcollective/html": "^5.2",
+        "dingo/api": "1.0.x@dev",
+        "mpociot/laravel-firebase-sync": "~1.0",
+        "lucadegasperi/oauth2-server-laravel": "5.1."
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

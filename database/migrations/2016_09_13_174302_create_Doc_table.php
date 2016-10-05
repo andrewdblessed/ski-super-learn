@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDocTable extends Migration
+class CreateFirebaseTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,12 @@ class CreateDocTable extends Migration
      */
     public function up()
     {
-        //
+ Schema::create('firebase', function (Blueprint $table) {
+    $table->increments('id');
+    $table->string('task');
+    $table->boolean('is_done')->default(false);
+    $table->timestamps();
+});
     }
 
     /**
@@ -22,6 +27,6 @@ class CreateDocTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('firebase');
     }
 }

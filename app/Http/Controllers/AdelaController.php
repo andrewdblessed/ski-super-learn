@@ -75,6 +75,8 @@ public function getAi_note()
     $skiSearch = false;
     $skiSearch_placehold = "Search disabled";
     $title ='Adela';
+        $bg_number = intval( "0" . rand(1,12)  ); // random(ish) 12 digit int
+
       if (Auth::check()) {
         $exp_lev = Exp::where(function($query)
               {
@@ -92,6 +94,7 @@ return view ('adela.index')
 ->with('user', $user)
 ->with('exp_lev', $exp_lev)
 ->with('skiSearch', $skiSearch)
+    ->with('bg_number', $bg_number)
 ->with('skiSearch_placehold',   $skiSearch_placehold);
   }
 }

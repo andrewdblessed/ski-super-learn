@@ -1,165 +1,154 @@
-<style media="screen">
 
-.list > li {
-  display:block;
-  }
-</style>
-<div class="animated fadeInUpBig">
   @if (!$note_all->count())
-<div class="col-md-8 col-md-push-3">
+<script>
+         jQuery(document).ready(function(){
+// summer note js
+                $('.summernote').summernote({
+                    height: 300,                 // set editor height
+                    minHeight: null,             // set minimum height of editor
+                    maxHeight: null,             // set maximum height of editor
+                    focus: false ,                // set focus to editable area after initializing summernote
+                   placeholder: 'write here...'
+                });
 
-  <div class="Ainote-none text-center text-muted">
-    <img src="user-tools/ainote_cats/ainote-empty.png" class="ainote-empty" alt="" />
-    @if ($emp_note == 1)
-    <h3>No Note Here</h3>
+                  });
+         </script>
+<div class="col-md-10 col-md-push-1">
+
+        <div class="panel note-card">
+      <div class="panel-heading">
+
+          <h3 class="panel-title">Create new Note</h3>
+
+      </div>
+      <div class="panel-reader">
+
+    <form action="{{route('post.note')}}" id="new_note" method="post">
+
+
+             <input type="hidden" name="_token" value="{{ Session::token() }}">
+
+     <div class="form-group">
+          <label>Note Name</label>
+          <input type="text" class="form-control" required name="note_title" placeholder="Name of note"/>
+      </div>
+
+    <div class="form-group">
+                      <label>Explain your Note</label>
+                      <div>
+
+ <textarea  name="note_body" required  class="summernote">
+   
+
+</textarea>
+
+                         
+                      </div>
+                  </div>
+
+            <textarea type="text" style="display:none;" name="note_date"  id="notedate"> </textarea>
+             {{--GUEST TOKEN FOR SHARING NOTE --}}
+             <input type="hidden" name="guest_token" value="{{$guest_token}}">
+<button type="submit" class="btn btn-danger btn-rounded btn-lg btn-custom w-lg waves-effect waves-light save_note"> <i class=" mdi mdi-content-save"></i>Save </button>
+
+              
+       </form>
+         </div>
+       </div>
+
+<!-- <div class="card-box">
+<h3 class="cloud-h3 text-center">Is Note Taking Time</h3>
+<img class="animated pulse infinite no-note" src="/user-tools/ainote_cats/ainote-empty.png">
+<h4 class="text-center">
+Hey this Note planet is empty</h4>
+@if ($emp_note == 1)
+<p>Lets create a simple note</p>
     @elseif ($emp_note == 2)
-    <h3>oh my no notes Yet</h3>
+<p>Write about that wonderful Idea</p>
     @elseif ($emp_note == 3)
-    <h3>Am Empty for Now</h3>
+<p>Write down what you learnt today</p>
     @else ($emp_note == 1)
-    <h3>Oops there is no notes yet</h3>
+<p>Write down that crazy formula</p>
     @endif
-   <button class="btn btn-info btn-raised btn-round ain-nbs">
-      Select a Notebook
-    </button><br>
-      Notes are created from Notebooks
-     <small>
-  We Know the importance of an organized note, Which is why Ainotes are created from Notebooks
-</small><br>
-  create a Notebook  <button class="btn btn-fab btn-info btn-raised">
-  <i class="material-icons">add_circle</i>
-    </button>
-  </div>
-</div>
+
+<button type="button" data-toggle="modal" data-target="#firstfile"
+ class="btn btn-primary btn-lg text-center waves-effect w-md btn-rounded">
+Upload file <i class=" mdi mdi-cloud-upload"></i>
+</button>
+</div> -->
+
+     </div>                                       
+
   @else
+  <script type="text/javascript">
+$(function() {
+
+
+ $(".col-reader").load("/new_note_index");
+});
+  </script>
+<div class="col-sm-3 col-notes">
+       <div class="panel">
+    <div class="panel-heading">
+        <h2 class="panel-title">NOTES</h2>
+        <br>
+        <div class="btn-toolbar m-t-20" role="toolbar">
+              <button type="button" class="note_pad btn btn-primary waves-effect waves-light "><i class=" mdi mdi-plus-circle"></i></button>
+        </div>
+             <div class="form-group">
+<input type="text" class="form-control" required  placeholder="Search your notes"/>
+</div>
+    </div>
+    <div class="panel-body">
+
 <ul class="list">
+
   @foreach ($note_all as $notes)
 
   <li class=" li animated fadeIn">
 
-    <div class="col-md-8 col-md-push-3">
-      <div class="jumbotron" style="border-radius:0;">
-          <img class="ainotes_cats_img" src="user-tools/ainote-background/nb_{{$notes->ainote_bg}}.png" alt="" />
-          <div class="edit-ajax">
+<a href="#" class=" note_id{{$notes->id}} list-group-item">
+  <h4 class=" note_id{{$notes->id}} list-group-item-heading">{{$notes->note_title}}</h4>
+<!--   <div class="list-group-item-text">{!!$notes->note_body!!} </div>
+ --><!--   <p>{{$notes->created_at}}</p>
+ -->        <!--       <a class="btn waves-effect waves-light btn-danger btn-sm" href="{{route('deletenote',[$notes->id])}}"><i class="fa fa-trash-o"></i></a>
 
-      <div class="ain-note-title">
-        <h3 style="margin-top:0;" class="note_name note_id{{$notes->id}}">{{$notes->note_title}}</h3>
-      </div>
-      <div class="ain-nb-title">
-        <h5 class="note_Ainote"> {{ $notes->ainote_name}}</h5>
-      </div>
-      <hr>
-      <div class="ain-note-body ain-note-body{{$notes->id}} note_body" >
-        <p>
-{!!$notes->note_body!!}        </p>
-    </div>
-        <hr>
-        <div class="btn-group btn-group-sm btn-raised">
-          <a href="/notes/5" class="btn-ain-icon btn-raised btn btn-round" style="
-          background: #78909c;
-">
-          <i class="fa fa-edit"></i>
-        </a>
-          <a href="#" class="btn-ain-icon btn btn-raised" style="
-    background: #78909c;
-">
-          <i class="fa fa-share-square-o"></i>
-        </a>
-          <a href="#" class="btn-ain-icon  btn btn-raised" style="
-          background: #78909c;
-">
-          <i class="fa fa-star-o"></i>
-        </a>
-          <a href="{{route('deletenote',[$notes->id])}}" class="btn-ain-icon btn-raised btn btn-round" style="
-          background: #78909c;
-">
-            <i class="fa fa-trash-o"></i>
-          </a>
-        </div>
+  {{$notes->note_date}} -->
 
-
-        <div class="pull-right">
-          <span ><a href="#" class=" btn-ain-icon show_more{{$notes->id}} more-toggle" style="display:inline; "><small>more</small> <i class="fa fa-chevron-down"></i></a>
-          </span>
-          <span>
-            <a href="#"  class=" btn-ain-icon hide_more{{$notes->id}} more-toggle" style="display:none;"><small>less</small>    <i class="fa fa-chevron-up"></i></a>
-          </span>
-        </div>
-      <div class="ain-date note_time">
-      Created at  {{$notes->note_date}}
-      </div>
-
-    </div>
-    </div>
-  </div>
-
+</a>
   </li>
 
 @endforeach
+
+
   </ul>
-@endif
+        </div>
 </div>
-@foreach($note_all as $notes)
+</div>
+@endif
+
 <script type="text/javascript">
 $(function() {
-  // var note_open = false;
-  $(".show_more{{$notes->id}}").click(function(){
-    // var note_open = true;
-    // if (note_open == true) {
-      $(".ain-note-body{{$notes->id}}").css("height", "100%");
-      $(".show_more{{$notes->id}}").css("display", "none");
-      $(".hide_more{{$notes->id}}").css("display", "inline");
-
-
-    // }
-});
-$(".hide_more{{$notes->id}}").click(function(){
-  // var note_open = false;
-  // if (note_open == false) {
-    $(".ain-note-body{{$notes->id}}").css("height", "82px");
-    $(".hide_more{{$notes->id}}").css("display", "none");
-    $(".show_more{{$notes->id}}").css("display", "inline");
-// }
-});
-});
-</script>
-@endforeach
-<script type="text/javascript">
-$(function() {
-  $(".ain-nbs").click(function(){
-SnackBar.show({text:"Loading Notebooks",
-pos: 'bottom-center',
-duration: '9000',
-});
-  $(".ain_point").load("{{route('dashboard.Ainote.allAinote')}}");
-
-      $(".ain-notebook").css("display", "block");
-    $(".ain-nbs").addClass("sid-active");
-});
-$(".ain-nbs-close").click(function(){
-$(".ain-notebook").css("display", "none");
-$(".ain-nbs").removeClass("sid-active");
-});
 
   function ajaxfun(welcload, btn, url, loadcom) {
     $(btn).click(function(){
-      // $(".ski_loader").css("display", "block");
-      $(".ains_loader").css("display", "block");
-      SnackBar.show({text:welcload});
-    console.log('loading');
-        $(".ajax_point").load(url);
+ toastr.info(welcload);
+
+       console.log('loading note');
+        $(".col-reader").load(url);
         $.ajax({
             success:function(re){
-            SnackBar.show({text:loadcom});
-            $(".ski_loader").css("display", "none");
+   toastr.success(loadcom);
+         
         }
       });
     });
     }
 @foreach ($note_all as $notes)
-  ajaxfun("Loading {{$notes->note_title}}", ".note_id{{$notes->id}}", "/notes/{{$notes->id}}}", "Load Completed");
-  ajaxfun("Loading {{$notes->Ainote_name}} Ainote", "#Ainote{{$notes->Ainote_id}}", "/Ainotes/{{$notes->Ainote_id}}", "Load Completed");
+  ajaxfun("Loading {{$notes->note_title}}, plese Holdon", ".note_id{{$notes->id}}", "/notes/{{$notes->id}}}", "Note Loaded");
 @endforeach
+  ajaxfun("Opening Notepad, plese Holdon", ".note_pad", "/new_note_index", "Notepad Open");
+
 });
 </script>
 <script>
@@ -168,3 +157,21 @@ $(".ain-nbs").removeClass("sid-active");
 };
 var skiList = new List('skisearch', options);
 </script>
+
+
+
+        <script>
+
+//             jQuery(document).ready(function(){
+
+//                 $('.summernote').summernote({
+//                     height: 150,                 // set editor height
+//                     minHeight: null,             // set minimum height of editor
+//                     maxHeight: null,             // set maximum height of editor
+//                     focus: false                 // set focus to editable area after initializing summernote
+//                 });
+
+// });
+           
+        </script>
+    

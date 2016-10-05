@@ -112,6 +112,49 @@ public function deleteFile($id){
 
 /**
 *REVIEW:
+* getting cloud uploads
+*
+**/
+public function GetUpload()
+    {
+            $title ='Upload a file';
+
+      return view ('cloudload.cloudupload') ->with('title', $title);
+    }
+
+/**
+*REVIEW:
+* getting a specific file
+*
+**/
+public function Getfile()
+    {
+            $title ='Upload a file';
+
+      return view ('cloudload.cloudupload') ->with('title', $title);
+    }
+
+ /**
+         *REVIEW:
+         *get a file by the id of the file//
+         *results are pulledin with javascript
+         **/
+              public function getafile($id)
+               {
+                 $file = CloudUploder::findorFail($id);
+
+                 if (is_null($file)) {
+
+                   abort(404);
+                 }
+                 return view('cloudload.cloudfile', compact('CloudFile'))
+                         ->with('file', $file);
+
+               }
+         
+         //END
+/**
+*REVIEW:
 * Creating the setup tool for cloudpack
 *
 **/

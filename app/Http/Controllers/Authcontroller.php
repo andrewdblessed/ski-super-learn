@@ -99,6 +99,26 @@ return redirect()->route('home')->with('signin', 'you are now signed in');
 	return redirect()->route('home')->with('signout', 'you are now signed out');
 }
 
+public function getLock()
+  {
+    $title ='Account Locked';
+return view ('auth.lock')->with('title', $title);
+  }
+
+  public function postUnlocked(Request $request)
+  {
+  $this->validate($request, [
+  'password' => 'required',
+]);
+
+if (Auth::attempt($request->only(['password']))) {
+  return redirect()->back()->with('warning', 'Oops; Check the Email and password Again' );
+}
+return redirect()->route('home')->with('signin', 'Account Unlocked');
+  }
+
+
+
 
 public function getpricing()
   {

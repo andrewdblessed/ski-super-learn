@@ -13,10 +13,7 @@ class AinoteNote extends Model
     'note_body',
     'note_date',
     'note_color',
-   'Ainote_id',
-   'Ainote_name',
-   'Ainote_bg',
-  'guest_token',
+    'guest_token',
   ];
 
 public function user()

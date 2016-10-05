@@ -1,9 +1,28 @@
 @extends('templates.default')
 @section('content')
+ <!-- Summernote CSS -->
+    <link rel="stylesheet" href="{{ URL::asset('plugins/summernote/summernote.css')}}">
+
 <!-- NOTE: LOADING AI CSS AND JS CONFIGURATION --><link href="{{ URL::asset('/AI/ai.css') }}" rel="stylesheet">
 <script src="{{ URL::asset('/AI/ai_fun.js') }}" ></script>
 <script src="{{ URL::asset('/AI/config.js') }}" ></script>
 <!--REVIEW:// TESTING THE DB OF ADELA WITH VARIOUS DATAS  -->
+
+        <!--form validation init-->
+        <script src="{{ URL::asset('plugins/summernote/summernote.min.js')}}"></script>
+
+        <script>
+
+            jQuery(document).ready(function(){
+
+                $('.summernote').summernote({
+                    height: 250,                 // set editor height
+                    minHeight: null,             // set minimum height of editor
+                    maxHeight: null,             // set maximum height of editor
+                    focus: false                 // set focus to editable area after initializing summernote
+                });
+            });
+        </script>
 
 <!--REVIEW:// search google  -->
 
@@ -288,9 +307,60 @@ img.error_network {
 width: 52px;
 }
 </style>
-<div class="more-pad"></div>
+
+
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card-box m-t-20">
+            <div class="">
+                  <div class="form-group">
+                        @if ($bg_number == 1)
+                        <input id="input" type="text" class="form-control text-info " placeholder="Who is Barrack Obama">
+                        @elseif ($bg_number == 2)
+                        <input id="input" type="text" class="form-control text-info " placeholder="What is Hello in French">
+                        @elseif ($bg_number == 3)
+                        <input id="input" type="text" class="form-control text-info " placeholder="what is biology">
+                        @else ($bg_number == 4)
+                        <input id="input" type="text" class="form-control text-info " placeholder="What is Machine Learning">
+                        @endif
+                    </div>
+                    <button type="button" class="btn btn-default waves-effect waves-light" onclick="openMic()" id="rec"><i class=" mdi mdi-microphone"></i></button>
+                    <button type="button" class="btn btn-default waves-effect waves-light" onclick="openHelp()"><i class=" mdi mdi-help-circle"></i></button>
 <br>
-<div class="container">
+                <form role="form">
+                   <div class="form-group">
+                        <div class="summernote">
+                            <h6>Hello {{Auth::user()-> getFirstNameorUsername() }}</h6>
+                           <div class="aires">
+          
+          <h4 class="ai">
+
+
+          </h4>
+        </div>
+                        </div>
+                    </div>
+
+                    <div class="btn-toolbar form-group m-b-0">
+                        <div class="pull-right">
+      <a href="email-compose.html" class="btn btn-danger btn-rounded btn-custom w-lg waves-effect waves-light">Save as Note</a>                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+                                            <!-- End row -->
+
+
+
+
+<br>
+<!-- <div class="container">
   <div class="row">
     <div class="card card-raised main_view_height">
 
@@ -315,8 +385,8 @@ width: 52px;
     </div>
 
 </div>
-
-  <div class="form-group">
+ -->
+  <!-- <div class="form-group">
     <input id="input" ng-model="airequest" placeholder="Enter Question And Press enter" class="form-control" />
   </div>
 
@@ -327,22 +397,15 @@ width: 52px;
     <button class="btn btn-info btn-round btn-raised"  onclick="openHelp()">
 What to ask
 </button>
-
-</div>
+ -->
+<!-- </div>
     <div class="col-md-6 col-sm-6">
       <div class="ai_loading_msg">
         <img src="/src/adela/icons/ufo.png" class="animated bounce infinite" alt="" />
       </div>
       <div class="adela_result">
 
-        <div class="aires">
-          <h3 class=text-muted>        Hello {{Auth::user()-> getFirstNameorUsername() }} here is what i could find
-</h3>
-          <h4 class="ai">
-
-
-          </h4>
-        </div>
+     
       <div class="animated fadeIn not_found" >
             <p id="not_found">Hey, i Could not understand your request or am not allowed to do that...<br>try any of my advance Research methods </p>
             <div class="adv_opt">
@@ -361,8 +424,8 @@ What to ask
         </div>
     </div>
   </div>
-  </div>
-</div>
+  </div> 
+</div> -->
 
 
 
@@ -478,4 +541,67 @@ $(function() {
   });
 });
 </script>
+   <!-- ============================================================== -->
+            <!-- End Right content here -->
+            <!-- ============================================================== -->
+
+
+            <!-- Right Sidebar -->
+            <div class="side-bar right-bar">
+                <a href="javascript:void(0);" class="right-bar-toggle">
+                    <i class="mdi mdi-close-circle-outline"></i>
+                </a>
+                <h4 class="">Settings</h4>
+                <div class="setting-list nicescroll">
+                    <div class="row m-t-20">
+                        <div class="col-xs-8">
+                            <h5 class="m-0">Notifications</h5>
+                            <p class="text-muted m-b-0"><small>Do you need them?</small></p>
+                        </div>
+                        <div class="col-xs-4 text-right">
+                            <input type="checkbox" checked data-plugin="switchery" data-color="#7fc1fc" data-size="small"/>
+                        </div>
+                    </div>
+
+                    <div class="row m-t-20">
+                        <div class="col-xs-8">
+                            <h5 class="m-0">API Access</h5>
+                            <p class="m-b-0 text-muted"><small>Enable/Disable access</small></p>
+                        </div>
+                        <div class="col-xs-4 text-right">
+                            <input type="checkbox" checked data-plugin="switchery" data-color="#7fc1fc" data-size="small"/>
+                        </div>
+                    </div>
+
+                    <div class="row m-t-20">
+                        <div class="col-xs-8">
+                            <h5 class="m-0">Auto Updates</h5>
+                            <p class="m-b-0 text-muted"><small>Keep up to date</small></p>
+                        </div>
+                        <div class="col-xs-4 text-right">
+                            <input type="checkbox" checked data-plugin="switchery" data-color="#7fc1fc" data-size="small"/>
+                        </div>
+                    </div>
+
+                    <div class="row m-t-20">
+                        <div class="col-xs-8">
+                            <h5 class="m-0">Online Status</h5>
+                            <p class="m-b-0 text-muted"><small>Show your status to all</small></p>
+                        </div>
+                        <div class="col-xs-4 text-right">
+                            <input type="checkbox" checked data-plugin="switchery" data-color="#7fc1fc" data-size="small"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Right-bar -->
+
+        </div>
+        <!-- END wrapper -->
+
+
+
+        <script>
+            var resizefunc = [];
+        </script>
 @stop

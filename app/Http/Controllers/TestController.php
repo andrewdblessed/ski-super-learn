@@ -33,4 +33,26 @@ class TestController extends controller
 
 
 
+  public function ApiTest()
+  {
+    $guest_token = chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . rand(0,9). rand(0,9)
+       . rand(0,9). rand(0,9) . chr(rand(65,90)) ; // random(ish) 18 character token
+            return $guest_token;
+   }
+
+
+
 }

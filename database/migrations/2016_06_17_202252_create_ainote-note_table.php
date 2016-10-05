@@ -15,13 +15,9 @@ class CreateAinoteNoteTable extends Migration
         Schema::create('Ainote-note', function (Blueprint $table){
             $table->increments('id');
             $table->integer('user_id');
-            $table->integer('Ainote_id');
-            $table->integer('Ainote_name');
             $table->text('note_title');
             $table->text('note_body');
-            $table->text('note_color');
             $table->text('note_date');
-            $table->text('Ainote_bg');
             $table->text('guest_token');
             $table->timestamps();
          });

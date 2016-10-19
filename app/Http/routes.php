@@ -413,9 +413,9 @@ Route::post('/adelaquery',[
   'middleware' => ['auth'],
 ]);
 
-Route::get('/adela', [
-'uses' => '\Skilearn\Http\controllers\AdelaController@load_adela',
-'as'  => 'adela.index',
+Route::get('/quest', [
+'uses' => '\Skilearn\Http\controllers\QuestController@index',
+'as'  => 'quest.index',
 'middleware' => ['auth'],
 ]);
 
@@ -492,19 +492,197 @@ Route::get('/research', [
   'middleware' => ['auth'],
 ]);
 
-//CALENDAR VIEW
+  /**
+  *REVIEW:
+  * CALENDAR SECTION
+  *
+  **/
+
+//CALENDAR Inbdex
 Route::get('/calendar', [
 'uses' => '\Skilearn\Http\controllers\CalendarController@index',
 'as'  => 'calendar',
 'middleware' => ['auth'],
 ]);
 
+//my calendar view
+Route::get('/calendar/my', [
+'uses' => '\Skilearn\Http\controllers\CalendarController@myCalendar',
+'as'  => 'calendar.my',
+'middleware' => ['auth'],
+]);
+  /**
+    * CALENDAR SECTION /---------- MAIN ---------/
+    **/
+//my main view
+Route::get('/calendar/main', [
+'uses' => '\Skilearn\Http\controllers\CalendarController@main',
+'as'  => 'calendar.main',
+'middleware' => ['auth'],
+]);
+  /**
+    * CALENDAR SECTION /---------- TASK ---------/
+    **/
+//my task view
+Route::get('/calendar/task', [
+'uses' => '\Skilearn\Http\controllers\CalendarController@myTask',
+'as'  => 'calendar.mytask',
+'middleware' => ['auth'],
+]);
+
+//new task
+Route::get('/calendar/task/new', [
+'uses' => '\Skilearn\Http\controllers\CalendarController@newTask',
+'as'  => 'calendar.newtask',
+'middleware' => ['auth'],
+]);
+
+//task post
+Route::post('/savetasks',['uses' => '\Skilearn\Http\Controllers\CalendarController@postTasks',
+  'as' => 'post.tasks',
+  'middleware' => ['auth'],
+]);
+
+//single task view
+Route::get('calendar/task/{id}',[
+'uses' => '\Skilearn\Http\controllers\CalendarController@gettask',
+'as' => 'task.get',
+'middleware' => ['auth'],
+]);
+
+//task update
+Route::post('/update_task/{id}',[
+  'uses' => '\Skilearn\Http\Controllers\CalendarController@updateTask',
+  'as' => 'update.task',
+  'middleware' => ['auth'],
+]);
+
+// task delete
+
+Route::get('/deletetask{id}', [
+'uses' => '\Skilearn\Http\controllers\CalendarController@deleteTask',
+'as' => 'delete.task',
+'middleware' => ['auth'],
+]);
+  /**
+    * TASK SECTION /---------- END ---------/
+    **/
+
+
+  /**
+    * CALENDAR SECTION /---------- EXAM ---------/
+    **/
+
+  Route::get('/calendar/exam', [
+'uses' => '\Skilearn\Http\controllers\CalendarController@Exam',
+'as' => 'exam',
+'middleware' => ['auth'],
+]);
+//new exam
+Route::get('/calendar/exam/new', [
+'uses' => '\Skilearn\Http\controllers\CalendarController@newExam',
+'as'  => 'calendar.newexam',
+'middleware' => ['auth'],
+]);
+
+  //exam post
+Route::post('/saveexam',['uses' => '\Skilearn\Http\Controllers\CalendarController@postExam',
+  'as' => 'post.exam',
+  'middleware' => ['auth'],
+]);
+
+//single exam view
+Route::get('calendar/exam/{id}',[
+'uses' => '\Skilearn\Http\controllers\CalendarController@getExam',
+'as' => 'exam.get',
+'middleware' => ['auth'],
+]);
+
+//exam update
+Route::post('/update_exam/{id}',[
+  'uses' => '\Skilearn\Http\Controllers\CalendarController@updateExam',
+  'as' => 'update.exam',
+  'middleware' => ['auth'],
+]);
+
+// exam delete
+
+Route::get('/deleteexam{id}', [
+'uses' => '\Skilearn\Http\controllers\CalendarController@deleteExam',
+'as' => 'delete.exam',
+'middleware' => ['auth'],
+]);
+
+  /**
+    * EXAM SECTION /---------- END ---------/
+  **/
+ /**
+    * CALENDAR SECTION /---------- SUBJECT ---------/
+    **/
+
+  Route::get('/calendar/subject', [
+'uses' => '\Skilearn\Http\controllers\CalendarController@Subject',
+'as' => 'subject',
+'middleware' => ['auth'],
+]);
+
+  //SUBJECT post
+Route::post('/savesubject',['uses' => '\Skilearn\Http\Controllers\CalendarController@postSubject',
+  'as' => 'post.subject',
+  'middleware' => ['auth'],
+]);
+
+//single SUBJECT view
+Route::get('calendar/subject/{id}',[
+'uses' => '\Skilearn\Http\controllers\CalendarController@getSubject',
+'as' => 'subject.get',
+'middleware' => ['auth'],
+]);
+
+//SUBJECT update
+Route::post('/update_subject/{id}',[
+  'uses' => '\Skilearn\Http\Controllers\CalendarController@updateSubject',
+  'as' => 'update.subject',
+  'middleware' => ['auth'],
+]);
+
+// SUBJECT delete
+
+Route::get('/deletesubject{id}', [
+'uses' => '\Skilearn\Http\controllers\CalendarController@deleteSubject',
+'as' => 'delete.subject',
+'middleware' => ['auth'],
+]);
+
+  /**
+    * SUBJECT SECTION /---------- END ---------/
+    **/
+
+
+  /**
+    * TIMELINE SECTION /---------- TIMELINE ---------/
+    **/
+
+  Route::get('/timeline', [
+'uses' => '\Skilearn\Http\controllers\CalendarController@Timeline',
+'as' => 'timeline',
+'middleware' => ['auth'],
+]);
+
+  /**
+    * CALENDAR SECTION /---------- END ---------/
+    **/
+    /**
+    * CALENDAR SECTION /---------- END ---------/
+    **/
 // CALENDAR MANAGER VIEW
 Route::get('/calendar/settings', [
 'uses' => '\Skilearn\Http\controllers\CalendarController@setting',
 'as'  => 'cal.setting',
 'middleware' => ['auth'],
 ]);
+
+
 
 //calendar post
 Route::post('/savesction',['uses' => '\Skilearn\Http\Controllers\CalendarController@postSection',

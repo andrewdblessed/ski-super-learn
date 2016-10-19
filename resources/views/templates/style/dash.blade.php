@@ -27,3 +27,4 @@
 
            <!-- Sweet Alert -->
         <link href="{{ URL::asset('/plugins/bootstrap-sweetalert/sweet-alert.css')}}" rel="stylesheet" type="text/css">
+                <link href="{{ URL::asset('/user-tools/load-ani/ajax-loader.css')}}" rel="stylesheet" type="text/css">

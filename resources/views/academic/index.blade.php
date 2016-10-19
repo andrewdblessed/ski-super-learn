@@ -34,7 +34,7 @@ body{
   @if(Auth::user()->gender == "male" )
   <img src="/user-tools/profile-default/avatar.png" class="ski-user-image" alt="" />
   @else( Auth::user()->gender == "famale" )
-    <button class="user-add-pic btn btn-info "><i class="fa fa-camera"></i> Add Pic</button>
+    <a class="user-add-pic"><i class="fa fa-camera"></i> Add Pic</a>
     <img src="/user-tools/profile-default/avatar-1.png" class="ski-user-image" alt="" />
   @endif
 <hr>

@@ -4,11 +4,11 @@
 <div class="col-md-6 col-md-push-3">
 <div class="card-box">
 <h3 class="cloud-h3">Welcome to your Cloud pack</h3>
-<img class="animated pulse infinite no-file" src="/user-tools/file-type/doc.png">
+  <img class=" animated pulse infinite no-file" src="{{ URL::asset('/src/vendor/new/images/icons/stack_of_photos.svg')}}" title="stack_of_photos.svg"/>
 <h5>
 Store ebooks, document files, power point presentations, excell spread sheet</h5>
 <button type="button" data-toggle="modal" data-target="#firstfile"
- class="btn btn-primary btn-lg text-center waves-effect w-md btn-rounded">
+ class="btn btn-primary btn-lg text-center waves-effect w-md ">
 Upload file <i class=" mdi mdi-cloud-upload"></i>
 </button>
   </div>
@@ -21,37 +21,40 @@ Upload file <i class=" mdi mdi-cloud-upload"></i>
 
 
   <div class="row">
-                          <div class="col-sm-5">
-                            <div class="card-box">
-                              <h4 class="m-t-0 header-title"><b>Cloud Pack</b></h4>
-                              <p class="text-muted m-b-30 font-13">
-                    View, store and manage your study files at ease
-                  </p>
+<div class="col-lg-12">
+<div class="card-box">
+<h4 class="m-t-0 header-title"><b>Cloud Pack</b></h4>
+<p class="text-muted m-b-30 font-13">
+View, store and manage your study files at ease
+</p>
 
-                     <div class="btn-toolbar m-t-20" role="toolbar">
-                                                        <div class="btn-group">
-                                                            <button data-toggle="modal" data-target="#firstfile" type="button" class="btn btn-primary waves-effect waves-light "><i class=" mdi mdi-plus-circle"></i></button>
-                                                            <button type="button" class=" reload btn btn-primary waves-effect waves-light "><i class=" mdi mdi-reload"></i></button>
-                                                            <a href="javascript:void(0);" class=" right-bar-toggle right-menu-item btn btn-primary waves-effect waves-light "><i class=" mdi mdi-settings"></i></a>
-                                                        </div>
-                   
-                                                    </div>
+<div class="btn-toolbar m-t-20" role="toolbar">
+<div class="btn-group">
+<button data-toggle="modal" data-target="#firstfile" type="button" class="btn btn-primary waves-effect waves-light "><i class=" mdi mdi-plus-circle"></i></button>
+<button type="button" class=" reload btn btn-primary waves-effect waves-light "><i class=" mdi mdi-reload"></i></button>
+<a href="javascript:void(0);" class=" right-bar-toggle right-menu-item btn btn-primary waves-effect waves-light "><i class=" mdi mdi-settings"></i></a>
+</div>
 
-                              <div class="table-responsive" style="overflow: auto;
-    height: 55%;">
-                                <table id="mainTable" class="table table-striped m-b-0">
-                      <thead>
-                        <tr>
-                          <th>File</th><th>Name</th><th>download</th><th>Size</th><th>Delete</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                          @foreach($files as $file)
-                        @if($file->filetype == 'png')
-    <tr>
+</div>
+
+<div class="table-responsive" style="overflow: auto;
+height: 55%;">
+  <table id="mainTable" class="table table-striped m-b-0">
+<thead>
+            <div class="form-group">
+<input type="text" class="form-control search" required   placeholder="Search files"/>
+</div>
+<tr>
+<th>File</th><th>Name</th><th>download</th><th>Size</th><th>Delete</th>
+</tr>
+</thead>
+<tbody class="list">
+@foreach($files as $file)
+@if($file->filetype == 'png')
+<tr>
         <td class="text-left f-ent">
-          <a href="#" class="afile{{$file->id}}">
-          <img class="file-icon" src="user_uploads/{{$file->filename}}" alt="" />
+          <a href="#" class="afile{{$file->id}}" >
+          <img class="file-icon" src="user_uploads/{{$file->filename}} " alt="" />
           </a>
           </td>
       <td class="f-name" >
@@ -59,7 +62,7 @@ Upload file <i class=" mdi mdi-cloud-upload"></i>
               <p class="f-name">{{$file->filename}}</p>
             </a>
             </td>
-          <td class="f-type"><a class="btn btn-primary waves-effect waves-light  btn-sm" href="/user_uploads/{{$file->filename}}"><i class=" mdi mdi-download"></i></a></td>
+          <td class="f-type"><a class="btn btn-primary waves-effect waves-light  btn-sm" href="/user_uploads/{{$file->filename}}" download><i class=" mdi mdi-download"></i></a></td>
           <td class="f-size">
             <input class="raw-size{{$file->id}}" type="text" value="{{$file->filesize}}" style="display:none;">
             <p class="file-size{{$file->id}}"></p>
@@ -80,7 +83,7 @@ Upload file <i class=" mdi mdi-cloud-upload"></i>
               <p class="f-name">{{$file->filename}}</p>
             </a>
             </td>
-          <td class="f-type"><a class="btn btn-primary waves-effect waves-light  btn-sm" href="/user_uploads/{{$file->filename}}"><i class=" mdi mdi-download"></i></a></td>
+          <td class="f-type"><a class="btn btn-primary waves-effect waves-light  btn-sm" href="/user_uploads/{{$file->filename}}" download><i class=" mdi mdi-download"></i></a></td>
           <td class="f-size">
             <input class="raw-size{{$file->id}}" type="text" value="{{$file->filesize}}" style="display:none;">
             <p class="file-size{{$file->id}}"></p>
@@ -102,7 +105,7 @@ Upload file <i class=" mdi mdi-cloud-upload"></i>
               <p class="f-name">{{$file->filename}}</p>
             </a>
             </td>
-          <td class="f-type"><a class="btn btn-primary waves-effect waves-light  btn-sm" href="/user_uploads/{{$file->filename}}"><i class=" mdi mdi-download"></i></a></td>
+          <td class="f-type"><a class="btn btn-primary waves-effect waves-light  btn-sm" href="/user_uploads/{{$file->filename}}" download><i class=" mdi mdi-download"></i></a></td>
           <td class="f-size">
             <input class="raw-size{{$file->id}}" type="text" value="{{$file->filesize}}" style="display:none;">
             <p class="file-size{{$file->id}}"></p>
@@ -207,7 +210,7 @@ Upload file <i class=" mdi mdi-cloud-upload"></i>
             <p class="file-size{{$file->id}}"></p>
             </td>
             <td class="td-actions f-delete">
-              <a class="btn waves-effect waves-light  btn-danger btn-sm deleteFile{{$file->id}}" href="#"><i class="fa fa-trash-o"></i></a>
+              <a class="btn waves-effect waves-light  btn-primary btn-sm deleteFile{{$file->id}}" href="#"><i class="fa fa-trash-o"></i></a>
         </td>
     </tr>
 @endif
@@ -293,12 +296,11 @@ Upload file <i class=" mdi mdi-cloud-upload"></i>
                             </div>
                           </div>
 
-
+<!-- 
                           <div class="col-sm-7">
                             <div class="card-box">
 
                              <div class="doc_viwer">
-<!-- main content are loaded with ajax base on the id of the file -->
                             <div class="doc_viwer_intro text-center">
 
 <img class="no-p" src="/user-tools/file-type/doc.png">
@@ -310,20 +312,20 @@ Upload file <i class=" mdi mdi-cloud-upload"></i>
 <img class="no-p" src="/user-tools/file-type/mp3.png">
 
 <img class="no-p" src="/user-tools/file-type/mp4.png">
-<h3 class="text-primary text-center">Preview Your files with ease</h3>
+<h3 class="text-success text-center">Preview Your files with ease</h3>
 <p>Click any file for preview</p>
                             </div>
                              </div>
                              </div>
                           </div>
-                        </div>
+                        </div> -->
 
 @endif
 <script type="text/javascript">
 $(function() {
   function ajaxfun(welcload, btn, url, loadcom) {
     $(btn).click(function(){
-toastr.info("Refreshing Files. this should only take a second!");
+toastr.success("Refreshing Files. this should only take a second!");
      
     console.log('loading');
         $(".ajax_point").load(url);

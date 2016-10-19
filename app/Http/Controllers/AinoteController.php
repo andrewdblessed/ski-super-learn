@@ -375,6 +375,23 @@ public function getguestNote($guest_token)
    $title ='Guest Notes';
  $skiSearch = false;
  $skiSearch_placehold = "";
+
+  $shared_token = chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . chr(rand(65,90))
+       . rand(0,9). rand(0,9)
+       . rand(0,9). rand(0,9) . chr(rand(65,90)) ; // random(ish) 18 character token
+
   //  $notes = AinoteNote::findorFail($note_title);
   $notes = AinoteNote::where('guest_token',$guest_token)->get();
    if ($notes != true) {
@@ -385,10 +402,7 @@ public function getguestNote($guest_token)
  // dd($id);
 return view('guest.note', compact('notes'))
 ->with('note', $notes)
-->with('title', $title)
-->with('skiSearch', $skiSearch)
-->with('skiSearch_placehold',   $skiSearch_placehold);
-//  ->with('note_all', $note_all);
+->with('shared_token', $shared_token);
 
 
 }

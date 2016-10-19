@@ -154,11 +154,7 @@ class User extends Authenticatable
   {
     return $this->hasMany('Skilearn\Models\Status', 'user_id');
   }
-    //HACK subjects
-  public function subjects()
-  {
-    return $this->hasMany('Skilearn\Models\Subject', 'user_id');
-  }
+
   //HACK Ainotes
 public function Ainotes()
 {
@@ -217,11 +213,23 @@ public function SchoolCalYear()
 return $this->hasMany('Skilearn\Models\SchoolCalYear', 'user_id');
 }
 
-//HACK CALENDAR LABEL
-public function label()
+//HACK MY TASK
+public function MyTask()
 {
-return $this->hasMany('Skilearn\Models\Label', 'user_id');
+return $this->hasMany('Skilearn\Models\MyTask', 'user_id');
 }
+
+//HACK EXAM
+public function MyExam()
+{
+return $this->hasMany('Skilearn\Models\MyExam', 'user_id');
+}
+
+    //HACK subjects
+  public function MySubject()
+  {
+    return $this->hasMany('Skilearn\Models\MySubject', 'user_id');
+  }
 //HACK EXP
 public function Exp()
 {

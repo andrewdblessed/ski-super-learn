@@ -10,6 +10,7 @@
       <div class="panel-heading">
 
           <h3 class="panel-title">Create new Note</h3>
+<button type="submit" class="btn btn-primary btn-rounded btn-custom w-lg waves-effect waves-light save_note"> <i class=" mdi mdi-content-save"></i>Save Note</button>
 
       </div>
       <div class="panel-reader">
@@ -40,7 +41,6 @@
             <textarea type="text" style="display:none;" name="note_date"  id="notedate"> </textarea>
              {{--GUEST TOKEN FOR SHARING NOTE --}}
              <input type="hidden" name="guest_token" value="{{$guest_token}}">
-<button type="submit" class="btn btn-danger btn-rounded btn-lg btn-custom w-lg waves-effect waves-light save_note"> <i class=" mdi mdi-content-save"></i>Save </button>
 
               
        </form>
@@ -80,7 +80,7 @@ e.preventDefault();
 
     var formData = $(form).serialize();
 
- toastr.info("Saving Note, Please Holdon!");
+ toastr.success("Saving Note, Please Holdon!");
        
 
 $.ajax({

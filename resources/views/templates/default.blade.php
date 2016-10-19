@@ -12,7 +12,7 @@
   </head>
   <body  id="skisearch" class="fixed-left">
      <!-- Loader -->
-        <div id="preloader">
+       <!--  <div id="preloader">
             <div id="status">
                 <div class="spinner">
                   <div class="spinner-wrapper">
@@ -24,7 +24,7 @@
                 </div>
             </div>
         </div>
-
+ -->
 
         <!-- Begin page -->
         <div id="wrapper">
@@ -57,37 +57,32 @@
 
         <!-- // NOTE:  LOADING CONTENTS-->
  <!-- ============================================================== -->
-            <!-- Start right Content here -->
-            <!-- ============================================================== -->
-            <div class="content-page">
-                <!-- Start content -->
-                <div class="content">
-                    <div class="container">
-
+ 
+        <div class="wrapper">
+            <div class="container">
 
 
     @yield('content')
 
 
-
-                    </div> <!-- container -->
-
-                </div> <!-- content -->
-
-                <footer class="footer text-right">
+              <footer class="footer text-right">
                     2016 © Ski Learn.
                 </footer>
 
-            </div>
+        </div> <!-- container -->
 
+    </div> <!-- wrapper -->
 
-         
-        <script>
-            var resizefunc = [];
-        </script>
+       <div id="ski-timeline">
 
- {{-- @include('adela.content') --}}
-<!-- <script type="text/javascript" src="//api.filestackapi.com/filestack.js"></script> -->
+       </div>
+  <script type="text/javascript">
+$(document).ready(function(){
+
+                $("#ski-timeline").load("/timeline");
+                  });
+</script>
+
 @include('templates.style.dashscript')
 
   </body>

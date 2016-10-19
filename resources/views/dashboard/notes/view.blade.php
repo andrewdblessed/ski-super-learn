@@ -24,9 +24,13 @@
                                     <li class="divider"></li>
                                     <li><a href="javascript:void(0);">Email</a></li>
                                 </ul>
-                            </div>
+                             </div>
                    
-                                <a href="/guest_note/{{$notes->guest_token}}" class="btn btn-primary waves-effect waves-light  pull-right" >
+                     <div class="btn-group">
+                                <button type="button" class="update_note btn btn-primary waves-effect waves-light">Update</button>
+                            </div>
+
+                                <a target="_blank" href="/guest_note/{{$notes->guest_token}}" class="btn btn-primary waves-effect waves-light  pull-right" >
                                View <i class="mdi mdi-open-in-new"></i> 
                                </a>
           
@@ -34,8 +38,10 @@
 </div>
 <div class="panel-reader">
        <form  action="/updatenote{{$notes->id}}" id="update_note" method="post">
+<!--         <button type="submit" class="btn btn-primary btn-rounded btn-lg btn-custom w-lg waves-effect waves-light "> <i class=" mdi mdi-content-save"></i>Save </button>
+ -->
          <input type="hidden" name="_token" value="{{ Session::token() }}">
-
+<span >Last Modification<small class="text-primary">{{$notes->note_date}} </small></span>
      <div class="form-group">
           <label>Note Name</label>
           <input type="text" class="form-control" required name="note_title" value="{{$notes->note_title}}"/>
@@ -51,7 +57,6 @@
                          
                       </div>
                   </div>
-<button type="submit" class="btn btn-danger btn-rounded btn-lg btn-custom w-lg waves-effect waves-light update_note"> <i class=" mdi mdi-content-save"></i>Save </button>
 
               
        </form>
@@ -82,7 +87,7 @@ e.preventDefault();
 
     var formData = $(form).serialize();
 
- toastr.info("Updating Note, Please Holdon!");
+ toastr.success("Updating Note, Please Holdon!");
        
 
 $.ajax({
@@ -109,11 +114,11 @@ data: formData
             text: "You will not be able to recover this Note!",  
              type: "warning",   
              showCancelButton: true,   
-             confirmButtonColor: "#DD6B55",   
+             confirmButtonColor: "#4bd396",   
              confirmButtonText: "Yes, delete it!",   
              closeOnConfirm: false },
            function(){ 
-                                toastr.warning("Deleting {{$notes->note_title}}. this should only take a second!");
+                                toastr.success("Deleting {{$notes->note_title}}. this should only take a second!");
 
             // if user hits confirm delete 
       var  durl = "/deletenote{{$notes->id}}";

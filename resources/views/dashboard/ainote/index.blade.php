@@ -44,6 +44,10 @@ body{
 a.list-group-item:last-child {
     border-radius: 0%;
 }
+.list-group-item-text {
+    height: 79px;
+    overflow: hidden;
+}
 </style>
 <script src="{{ URL::asset('src/ski-vendor/ski-notebook/js/script.js') }}" charset="utf-8"></script>
 
@@ -140,8 +144,7 @@ a.list-group-item:last-child {
 */?>
 
  <script src="/plugins/summernote/summernote.min.js"></script>
-
-//         <script>
+<script>
 //          jQuery(document).ready(function(){
 // // summer note js
 //                 $('.summernote').summernote({
@@ -174,7 +177,7 @@ e.preventDefault();
 
     var formData = $(form).serialize();
 
- toastr.info("Saving Note, Please Holdon!");
+ toastr.success("Saving Note, Please Holdon!");
        
 
 $.ajax({
@@ -194,7 +197,5 @@ data: formData
   });
 // new note ends here
 
-
-            });
         </script>
 @stop

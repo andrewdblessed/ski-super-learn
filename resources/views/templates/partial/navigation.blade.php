@@ -24,44 +24,60 @@
 
   @if (Auth::check())
 
-<!-- new design -->
 
-                <!-- Button mobile view to collapse sidebar menu -->
-                <div class="navbar navbar-default" role="navigation">
-                    <div class="container">
+ <!-- Navigation Bar-->
+        <header id="topnav">
+            <div class="topbar-main">
+                <div class="container">
 
-                        <!-- Navbar-left -->
-                        <ul class="nav navbar-nav navbar-left">
-                            <li>
-                                <button class="button-menu-mobile open-left waves-effect waves-light">
-                                    <i class="mdi mdi-menu"></i>
-                                </button>
+                    <!-- Logo container-->
+                    <div class="logo">
+                        <!-- Text Logo -->
+                        <!--<a href="index.html" class="logo">-->
+                            <!--Zircos-->
+                        <!--</a>-->
+                        <!-- Image Logo -->
+                        <a href="{{route('home')}}" class="logo">
+                            <img src="icons/favicon.png" alt="" height="30">
+                        </a>
+
+                    </div>
+                    <!-- End Logo container-->
+
+
+                    <div class="menu-extras">
+
+                        <ul class="nav navbar-nav navbar-right pull-right">
+                            <li class="navbar-c-items">
+                                <form role="search" class="navbar-left app-search pull-left hidden-xs">
+                                     <input type="text" placeholder="Search..." class="form-control">
+                                     <a href=""><i class="fa fa-search"></i></a>
+                                </form>
                             </li>
-                             <li class="hidden-xs">
-                        <!--         <a href="#" class="menu-item waves-effect waves-light">New</a> -->
-                            </li>
-                            <li class="dropdown hidden-xs">
-                                <a data-toggle="dropdown" class="dropdown-toggle menu-item waves-effect waves-light" href="#" aria-expanded="false">English
-                                    <span class="caret"></span></a>
-                                <ul role="menu" class="dropdown-menu">
-                                    <li><a href="#">German</a></li>
-                                    <li><a href="#">French</a></li>
-                                    <li><a href="#">Italian</a></li>
-                                    <li><a href="#">Spanish</a></li>
+
+                              <li class="dropdown navbar-c-items">
+                                <a href="" class="dropdown-toggle waves-effect waves-light profile" data-toggle="dropdown" aria-expanded="true">
+                            <img class="icon-colored img-circle" src="{{ URL::asset('/src/vendor/new/images/icons/flash_on.svg')}}" alt="stars" title="Ski Stars"/>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right user-list notify-list">
+                                    <li class="text-center">
+                                        <h5>Your Ski Stars</h5>
+                                    </li>
+                                    <li><a href="#"><i class="ti-user m-r-5"></i>Get More Stars</a></li>
+                                    <li><a href="#"><i class="ti-lock m-r-5"></i>Help & How to</a></li>
+                                    <li><a href="#"><i class="ti-power-off m-r-5"></i>Star Settings</a></li>
                                 </ul>
-                            </li>
-                        </ul>
 
-                        <!-- Right(Notification) -->
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <a href="#" class="right-menu-item dropdown-toggle" data-toggle="dropdown">
+                            </li>
+
+                            <li class="dropdown navbar-c-items">
+                                 <a href="#" class="right-menu-item dropdown-toggle" data-toggle="dropdown">
                                     <i class="mdi mdi-bell"></i>
-                                    <span class="badge up bg-primary">4</span>
+                                    <span class="badge up bg-success">4</span>
                                 </a>
 
                                 <ul class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right dropdown-lg user-list notify-list">
-                                    <li>
+                                    <li class="text-center">
                                         <h5>Notifications</h5>
                                     </li>
                                     <li>
@@ -102,178 +118,90 @@
                                     </li>
                                 </ul>
                             </li>
-
-                            <li>
-                                <a href="#" class="right-menu-item dropdown-toggle" data-toggle="dropdown">
-                                    <i class="mdi mdi-email"></i>
-                                    <span class="badge up bg-danger">8</span>
-                                </a>
-
-                                <ul class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right dropdown-lg user-list notify-list">
-                                    <li>
-                                        <h5>Messages</h5>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="user-list-item">
-                                            <div class="avatar">
-                                                <img src="assets/images/users/avatar-2.jpg" alt="">
-                                            </div>
-                                            <div class="user-desc">
-                                                <span class="name">Patricia Beach</span>
-                                                <span class="desc">There are new settings available</span>
-                                                <span class="time">2 hours ago</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="user-list-item">
-                                            <div class="avatar">
-                                                <img src="assets/images/users/avatar-3.jpg" alt="">
-                                            </div>
-                                            <div class="user-desc">
-                                                <span class="name">Connie Lucas</span>
-                                                <span class="desc">There are new settings available</span>
-                                                <span class="time">2 hours ago</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="user-list-item">
-                                            <div class="avatar">
-                                                <img src="assets/images/users/avatar-4.jpg" alt="">
-                                            </div>
-                                            <div class="user-desc">
-                                                <span class="name">john doe</span>
-                                                <span class="desc">There are new settings available</span>
-                                                <span class="time">2 hours ago</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="all-msgs text-center">
-                                        <p class="m-0"><a href="#">See all Messages</a></p>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <a href="javascript:void(0);" class="right-bar-toggle right-menu-item">
-                                    <i class="mdi mdi-settings"></i>
-                                </a>
-                            </li>
-
-                            <li class="dropdown user-box">
-                                <a href="" class="dropdown-toggle waves-effect waves-light user-link" data-toggle="dropdown" aria-expanded="true">
-                                    <img src="assets/images/users/avatar-1.jpg" alt="user-img" class="img-circle user-img">
-                                </a>
-
+                          <li class="dropdown navbar-c-items">
+                                <a href="" class="dropdown-toggle waves-effect waves-light profile" data-toggle="dropdown" aria-expanded="true"><img src="assets/png/avatar-1.png" alt="user-img" class="img-circle"> </a>
                                 <ul class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right user-list notify-list">
-                                    <li>
+                                  <li class="text-center">
                                         <h5>Hi, {{Auth::user()-> getFirstNameorUsername() }}</h5>
                                     </li>
                                     <li><a href="{{ route('profile.index', ['username' => Auth::user()->username]) }}"><i class="ti-user m-r-5"></i> Profile</a></li>
                                     <li><a href="{{ route('profile.edit') }}"><i class="ti-settings m-r-5"></i> Edit profile</a></li>
                                     <li><a href="{{route('auth.lock') }}"><i class="ti-lock m-r-5"></i> Lock screen</a></li>
                                     <li><a href="{{route('auth.signout') }}"><i class="ti-power-off m-r-5"></i> Logout</a></li>
+                                
                                 </ul>
+
                             </li>
-
-                        </ul> <!-- end navbar-right -->
-
-                    </div><!-- end container -->
-                </div><!-- end navbar -->
-            </div>
-            <!-- Top Bar End -->
-
-
-
-
-            <!-- ========== Left Sidebar Start ========== -->
-            <div class="left side-menu">
-                <div class="sidebar-inner slimscrollleft">
-
-                    <!--- Sidemenu -->
-                    <div id="sidebar-menu">
-                        <!-- User detail -->
-                     <!--    <div class="user-details">
-                            <div class="overlay"></div>
-                            <div class="text-center">
-                                <img src="assets/images/users/avatar-1.jpg" alt="" class="thumb-md img-circle">
-                            </div>
-                            <div class="user-info">
-                                <div>
-                                    <a href="#setting-dropdown" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                     {{Auth::user()-> getFirstNameorUsername() }}<span class="mdi mdi-menu-down"></span></a>
+                        </ul>
+                        <div class="menu-item">
+                            <!-- Mobile menu toggle-->
+                            <a class="navbar-toggle">
+                                <div class="lines">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
                                 </div>
-                            </div>
-                        </div> -->
-                        <!-- end user detail -->
-<!-- 
-                        <div class="dropdown" id="setting-dropdown">
-                            <ul class="dropdown-menu">
-                                <li><a href="{{ route('profile.index', ['username' => Auth::user()->username]) }}"><i class="mdi mdi-face-profile m-r-5"></i> Profile</a></li>
-                                <li><a href="{{ route('profile.edit') }}"><i class="mdi mdi-account-settings-variant m-r-5"></i> Edit Profile</a></li>
-                                <li><a href="{{route('auth.lock') }}"><i class="mdi mdi-lock m-r-5"></i> Lock screen</a></li>
-                                <li><a href="{{route('auth.signout') }}"><i class="mdi mdi-logout m-r-5"></i> Logout</a></li>
-                            </ul>
-                        </div> -->
-
-                        <ul>
-                          <li class="menu-title">Navigation</li>
-                            <li>
-                                <a href="{{route('home')}}" class="waves-effect"><i class="mdi mdi-view-dashboard"></i><span> Dashboard </span></a>
-                            </li>
-                            <li>
-                                <a href="{{route('adela.index')}}" class="waves-effect"><i class="mdi mdi-microphone"></i><span> Adela </span></a>
-                            </li>
-                               <li>
-                                <a href="{{route('calendar')}}" class="waves-effect"><i class="mdi mdi-calendar"></i><span> Calendar </span></a>
-                            </li>
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-cloud-check"></i><span> Cloud Pack </span> <span class="menu-arrow"></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="{{route('cloudpack')}}"> My files</a></li>
-                                   <!--  <li><a href="{{route('cloudupload')}}"> Upload</a></li>
-                                    --> <li><a href="{{route('cloudsetup')}}">Cloud Setup</a></li>
-                                </ul>
-                            </li>
-                              <li>
-                                <a href="{{route('notebook')}}" class="waves-effect"><i class="mdi  mdi-library"></i><span> My Notes</span></a>
-                            </li>
-                               <!--   <li>
-                                <a href="{{route('research')}}" class="waves-effect"><i class="mdi  mdi-library"></i><span> Deep research </span></a>
-                            </li> -->
-                        <!--      <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-book-open-page-variant"></i><span>Notes</span> <span class="menu-arrow"></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="{{route('notebook')}}"> My notes</a></li>
-                                    <li><a href="email-read.html"> Adela notes</a></li>
-                                     <li><a href="email-read.html"> <i class="mdi mdi-archive"></i> <span>Archived</span></a></li>
-                                    <li><a href="email-compose.html"> <i class=" mdi mdi-delete-forever"></i> <span> Trash</span></a></li>
-                                </ul>
-                            </li> -->
-
-                            <li>
-                                <a href="{{route('academia')}}" class="waves-effect"><i class=" mdi mdi-school"></i><span>Academia</span></a>
-                            </li>
-                   
-
-                       </ul>
+                            </a>
+                            <!-- End mobile menu toggle-->
+                        </div>
                     </div>
-                    <!-- Sidebar -->
-                    <div class="clearfix"></div>
+                    <!-- end menu-extras -->
 
-                    <div class="help-box">
-                        <h5 class="text-muted m-t-0">Need Help?</h5>
-                        <p class=""><span class="text-dark"><b>Email:</b></span> <br/> support@support.com</p>
-                        <p class="m-b-0"><span class="text-dark"><b>Call:</b></span> <br/> (+123) 123 456 789</p>
-                    </div>
-
-                </div>
-                <!-- Sidebar -left -->
-
+                </div> <!-- end container -->
             </div>
-            <!-- Left Sidebar End -->
+            <!-- end topbar-main -->
 
+            <div class="navbar-custom">
+                <div class="container">
+                    <div id="navigation">
+                        <!-- Navigation Menu-->
+                        <ul class="navigation-menu">
 
+                            <li class="has-submenu">
+                                <a href="{{route('home')}}"><img class="icon-colored" src="{{ URL::asset('/src/vendor/new/images/icons/flash_on.svg')}}" title="flash_on.svg"/><span> Dashboard </span></a>
+                            </li>
 
+                            <li class="has-submenu">
+                                <a href="{{route('calendar')}}"><img class="icon-colored" src="{{ URL::asset('/src/vendor/new/images/icons/calendar.svg')}}" title="calendar.svg"/><span> Calendar </span></a>
+                                <ul class="submenu megamenu">
+                                     <li><a href="{{route('calendar.my')}}"> My Calendar</a></li>
+                                </ul>
+                             </li>
+
+                            <li class="has-submenu">
+                                <a href="#"><img class="icon-colored" src="{{ URL::asset('/src/vendor/new/images/icons/folder.svg')}}" title="folder.svg"/><span> Cloud Pack </span> </a>
+                                <ul class="submenu megamenu">
+                                     <li><a href="{{route('cloudpack')}}"> My files</a></li>
+                                    <li><a href="{{route('cloudupload')}}"> Upload</a></li>
+                                    <li><a href="{{route('cloudsetup')}}">Cloud Setup</a></li>
+                               </ul>
+                            </li>
+
+                            <li class="has-submenu">
+                                <a href="{{route('notebook')}}"><img class="icon-colored" src="{{ URL::asset('/src/vendor/new/images/icons/reading_ebook.svg')}}" title="reading_ebook.svg"/><span> My Notes</span></a>
+                            </li>
+                           <li class="has-submenu">
+                                <a href="{{route('quest.index')}}" > <img class="icon-colored" src="{{ URL::asset('/src/vendor/new/images/icons/idea.svg')}}" title="idea.svg"/><span> Ski Quest <span class="label label-primary">Soon</span> </span></a>
+                            </li>
+                            <li class="has-submenu">
+                                <a href="{{route('academia')}}"><img class="icon-colored" src="{{ URL::asset('/src/vendor/new/images/icons/graduation_cap.svg')}}" title="graduation_cap.svg"/><span>Academia</span></a>
+                           </li>
+
+                            <li class="has-submenu">
+                       <a href="#"> <img class="icon-colored" src="{{ URL::asset('/src/vendor/new/images/icons/voice_presentation.svg')}}" title="voice_presentation.svg"/><span>Ski Pod <span class="label label-primary">Soon</span> </span></a>
+                            </li>
+                        </ul>
+                        <!-- End navigation menu -->
+                    </div> <!-- end #navigation -->
+                </div> <!-- end container -->
+            </div> <!-- end navbar-custom -->
+        </header>
+        <!-- End Navigation Bar-->
+<style type="text/css">
+.icon-colored {
+    height: 18px;
+    width: 18px;
+    margin: 0px;
+}
+</style>
   @endif

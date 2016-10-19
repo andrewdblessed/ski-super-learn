@@ -49,7 +49,7 @@
             <textarea type="text" style="display:none;" name="note_date"  id="notedate"> </textarea>
              {{--GUEST TOKEN FOR SHARING NOTE --}}
              <input type="hidden" name="guest_token" value="{{$guest_token}}">
-<button type="submit" class="btn btn-danger btn-rounded btn-lg btn-custom w-lg waves-effect waves-light save_note"> <i class=" mdi mdi-content-save"></i>Save </button>
+<button type="submit" class="btn btn-primary btn-rounded btn-lg btn-custom w-lg waves-effect waves-light save_note"> <i class=" mdi mdi-content-save"></i>Save </button>
 
               
        </form>
@@ -91,12 +91,11 @@ $(function() {
        <div class="panel">
     <div class="panel-heading">
         <h2 class="panel-title">NOTES</h2>
-        <br>
         <div class="btn-toolbar m-t-20" role="toolbar">
               <button type="button" class="note_pad btn btn-primary waves-effect waves-light "><i class=" mdi mdi-plus-circle"></i></button>
         </div>
              <div class="form-group">
-<input type="text" class="form-control" required  placeholder="Search your notes"/>
+<input type="text" class="form-control search" required   placeholder="Search your notes"/>
 </div>
     </div>
     <div class="panel-body">
@@ -108,10 +107,10 @@ $(function() {
   <li class=" li animated fadeIn">
 
 <a href="#" class=" note_id{{$notes->id}} list-group-item">
-  <h4 class=" note_id{{$notes->id}} list-group-item-heading">{{$notes->note_title}}</h4>
-<!--   <div class="list-group-item-text">{!!$notes->note_body!!} </div>
- --><!--   <p>{{$notes->created_at}}</p>
- -->        <!--       <a class="btn waves-effect waves-light btn-danger btn-sm" href="{{route('deletenote',[$notes->id])}}"><i class="fa fa-trash-o"></i></a>
+  <h4 class=" note_id{{$notes->id}} list-group-item-heading note_name text-primary">{{$notes->note_title}} <span > <small class="text-primary note_time">{{$notes->note_date}} </small></span></h4>
+  <div class="list-group-item-text note_body">{!!$notes->note_body!!} </div>
+<!--   <p>{{$notes->created_at}}</p>
+       <a class="btn waves-effect waves-light btn-danger btn-sm" href="{{route('deletenote',[$notes->id])}}"><i class="fa fa-trash-o"></i></a>
 
   {{$notes->note_date}} -->
 
@@ -132,7 +131,7 @@ $(function() {
 
   function ajaxfun(welcload, btn, url, loadcom) {
     $(btn).click(function(){
- toastr.info(welcload);
+ toastr.success(welcload);
 
        console.log('loading note');
         $(".col-reader").load(url);
@@ -153,25 +152,8 @@ $(function() {
 </script>
 <script>
      var options = {
-  valueNames: [ 'note_name', 'note_body', 'note_Ainote', 'note_time' ]
+  valueNames: [ 'note_name', 'note_body', 'note_time' ]
 };
 var skiList = new List('skisearch', options);
 </script>
 
-
-
-        <script>
-
-//             jQuery(document).ready(function(){
-
-//                 $('.summernote').summernote({
-//                     height: 150,                 // set editor height
-//                     minHeight: null,             // set minimum height of editor
-//                     maxHeight: null,             // set maximum height of editor
-//                     focus: false                 // set focus to editable area after initializing summernote
-//                 });
-
-// });
-           
-        </script>
-    

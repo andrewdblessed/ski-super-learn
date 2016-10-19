@@ -4,7 +4,6 @@
 <!-- <script src="{{ URL::asset('/src/vendor/s-nav/js/jquery-2.1.4.js') }}" ></script> -->
 
 <link href="{{ URL::asset('/css/bootstrap.min.css') }}" rel="stylesheet">
-<link href="{{ URL::asset('/css/animate.css') }}" rel="stylesheet">
 <link href="{{ URL::asset('/css/material-kit.css') }}" rel="stylesheet">
 <link href="{{ URL::asset('/src/vendor/mfb/mfb.min.css') }}" rel="stylesheet">
 <link href="{{ URL::asset('/css/style.css') }}" rel="stylesheet">

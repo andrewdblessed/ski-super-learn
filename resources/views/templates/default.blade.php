@@ -8,26 +8,54 @@
         <link rel="shortcut icon" href="/icons/favicon.png">
     <!-- // NOTE:  LOADING CSS-->
 
-    @include('templates.style.dash')
-  </head>
+ </head>
   <body  id="skisearch" class="fixed-left">
-     <!-- Loader -->
-       <!--  <div id="preloader">
-            <div id="status">
-                <div class="spinner">
-                  <div class="spinner-wrapper">
-                    <div class="rotator">
-                      <div class="inner-spin"></div>
-                      <div class="inner-spin"></div>
-                    </div>
-                  </div>
-                </div>
-            </div>
-        </div>
- -->
+<script src="{{ URL::asset('/src/vendor/jquery/jquery.min.js') }}" ></script>
+
+  <!-- BEGIN CALL JS -->
+  <script src="pageloader/pageloader.js" type="text/javascript"></script>
+  <!-- END CALL JS -->
+
+    @include('templates.style.dash')
+
+.<style media="screen">
+  .loader-text{
+    z-index: 1000;
+  width: 400px;
+  }
+</style>
+  <!-- BEGIN CALL CSS -->
+  <link rel="stylesheet" id="pageloader-css"  href="pageloader/pageloader.css" type="text/css" media="all" />
+  <!-- END CALL CSS -->
+
+<!-- BEGIN THE LOADING SCREEN -->
+<div id="bonfire-pageloader">
+
+  <!-- BEGIN THE ICON -->
+  <div class="bonfire-pageloader-icon">
+  <div class="loader-text">
+      <h3 class="text-white">#FACTS:  Baby Camels are born without a hump</h3>
+  </div>
+  <img id="#loader" SRC="pageloader/infinity.gif">
+  </div>
+  <!-- END THE ICON -->
+  <!-- BEGIN PLACE LOADING ICON IN THE MIDDLE OF THE PAGE -->
+  <script>
+  jQuery(window).resize(function(){
+     resizenow();
+  });
+  function resizenow() {
+    var browserwidth = jQuery(window).width();
+    var browserheight = jQuery(window).height();
+    jQuery('.bonfire-pageloader-icon').css('right', ((browserwidth - jQuery(".bonfire-pageloader-icon").width())/2)).css('top', ((browserheight - jQuery(".bonfire-pageloader-icon").height())/2));
+  };
+  resizenow();
+  </script>
+  </div>
+
 
         <!-- Begin page -->
-        <div id="wrapper">
+        <div id="wrapper ">
 
             <!-- Top Bar Start -->
             <div class="topbar">
@@ -57,31 +85,39 @@
 
         <!-- // NOTE:  LOADING CONTENTS-->
  <!-- ============================================================== -->
- 
-        <div class="wrapper">
+
+        <div class="wrapper entry-content">
             <div class="container">
 
-
     @yield('content')
-
-
-              <footer class="footer text-right">
-                    2016 © Ski Learn.
-                </footer>
 
         </div> <!-- container -->
 
     </div> <!-- wrapper -->
+    <style type="text/css">
+#loader {
+    position: fixed;
+    top: 80%;
+    left: 2%;
+    background: #fff;
+}
+img.loader-img {
+    width: 130px;
+}
+    </style>
 
-       <div id="ski-timeline">
+<div id="loader">
+  <img class="loader-img" SRC="pageloader/hyper.gif">
+</div>
 
-       </div>
-  <script type="text/javascript">
+   <script type="text/javascript">
 $(document).ready(function(){
-
-                $("#ski-timeline").load("/timeline");
-                  });
-</script>
+$("#loader").hide();
+    $("a").click(function(){
+        $("#loader").fadeIn();
+    });
+});
+    </script>
 
 @include('templates.style.dashscript')
 

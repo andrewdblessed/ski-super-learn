@@ -67,7 +67,7 @@ a.list-group-item:last-child {
         <div class="ajax_point ">
           {{-- loading server-side ainotes--}}
       </div>
- 
+
 
 <div class="col-sm-9 col-reader"></div>
 <!--     <div class="col-sm-9 col-reader">
@@ -94,11 +94,11 @@ a.list-group-item:last-child {
                       <div>
 
  <textarea  name="note_body" required  class="summernote">
-   
+
 
 </textarea>
 
-                         
+
                       </div>
                   </div>
 
@@ -107,14 +107,14 @@ a.list-group-item:last-child {
              <input type="hidden" name="guest_token" value="{{$guest_token}}">
 <button type="submit" class="btn btn-danger btn-rounded btn-lg btn-custom w-lg waves-effect waves-light save_note"> <i class=" mdi mdi-content-save"></i>Save </button>
 
-              
+
        </form>
          </div>
        </div>
 
 </div> -->
 
-<?php /* XXX: adela ajax 
+<?php /* XXX: adela ajax
 <div class="ai-ajax animated fadeInLeft">
 <h3 class="text-lg text-info"><b>Ask Me Anything</b></h3>
 <div class="pull-right">
@@ -178,7 +178,7 @@ e.preventDefault();
     var formData = $(form).serialize();
 
  toastr.success("Saving Note, Please Holdon!");
-       
+
 
 $.ajax({
 type: 'POST',

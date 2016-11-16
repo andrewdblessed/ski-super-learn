@@ -30,7 +30,7 @@ class AuthController extends controller
   **/
 public function getSignup()
   {
-return view ('auth.register')->with('title', $title);
+return view ('auth.register');
   }
 // XXX:   BASIC PLAN
   public function basicPlan()

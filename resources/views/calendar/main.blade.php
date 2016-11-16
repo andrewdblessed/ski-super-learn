@@ -1,44 +1,38 @@
-    <div class="loader" style="display:none">
-  <span class="circle1"></span>
-  <span class="circle2"></span>
-  <span class="circle3"></span>
-  <span class="circle4"></span>
-  <span class="circle5"></span>
-  <span class="circle6"></span>
-</div>
-<!--      
+    <div id="loader" ></div>
+        <div id="alert" ></div>
+<!--
         <script src="{{ URL::asset('/user-tools/calendar-script/task-script.js') }}"></script>
  -->
-<div class="row"> 
+<div class="row">
 <div class="col-lg-6">
   <a href="{{route('calendar.my')}}" class=" ">
               <div class="card-box">
               @if (!$my_tasks->count())
             <p class="text-muted center-text">
-            No Pending task 
+            No Pending task
             </p>
             @else
-         
+
 
       You have {{ $my_tasks->count() }} Tasks pending
 
 
              @endif
              <br>
-              
+
               @if (!$my_exams->count())
             <p class="text-muted center-text">
             No Upcoming Exam
             </p>
             @else
-         
+
 
       You have {{ $my_exams->count() }} Exams Upcoming
 
 
              @endif
 
-           
+
       <h3 class="dash-text text-center">Activities</h3>
     </div>
 </a>
@@ -60,7 +54,7 @@
                 {{$tasks->task_title}} due {{$tasks->task_date}}
             </p>
             @endif
-             
+
              @endforeach
              @endif
       <h3 class="dash-text text-center">Tasks</h3>
@@ -98,7 +92,7 @@
                 {{$exams->exam_subject}} due {{$exams->exam_date}}
             </p>
             @endif
-             
+
              @endforeach
              @endif
       <h3 class="dash-text text-center">Exams</h3>
@@ -107,7 +101,7 @@
 </div>
 
 <div class="col-lg-6">
-  <a href="{{route('cloudpack')}}" class=" ">
+  <a href="#" class=" ">
               <div class="card-box">
             <p class="text-muted center-text">
             No Upcoming Classes
@@ -118,7 +112,7 @@
     </div>
 </a>
 </div>
-<!-- 
+<!--
 <div class="col-lg-6">
   <a href="{{route('cloudpack')}}" class=" ">
               <div class="card-box">
@@ -138,28 +132,39 @@
 $(document).ready(function(){
 
 
-$(".my-task").click(function(){
-    $(".loader").css("display", "block");
-     $("#items-ajax").load("/calendar/task");
-    $(".loader").css("display", "none");
-        console.log("complete");
+function ajaxfun(btn, url) {
+$(btn).click(function(){
+ $("#loader").after(
+'<div class="loader2" >'+ '<span class="circle1"></span>'+
+ '<span class="circle2"></span>'+
+ '<span class="circle3"></span>'+
+ '<span class="circle4"></span>'+
+ '<span class="circle5"></span>'+
+  '<span class="circle6"></span>'+
+   '<div>');
+
+    $("#items-ajax").load(url, function( response, status, xhr ) {
+  if ( status == "error" ) {
+    $("#alert").after(
+            ' <div class="alert alert-danger alert-dismissible fade in" role="alert">'+
+               ' <button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+                    '<span aria-hidden="true">&times;</span>'+
+                '</button>'+
+                'Oops, the Internet as been broken. Please reload the page'+
+           ' </div>');
+  }
+});
 
 });
 
+}
+
+ajaxfun(".my-task", "/calendar/task");
+ajaxfun(".my-exams", "/calendar/exam");
+ajaxfun(".my-class", "/calendar/class");
+ajaxfun(".nav-back", "/calendar/main");
 
 
-
-$(".my-exams").click(function(){
-    $(".loader").css("display", "block");
-     $("#items-ajax").load("/calendar/exam");
-    $(".loader").css("display", "none");
-});
-
-$(".nav-back").click(function(){
-    $(".loader").css("display", "block");
-     $("#items-ajax").load("/calendar/main");
-    $(".loader").css("display", "none");
-});
 
 });
 

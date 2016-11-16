@@ -20,14 +20,14 @@
 
    <!-- Toastr js -->
         <script src="/plugins/toastr/toastr.min.js"></script>
-     
+
 <!-- LIST JS -->
 <script src="{{ URL::asset('/src/vendor/listjs/list.min.js') }}" ></script>
 <!-- INITIALIZE TOASTR -->
         <script type="text/javascript">
 
 
-           
+
 toastr.options = {
   "closeButton": false,
   "debug": false,

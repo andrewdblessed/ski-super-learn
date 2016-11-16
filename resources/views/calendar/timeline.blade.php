@@ -49,7 +49,7 @@
     </article>
     @endif
         @endforeach
-@foreach ($my_exams as $exams) 
+@foreach ($my_exams as $exams)
    @if($exams->exam_date == date("m/d/Y"))
     <article class="timeline-item">
         <div class="timeline-desk">
@@ -68,5 +68,5 @@
       @endif
     @endforeach
     @endif
-    
+
 </div>

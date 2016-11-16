@@ -38,11 +38,11 @@
                       <div>
 
  <textarea  name="note_body" required  class="summernote">
-   
+
 
 </textarea>
 
-                         
+
                       </div>
                   </div>
 
@@ -51,7 +51,7 @@
              <input type="hidden" name="guest_token" value="{{$guest_token}}">
 <button type="submit" class="btn btn-primary btn-rounded btn-lg btn-custom w-lg waves-effect waves-light save_note"> <i class=" mdi mdi-content-save"></i>Save </button>
 
-              
+
        </form>
          </div>
        </div>
@@ -77,7 +77,7 @@ Upload file <i class=" mdi mdi-cloud-upload"></i>
 </button>
 </div> -->
 
-     </div>                                       
+     </div>
 
   @else
   <script type="text/javascript">
@@ -138,7 +138,7 @@ $(function() {
         $.ajax({
             success:function(re){
    toastr.success(loadcom);
-         
+
         }
       });
     });
@@ -156,4 +156,3 @@ $(function() {
 };
 var skiList = new List('skisearch', options);
 </script>
-

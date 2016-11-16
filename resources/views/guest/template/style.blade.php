@@ -46,7 +46,7 @@ span.text-success {
   <body>
 
 <div> <a href="{{route('home')}}"> <img src="/icons/favicon.png" style="    width: 57px;
-   "> </a></div>   
+   "> </a></div>
     @yield('content')
 
     @if (!Auth::check())
@@ -72,7 +72,7 @@ span.text-success {
 <button type="button" class="btn btn-googleplus waves-effect waves-light">
    <i class="fa fa-google-plus"></i>
 </button>
-</div>                                        
+</div>
   </div>
 </nav>
 
@@ -101,7 +101,7 @@ span.text-success {
           <br>
           <button class="btn btn-success" id="sign_in"  > Sign in </button>
           <a target="_blank" href="{{route('auth.register')}}" class="btn btn-warning ">Register an Account</a>
-       
+
         <input type="hidden" name="_token" value="{{ Session::token() }}">
         </form>
       </div>
@@ -170,7 +170,7 @@ window.location.reload(true);
 <button type="button" class="btn btn-googleplus waves-effect waves-light">
    <i class="fa fa-google-plus"></i>
 </button>
-</div>     
+</div>
   </div>
 </nav>
 @endif

@@ -1,6 +1,5 @@
 <?php // TODO: load the styles from online ?>
 <script src="{{ URL::asset('//fast.eager.io/pFsUvIYgcZ.js') }}"></script>
-<script src="{{ URL::asset('/src/vendor/jquery/jquery.min.js') }}" ></script>
 <!-- <script src="{{ URL::asset('/src/vendor/s-nav/js/jquery-2.1.4.js') }}" ></script> -->
 
 <link href="{{ URL::asset('/css/bootstrap.min.css') }}" rel="stylesheet">

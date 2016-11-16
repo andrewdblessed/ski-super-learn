@@ -13,7 +13,7 @@ class FeedbackController extends controller
 public function index()
   {
            return view('feedback.index');
-   
+
   }
 
   public function postDocin(Request $request)

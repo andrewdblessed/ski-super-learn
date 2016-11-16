@@ -50,7 +50,7 @@ class AinoteController extends Controller
        . chr(rand(65,90))
        . rand(0,9). rand(0,9)
        . rand(0,9). rand(0,9) . chr(rand(65,90)) ; // random(ish) 18 character token
-        
+
       return view('dashboard.Ainote.index')
       ->with('title', $title)
     ->with('skiSearch', $skiSearch)
@@ -297,7 +297,7 @@ public function allnb()
        . chr(rand(65,90))
        . rand(0,9). rand(0,9)
        . rand(0,9). rand(0,9) . chr(rand(65,90)) ; // random(ish) 18 character token
-        
+
 
            $emp_note = rand(1,4); // random(ish)  character number
 

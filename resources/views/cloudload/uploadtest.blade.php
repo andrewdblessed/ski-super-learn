@@ -241,17 +241,17 @@ height: 55%;">
 
         $(".deleteFile{{$file->id}}").click(function(e) {
 
-          swal({   title: "Are you sure?", 
-            text: "You will not be able to recover this file!",  
-             type: "warning",   
-             showCancelButton: true,   
-             confirmButtonColor: "#DD6B55",   
-             confirmButtonText: "Yes, delete it!",   
+          swal({   title: "Are you sure?",
+            text: "You will not be able to recover this file!",
+             type: "warning",
+             showCancelButton: true,
+             confirmButtonColor: "#DD6B55",
+             confirmButtonText: "Yes, delete it!",
              closeOnConfirm: false },
-           function(){ 
+           function(){
                                 toastr.info("Deleting File. this should only take a second!");
 
-            // if user hits confirm delete 
+            // if user hits confirm delete
       var  durl = "http://localhost:8000/deletefile{{$file->id}}";
         $.ajax({
         type: 'GET',
@@ -260,13 +260,13 @@ height: 55%;">
         .done(function(response) {
           // show the swal deleted animations
 
-             swal("Deleted!", "Your imaginary file has been deleted.", "success"); 
+             swal("Deleted!", "Your imaginary file has been deleted.", "success");
           $(".ajax_point").load('/cloudtest');
           toastr.info("Refreshing Files. this should only take a second!");
 
 
          });
-     
+
         });
 
 
@@ -276,7 +276,7 @@ height: 55%;">
         // view a file
                $(".afile{{$file->id}}").click(function(){
    toastr.info("Loading preview. this Might take a while!");
-        
+
                      $(".doc_viwer").load('http://localhost:8000/afile{{$file->id}}');
            toastr.success("Load Completed.");
 
@@ -290,13 +290,13 @@ height: 55%;">
       @endforeach
 
                       </tbody>
-        
+
                     </table>
                               </div>
                             </div>
                           </div>
 
-<!-- 
+<!--
                           <div class="col-sm-7">
                             <div class="card-box">
 
@@ -326,7 +326,7 @@ $(function() {
   function ajaxfun(welcload, btn, url, loadcom) {
     $(btn).click(function(){
 toastr.success("Refreshing Files. this should only take a second!");
-     
+
     console.log('loading');
         $(".ajax_point").load(url);
         $.ajax({

@@ -230,10 +230,23 @@ return $this->hasMany('Skilearn\Models\MyExam', 'user_id');
   {
     return $this->hasMany('Skilearn\Models\MySubject', 'user_id');
   }
+
+      //HACK subjects
+  public function zone_ques()
+  {
+    return $this->hasMany('Skilearn\Models\zone_ques', 'user_id');
+  }
+
 //HACK EXP
 public function Exp()
 {
 return $this->hasMany('Skilearn\Models\Exp', 'user_id');
+}
+
+//HACK EXP
+public function facts()
+{
+return $this->hasMany('Skilearn\Models\facts', 'user_id');
 }
 
 }

@@ -52,7 +52,7 @@ class SimpleCalendarController extends Controller
      'event_status' => $request->input('event_status'),
      'event_label' => $request->input('event_label'),
      'event_start' => $request->input('event_start'),
-	   'event_end' => $request->input('event_end'),   
+	   'event_end' => $request->input('event_end'),
      'event_start_time' => $request->input('event_start_time'),
      'event_end_time' => $request->input('event_end_time'),
 	   ]);
@@ -92,7 +92,7 @@ class SimpleCalendarController extends Controller
      'event_status' => $request->input('event_status'),
      'event_label' => $request->input('event_label'),
      'event_start' => $request->input('event_start'),
-     'event_end' => $request->input('event_end'),   
+     'event_end' => $request->input('event_end'),
      'event_start_time' => $request->input('event_start_time'),
      'event_end_time' => $request->input('event_end_time'),
      ]);
@@ -112,7 +112,7 @@ class SimpleCalendarController extends Controller
    {
 
  // NOTE:: PULLING CALENDAR LABELS OF THE USER
-     
+
               $cal_label = Label::where(function($query)
                   {
                     return $query->where('user_id', Auth::user()->id);
@@ -135,7 +135,7 @@ class SimpleCalendarController extends Controller
 
 
  // NOTE:: PULLING CALENDAR LABELS OF THE USER
-     
+
               $cal_label = Label::where(function($query)
                   {
                     return $query->where('user_id', Auth::user()->id);
@@ -182,9 +182,9 @@ class SimpleCalendarController extends Controller
                    abort(404);
                  }
                  if (Auth::check()) {
-                    
+
           // NOTE:: PULLING CALENDAR LABELS OF THE USER
-     
+
               $cal_label = Label::where(function($query)
                   {
                     return $query->where('user_id', Auth::user()->id);
@@ -214,6 +214,6 @@ public function deleteEvent ($id){
 
 
 
-    // 
+    //
 
 }

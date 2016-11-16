@@ -19,7 +19,7 @@
 
 <style type="text/css">
 .page-title-box {
-     padding: 0; 
+     padding: 0;
 }
 .panel-body.point-panel {
     padding: 10px 0 20px 0;
@@ -34,7 +34,7 @@
 }
 .list-group-item {
 
-     border: none; 
+     border: none;
 }
 /*the new styles*/
 img.animated.pulse.infinite.no-task {
@@ -42,7 +42,11 @@ img.animated.pulse.infinite.no-task {
     margin-left: 41px;
 }
 </style>
+<div class="row">
+<div class="col-md-10 col-md-push-2">
 
+</div>
+</div>
 <div class="col-lg-4">
 
 
@@ -54,7 +58,7 @@ $(document).ready(function(){
                 $("#timeline-ajax").load("/timeline");
                   });
 </script>
-    
+
 </div>
 
 

@@ -1,3 +1,4 @@
+        <div id="loader" ></div>
 
 
 <form class="form-horizontal" role="form" method="post" action="{{route('post.subject')}}" id="new_subject">

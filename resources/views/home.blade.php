@@ -1,257 +1,186 @@
 @extends('templates.home_include')
-@section('content')
+@section('content')  <!-- ============================================================== -->
+  <!-- Start right Content here -->
+  <!-- ============================================================== -->
+  <style media="screen">
+  .account-logo-box {
+  padding: 10px;
+  border-radius: 5px 5px 0 0;
+  background-color: #188ae2;
+}
+body{
+    @if ($bg_number == 1)
+    background-image: url(/landing/ba1.jpg);
+    @elseif ($bg_number == 2)
+    background-image: url(/landing/ba1.jpg);
 
-  <div id="index-banner" class="parallax-container">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <br><br>
-        <h1 class="header center "><span class="blue white-text">LEARNING</span> <span class="white-text">WITHOUT</span> <span class="blue white-text">LIMIT</span></h1>
-        <div class="row center">
-            <h5 class="header col s12 light">A SINGLE <span class="blue">PLATFORM</span> THAT HELPS YOU <br><span class="blue eager_header"> MANAGE YOUR STUDY LIFE</span>.</h5>
-        </div>
-        <div class="row center">
-          <a href="/ski/pricing" id="download-button" class="btn-large waves-effect waves-light blue lighten-1">Get Started</a>
-          <a href="/siginin" id="download-button" class="btn-large waves-effect waves-light blue lighten-1">Log in</a>
-          <a href="/schools" id="download-button" class="btn-large waves-effect waves-light blue lighten-1">For Schools</a>
-       </div>
-        <br><br>
+    @elseif ($bg_number == 3)
+    background-image: url(/landing/ba1.jpg);
+@endif
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 
-      </div>
-    </div>
-    <div class="parallax"><img src="/landing/background1.jpg" alt="Unsplashed background img 1"></div>
-  </div>
-
-  <div class="container">
-    <div class="section">
-
-      <!--   Icon Section   -->
-      <div class="row">
-
-
-          <div class="col s12 m4">
-          <div class="icon-block">
-            <div class="center">
-            <img src="/landing/svg/ai.png" style="width:80px; height80px;" alt="" />
-          </div>
-            <h5 class="center">AI Research Bot (Adela)</h5>
-
-            <p class="light">Adela is an Artificial intelligent bot that has knowledge on some <span class="blue white-text">historic events</span>, has access to <span class="blue white-text">Wikipedia</span>, calculates <span class="blue white-text">random mathematics</span>, translate words to various <span class="blue white-text">languages</span> and as an excellent <span class="blue white-text">communication skills</span>.</p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <div class="center">
-            <img src="/landing/svg/notebook.png" style="width:80px; height80px;" alt="" />
-          </div>
-            <h5 class="center">Create Notes</h5>
-
-            <p class="light"><span class="blue white-text">Create, Save and manage</span> your various notes under your collective Ainote. Your notes are not just saved on Ski-Learn you can also <span class="blue white-text">download your notes to your device.</span></p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <div class="center">
-            <img src="/landing/svg/cloud.png" style="width:80px; height80px;" alt="" />
-          </div>
-            <h5 class="center">Save Your Files and Images to the Cloud</h5>
-
-            <p class="light"><span class="blue white-text">Save and access your files</span> and documents anywhere any time. Ski-Learn Cloud-pack plans to be your perfect choice to keep you attach to your Ebooks and documents, keeping them <span class="blue white-text">save in the cloud</span>.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="section">
-      <div class="row">
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <div class="center">
-            <img src="/landing/svg/skispot.png" style="width:80px; height80px;" alt="" />
-          </div>
-            <h5 class="center">Meet Various Students Online</h5>
-
-            <p class="light">Ski-Learn provides an excellent <span class="white-text blue">study community</span> which allows your to Join ski-Spots, meet new friends, participate in quizzes, create your own spot and <span  class="white-text blue">top up your educational experience</span>.</p>
-          </div>
-        </div>
-
-      <div class="col s12 m4">
-        <div class="icon-block">
-          <div class="center">
-          <img src="/landing/svg/calendar.png" style="width:80px; height80px;" alt="" />
-        </div>
-          <h5 class="center">Task Management</h5>
-
-          <p class="light">Stay focused and <span class="white-text blue">keep track of your task</span> with Ski Todo list.</p>
-        </div>
-      </div>
-
-      <div class="col s12 m4">
-        <div class="icon-block">
-                <h5 class="center">Save and Showcase Your Success </h5>
-          <p class="light">keep track of <span class="white-text blue">your academic success</span> and show case it to your friends, teachers, family and the entire world.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-  <div class="parallax-container valign-wrapper">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <div class="row center">
-
-        </div>
-      </div>
-    </div>
-    <div class="parallax"><img src="/landing/background2.jpg" alt="Unsplashed background img 2"></div>
-  </div>
+.account-pages .account-content {
+    padding: 1px 30px 14px 30px;
+    background-color: #ffffff;
+}
+.wrapper-page {
+    margin:0;
+    position: relative;
+    max-width: 662px;
+}
+.col-md-8.demo {
+    position: fixed;
+    top: 36.5%;
+    right: 7%;
+    z-index: 10000;
+}
+  </style>
+  <div class="content-page">
+      <!-- Start content -->
+      <div class="content">
+          <div class="container-fluid">
 
 
+              <div class="row">
+    <div class="col-xs-12">
+    <div class="row">
 
+      <div class="col-md-8 demo">
 
+        <div class="wrapper-page">
 
+            <div class="m-t-40 account-pages">
+                <div class="text-center account-logo-box">
+                    <h2 class="text-uppercase">
+                          <a href="{{route('home')}}" class="logo">
+                            <span class="text-white"><img src="icons/favicon.png" alt="" height="36"> SKI-Learn</span>
+                        </a>
+                    </h2>
+                    <!--<h4 class="text-uppercase font-bold m-b-0">Sign In</h4>-->
+                </div>
+                <div class="account-content">
+                  <h4 class="text-primary text-center">Join With social</h4>
+                  <div class="button-list">
+                      <button type="button" class="btn btn-facebook waves-effect waves-light">
+                         <i class="fa fa-facebook"></i>
+                      </button>
 
+                      <button type="button" class="btn btn-twitter waves-effect waves-light">
+                         <i class="fa fa-twitter"></i>
+                      </button>
 
-  <footer class="page-footer blue">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Ski -Learn</h5>
-          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+                      <button type="button" class="btn btn-linkedin waves-effect waves-light">
+                         <i class="fa fa-linkedin"></i>
+                      </button>
+                      <button type="button" class="btn btn-googleplus waves-effect waves-light">
+                         <i class="fa fa-google-plus"></i>
+                      </button>
+                      <button type="button" class="btn btn-github waves-effect waves-light">
+                         <i class="fa fa-github"></i>
+                      </button>
+                    </div>
+                    <h4 class="text-primary text-center">OR</h4>
 
+                    <form id="user" class="form-horizontal" action="{{route('auth.signup')}}" method="post">
+                      <div class="form-group ">
+                          <div class="col-xs-6">
+                              <input class="form-control" name="first_name" type="text" required="" placeholder="First Name">
+                          </div>
 
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Settings</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Connect</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="footer-copyright">
-      <div class="container">
-      Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
-      </div>
-    </div>
-  </footer>
+                          <div class="col-xs-6">
+                              <input class="form-control" name="last_name" type="text" required="" placeholder="Last Name" >
+                          </div>
+                      </div>
 
+                        <div class="form-group ">
+                            <div class="col-xs-6">
+                                <input class="form-control" name="email" type="email" required="" placeholder="Email">
+                            </div>
 
-  <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="/landing/js/materialize.js"></script>
-  <script src="/landing/js/init.js"></script>
+                            <div class="col-xs-6">
+                                <input class="form-control" name="username" type="text" required="" placeholder="Username">
+                            </div>
+                        </div>
 
-  </body>
-</html>
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <input class="form-control" name="password" type="password" required="" placeholder="Password">
+                            </div>
 
+                            <div class="col-xs-6">
+                                <div class="checkbox checkbox-success">
+                                    <input id="checkbox-signup" type="checkbox" checked="checked">
+                                    <label for="checkbox-signup">I accept <a href="#">Terms and Conditions</a></label>
+                                </div>
+                            </div>
+                        </div>
 
+                        <div class="form-group account-btn text-center m-t-10">
+                            <div class="col-xs-12">
+                                <button class="btn w-md btn-primary btn-bordered waves-effect waves-light save_user" type="submit">Register</button> <a href="page-login.html" class="btn w-md btn-primary btn-bordered waves-effect waves-light"><b>Sign In</b></a>
+                            </div>
+                        </div>
+                        <input type="hidden" name="_token" value="{{ Session::token() }}">
 
-<!-- Modal Core -->
-<div class="modal fade" id="reg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Welcome To Ski_learn</h4>
-        <p>
-      Hello @{{name}} Get Ready To  Learn More, Think More, Archive More
-        </p>
-      </div>
-      <div class="modal-body">
-        <div class="col-md-8">
-        <form class="" action="{{route('auth.signup')}}" method="post">
-            <div class="form-group">
-                <input type="text" value="" placeholder="First Name"name="first_name" class="form-control input-lg" ng-model="name" />
+                    </form>
+
+                    <div class="clearfix"></div>
+
+                </div>
             </div>
-            <div class="form-group">
-                <input type="text" value="" placeholder="Last Name"name="last_name" class="form-control input-lg"/>
-            </div>
-            <div class="form-group">
-                <input type="text" value="" placeholder="username" name="username" class="form-control input-lg"/>
-            </div>
-            <div class="form-group">
-                <input type="email" value="" placeholder="email" name="email" class="form-control input-lg"/>
-            </div>
-            <div class="form-group">
-                <input type="password" value="" placeholder="password" name="password" class="form-control input-lg"/>
-            </div>
-            <button type="submit" class="btn btn-info btn-raised btn-round">
-              Pre-Register to Ski-Learn
-            </button>
-            <input type="hidden" name="_token" value="{{ Session::token() }}">
-        </form>
-      </div>
-      <div class="col-md-4">
-        <a href="{{route('google.signin')}}"class="btn btn-danger btn-raised">
-          Register With Google <i class="fa fa-google-plus-square"></i>
-        </a>
-        <button type="button" class="btn btn-info btn-raised">
-          Register With Facebook <i class="fa fa-facebook-square"></i>
-        </button>
-        <button type="button" class="btn btn-info btn-raised">
-          Register With Twitter <i class="fa fa-twitter-square"></i>
-        </button>
-      </div>
-      <div class="modal-footer">
+            <!-- end card-box-->
+
+
+
+
+        </div>
+        <!-- end wrapper -->
+
+
+
 
       </div>
+    </div>
     </div>
   </div>
-</div>
-</div>
-<div class="modal fade" id="log" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Welcome Back To Ski Learn Login</h4>
-      </div>
-      <div class="modal-body">
-        <div class="col-md-8">
-        <form class="" action="{{route('auth.signin')}}" method="post">
-            <div class="form-group">
-                <input type="text" value="" placeholder="Email" name="email" class="form-control input-lg" ng-model="name" />
-            </div>
-            <div class="form-group">
-                <input type="password" value="" placeholder="password" name="password" class="form-control input-lg"/>
-            </div>
-            <button type="submit" class="btn btn-info btn-raised btn-round">
-              LogIn to Ski-Learn
-            </button>
-            <input type="hidden" name="_token" value="{{ Session::token() }}">
-        </form>
-      </div>
-      <div class="col-md-4">
-        <button type="button" class="btn btn-danger btn-raised">
-          LogIn With Google <i class="fa fa-google-plus-square"></i>
-        </button>
-        <button type="button" class="btn btn-info btn-raised">
-          LogIn With Facebook <i class="fa fa-facebook-square"></i>
-        </button>
-        <button type="button" class="btn btn-info btn-raised">
-          LogIn With Twitter <i class="fa fa-twitter-square"></i>
-        </button>
-      </div>
-      <div class="modal-footer"></div>
-    </div>
-  </div>
-</div>
-</div>
+              <!-- end row -->
+
+
+
+          </div> <!-- container -->
+
+      </div> <!-- content -->
+
+<!-- ============================================================== -->
+<!-- End Right content here -->
+<!-- ============================================================== -->
+
+<script type="text/javascript">
+
+$(function() {
+       var form = $('#user');
+
+       $(".save_user").click(function(e) {
+      console.log("loading");
+       e.preventDefault();
+           $(".ski_loader").css("display", "block");
+           var formData = $(form).serialize();
+       $.ajax({
+       type: 'POST',
+       url: $(form).attr('action'),
+       data: formData
+       })
+       .done(function(response) {
+        alert("account created");
+         })
+       .fail(function(data) {
+  alert("failed")
+
+           });
+       });
+     });
+</script>
 
 @stop

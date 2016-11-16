@@ -151,7 +151,7 @@ public function Getfile()
                          ->with('file', $file);
 
                }
-         
+
          //END
 /**
 *REVIEW:

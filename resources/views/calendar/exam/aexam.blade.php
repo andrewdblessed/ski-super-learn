@@ -1,3 +1,5 @@
+        <div id="loader" ></div>
+
        @if ($errors->has())
               <div class="alert alert-danger">
                   @foreach ($errors->all() as $error)

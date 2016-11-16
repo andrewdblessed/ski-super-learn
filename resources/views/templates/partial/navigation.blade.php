@@ -1,6 +1,49 @@
 
 @if (!Auth::check())
-  <div class="navbar-fixed">
+<header id="topnav">
+
+<div class="topbar-main">
+    <div class="container">
+
+        <!-- Logo container-->
+        <div class="logo">
+            <!-- Text Logo -->
+            <!--<a href="index.html" class="logo">-->
+                <!--Zircos-->
+            <!--</a>-->
+            <!-- Image Logo -->
+            <a href="{{route('home')}}" class="logo">
+                <img src="icons/favicon.png" alt="" height="30">
+            </a>
+
+        </div>
+        <!-- End Logo container-->
+            <div class="menu-extras">
+        <ul class="nav navbar-nav navbar-right ">
+                <form action="{{route('auth.signin')}}" method="post" role="search" class="navbar-form navbar-left app-search pull-left hidden-xs">
+         <li class="navbar-c-items">
+                <div class="form-group">
+                     <input type="text" name="username" placeholder="Username"  value="{{ Request::old('username') ?: '' }}" class="form-control">
+                     <input type="password" name="password" Placeholder="password"  value="Password" class="form-control">
+                     <input type="hidden" name="_token" value="{{ Session::token() }}">
+
+                     <button type="submit" class="btn btn-white  waves-effect waves-light">
+                        Sign In
+                     </button>
+                   </div>
+                   </li>
+            </form>
+        </ul>
+      </div>
+
+        <!-- end menu-extras -->
+
+    </div> <!-- end container -->
+</div>
+<!-- end topbar-main -->
+</header>
+
+  <!-- <div class="navbar-fixed">
   <nav class="white blue-text" role="navigation">
     <div class="nav-wrapper">
       <a id="logo-container" href="{{route('home')}}" class=" blue-text brand-logo">SKI LEARN</a>
@@ -18,7 +61,7 @@
       <a href="#" data-activates="nav-mobile" class="button-collapse blue white-text"><i class="material-icons">menu</i></a>
     </div>
   </nav>
-</div>
+</div> -->
 
   @endif
 
@@ -128,7 +171,7 @@
                                     <li><a href="{{ route('profile.edit') }}"><i class="ti-settings m-r-5"></i> Edit profile</a></li>
                                     <li><a href="{{route('auth.lock') }}"><i class="ti-lock m-r-5"></i> Lock screen</a></li>
                                     <li><a href="{{route('auth.signout') }}"><i class="ti-power-off m-r-5"></i> Logout</a></li>
-                                
+
                                 </ul>
 
                             </li>
@@ -162,7 +205,7 @@
                             </li>
 
                             <li class="has-submenu">
-                                <a href="{{route('calendar')}}"><img class="icon-colored" src="{{ URL::asset('/src/vendor/new/images/icons/calendar.svg')}}" title="calendar.svg"/><span> Calendar </span></a>
+                                <a href="{{route('calendar')}}"><img class="icon-colored" src="{{ URL::asset('/src/vendor/new/images/icons/calendar.svg')}}" title="calendar.svg"/><span> Calendar  </span></a>
                                 <ul class="submenu megamenu">
                                      <li><a href="{{route('calendar.my')}}"> My Calendar</a></li>
                                 </ul>
@@ -178,17 +221,17 @@
                             </li>
 
                             <li class="has-submenu">
-                                <a href="{{route('notebook')}}"><img class="icon-colored" src="{{ URL::asset('/src/vendor/new/images/icons/reading_ebook.svg')}}" title="reading_ebook.svg"/><span> My Notes</span></a>
+                                <a href="{{route('notebook')}}"><img class="icon-colored" src="{{ URL::asset('/src/vendor/new/images/icons/reading_ebook.svg')}}" title="reading_ebook.svg"/><span> My Notes </span></a>
                             </li>
                            <li class="has-submenu">
                                 <a href="{{route('quest.index')}}" > <img class="icon-colored" src="{{ URL::asset('/src/vendor/new/images/icons/idea.svg')}}" title="idea.svg"/><span> Ski Quest <span class="label label-primary">Soon</span> </span></a>
                             </li>
                             <li class="has-submenu">
-                                <a href="{{route('academia')}}"><img class="icon-colored" src="{{ URL::asset('/src/vendor/new/images/icons/graduation_cap.svg')}}" title="graduation_cap.svg"/><span>Academia</span></a>
+                                <a href="#"><img class="icon-colored" src="{{ URL::asset('/src/vendor/new/images/icons/graduation_cap.svg')}}" title="graduation_cap.svg"/><span>Academia <span class="label label-primary">Soon</span></span></a>
                            </li>
 
                             <li class="has-submenu">
-                       <a href="#"> <img class="icon-colored" src="{{ URL::asset('/src/vendor/new/images/icons/voice_presentation.svg')}}" title="voice_presentation.svg"/><span>Ski Pod <span class="label label-primary">Soon</span> </span></a>
+                       <a href="{{route('zones')}}"> <img class="icon-colored" src="{{ URL::asset('/src/vendor/new/images/icons/voice_presentation.svg')}}" title="voice_presentation.svg"/><span>Ski Zones <span class="label label-primary">Soon</span> </span></a>
                             </li>
                         </ul>
                         <!-- End navigation menu -->

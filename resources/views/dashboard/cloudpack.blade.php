@@ -50,7 +50,7 @@ h3.cloud-h3 {
 <!--               <div class="col-xs-12">
                 <div class="page-title-box">
                                     <h4 class="page-title">Cloudpack</h4>
-                                
+
                                     <div class="clearfix"></div>
                                 </div>
               </div> -->
@@ -68,7 +68,7 @@ h3.cloud-h3 {
 <script type="text/javascript">
 $(document).ready(function(){
         $(".ski_loader").css("display", "block");
-   
+
       $(".ajax_point").load("/cloudtest");
       $(".ski_loader").css("display", "none");
 });
@@ -139,7 +139,7 @@ $(document).ready(function(){
                   //NOTE:// NEW note function
           ajaxfun( "Adding accepted files to Cloud pack", ".file-done", "/cloudtest", "files added");
 toastr.success("Loading. this should only take a second");
- 
+
 
 
             });

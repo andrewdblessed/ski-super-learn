@@ -1,3 +1,5 @@
+        <div id="loader" ></div>
+
 <form class="form-horizontal" role="form" method="post" action="{{route('post.exam')}}" id="new_exam">
           <input type="hidden" name="_token" value="{{ Session::token() }}">
 

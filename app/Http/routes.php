@@ -9,7 +9,7 @@
 ***/
 
 /***REVIEW
-// api route 
+// api route
 ***/
 
 $api = app('Dingo\Api\Routing\Router');
@@ -118,7 +118,7 @@ $api->version('v1', function ($api) {
    Route::post('/unlock',[
      'uses' => '\Skilearn\Http\controllers\AuthController@postUnlocked',
    'middleware' => ['auth'],
-   ]);     
+   ]);
 
    // TODO:: PRICING TABLES
    Route::get('/plans',[
@@ -131,6 +131,8 @@ Route::get('/schools', [
 'uses' => '\Skilearn\Http\controllers\SchoolsController@index',
   'as'  => 'school.landing',
 ]);
+
+
 
  // TODO: User Profile
 
@@ -832,6 +834,31 @@ Route::post('/update_label/{id}',[
 ]);
 
 
+/**
+*REVIEW:
+* ZONES SECTION
+*
+**/
+
+// begin ZONE SECTION
+Route::get('/zones', [
+'uses' => '\Skilearn\Http\controllers\ZonesController@index',
+'as'  => 'zones',
+]);
+
+//calendar update
+Route::post('/post_ques',[
+  'uses' => '\Skilearn\Http\Controllers\ZonesController@post_ques',
+  'as' => 'post.ques',
+  'middleware' => ['auth'],
+]);
+
+// begin ZONE SECTION
+Route::get('/zones/allposts', [
+'uses' => '\Skilearn\Http\controllers\ZonesController@all_posts',
+'as'  => 'posts.all',
+]);
+
   /**
   *REVIEW:
   * DOC SECTION
@@ -854,7 +881,22 @@ Route::get('/doc/account', [
 'as'  => 'doc',
 ]);
 
+/**
+*REVIEW:
+* ADMIN SECTION
+*
+**/
+// begin doc viewer
+Route::get('/admin_skicreator', [
+'uses' => '\Skilearn\Http\controllers\AdminController@index',
+'as'  => 'admin',
+]);
 
+Route::post('/post_facts',[
+   'uses' => '\Skilearn\Http\controllers\AdminController@postFacts',
+   'as' => 'facts',
+ 'middleware' => ['auth'],
+ ]);
 
 
 // REVIEW://do not remove the closing tags below

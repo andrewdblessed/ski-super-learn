@@ -15,7 +15,7 @@
                             <div class="btn-group">
                                 <button type="button" class="btn btn-primary dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">
                                 <i class=" mdi mdi-share-variant"></i>
-              
+
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="javascript:void(0);">Facebook</a></li>
@@ -25,15 +25,15 @@
                                     <li><a href="javascript:void(0);">Email</a></li>
                                 </ul>
                              </div>
-                   
+
                      <div class="btn-group">
                                 <button type="button" class="update_note btn btn-primary waves-effect waves-light">Update</button>
                             </div>
 
                                 <a target="_blank" href="/guest_note/{{$notes->guest_token}}" class="btn btn-primary waves-effect waves-light  pull-right" >
-                               View <i class="mdi mdi-open-in-new"></i> 
+                               View <i class="mdi mdi-open-in-new"></i>
                                </a>
-          
+
                         </div>
 </div>
 <div class="panel-reader">
@@ -54,13 +54,13 @@
    {!!$notes->note_body!!}
 </textarea>
 
-                         
+
                       </div>
                   </div>
 
-              
+
        </form>
-   
+
 
 </div>
 
@@ -88,7 +88,7 @@ e.preventDefault();
     var formData = $(form).serialize();
 
  toastr.success("Updating Note, Please Holdon!");
-       
+
 
 $.ajax({
 type: 'POST',
@@ -110,17 +110,17 @@ data: formData
 
         $(".deletenote{{$notes->id}}").click(function(e) {
 
-          swal({   title: "Are you sure?", 
-            text: "You will not be able to recover this Note!",  
-             type: "warning",   
-             showCancelButton: true,   
-             confirmButtonColor: "#4bd396",   
-             confirmButtonText: "Yes, delete it!",   
+          swal({   title: "Are you sure?",
+            text: "You will not be able to recover this Note!",
+             type: "warning",
+             showCancelButton: true,
+             confirmButtonColor: "#4bd396",
+             confirmButtonText: "Yes, delete it!",
              closeOnConfirm: false },
-           function(){ 
+           function(){
                                 toastr.success("Deleting {{$notes->note_title}}. this should only take a second!");
 
-            // if user hits confirm delete 
+            // if user hits confirm delete
       var  durl = "/deletenote{{$notes->id}}";
         $.ajax({
         type: 'GET',
@@ -129,12 +129,12 @@ data: formData
         .done(function(response) {
           // show the swal deleted animations
 
-             swal("Deleted!", "{{$notes->note_title}} No longer exist on mars.", "success"); 
+             swal("Deleted!", "{{$notes->note_title}} No longer exist on mars.", "success");
   $(".ajax_point").load("/Ainotes/callnotes");
   $(".col-reader").load("/new_note_index");
 
          });
-     
+
         });
 
 

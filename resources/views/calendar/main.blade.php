@@ -31,6 +31,18 @@
 
 
              @endif
+             <br>
+             @if (!$my_class->count())
+           <p class="text-muted center-text">
+           No Upcoming Class
+           </p>
+           @else
+
+
+     You have {{ $my_class->count() }} Exams Upcoming
+
+
+            @endif
 
 
       <h3 class="dash-text text-center">Activities</h3>
@@ -101,13 +113,23 @@
 </div>
 
 <div class="col-lg-6">
-  <a href="#" class=" ">
+  <a href="#" class="my-class">
               <div class="card-box">
-            <p class="text-muted center-text">
-            No Upcoming Classes
-            </p>
-             <br>
-            <br>
+                @if (!$my_class->count())
+         <p class="text-muted center-text">
+         No Pending Class
+         </p>
+         @else
+         Upcoming Class
+          @foreach($my_class as $class)
+          @if($class->class_date >= date("m/d/Y"))
+            <p class="text-muted center-text animated fadeIn">
+             {{$class->class_subject}} due {{$class->class_date}}
+         </p>
+         @endif
+
+          @endforeach
+          @endif
       <h2 class="dash-text text-center">Classes</h2>
     </div>
 </a>

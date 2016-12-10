@@ -4,7 +4,7 @@
           <input type="hidden" name="_token" value="{{ Session::token() }}">
 
   <div class="form-group">
-    <label class="control-label">Subject</label> 
+    <label class="control-label">Subject</label>
       <span>
         <button class="sub btn btn-icon btn-sm waves-effect btn-primary m-b-1 btn-rounded"><i class=" typcn   typcn typcn-plus"></i> </button>
     </span>
@@ -70,24 +70,37 @@ No subject here
 <script type="text/javascript">
 $(document).ready(function(){
 
-$(".nav-back").click(function(){
-    $(".loader2").css("display", "block");
-     $("#items-ajax").load("/calendar/main");
-    $(".loader2").css("display", "none");
-});
+  function ajaxfun(btn, url, location) {
+  $(btn).click(function(){
+   $("#loader").after(
+  '<div class="loader2" >'+ '<span class="circle1"></span>'+
+   '<span class="circle2"></span>'+
+   '<span class="circle3"></span>'+
+   '<span class="circle4"></span>'+
+   '<span class="circle5"></span>'+
+    '<span class="circle6"></span>'+
+     '<div>');
 
-$(".add").click(function(){
-    $(".loader2").css("display", "block");
-     $(".exam_viewer").load("/calendar/exam/new");
-    $(".loader2").css("display", "none");
-});
+      $(location).load(url, function( response, status, xhr ) {
+    if ( status == "error" ) {
+      $("#alert").after(
+              ' <div class="alert alert-danger alert-dismissible fade in" role="alert">'+
+                 ' <button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+                      '<span aria-hidden="true">&times;</span>'+
+                  '</button>'+
+                  'Oops, the Internet as been broken. Please reload the page'+
+             ' </div>');
+    }
+  });
 
-$(".sub").click(function(){
-    $(".loader2").css("display", "block");
-     $(".exam_viewer").load("/calendar/subject");
-    $(".loader2").css("display", "none");
-});
+  });
 
+  }
+
+
+  ajaxfun(".nav-back", "/calendar/main", "#items-ajax");
+  ajaxfun(".add", "/calendar/exam/new", ".exam_viewer");
+  ajaxfun(".sub", "/calendar/subject", ".exam_viewer");
 
 // save exam ajax
 
@@ -95,21 +108,59 @@ $(".sub").click(function(){
        // var formMessages = $('#activate_adela');
 
        $(".save_exam").click(function(e) {
-                 var $btn = $(this).button('loading');
-
+                 var $btn = $(this).button('saving');
+                 SnackBar.show({text: 'saving...',
+                 actionText: ' ',
+                   pos: 'bottom-left'
+                   });
        e.preventDefault();
 
            var formData = $(form).serialize();
        $.ajax({
        type: 'POST',
        url: $(form).attr('action'),
-       data: formData
+       data: formData,
+       statusCode:{
+        400: function(){
+          $("#alert").after(
+            ' <div class="alert alert-danger alert-dismissible fade in" role="alert">'+
+               ' <button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+                    '<span aria-hidden="true">&times;</span>'+
+                '</button>'+
+                'Oops, the Internet as been broken.'+
+           ' </div>');
+           $btn.button('reset');
+        },
+         422: function(){
+           $("#alert").after(
+            ' <div class="alert alert-danger alert-dismissible fade in" role="alert">'+
+               ' <button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+                    '<span aria-hidden="true">&times;</span>'+
+                '</button>'+
+                'Oops, One or two important lines are Empty. Fix this and try again.'+
+           ' </div>');
+           $btn.button('reset');
+        },
+
+        500: function(){
+          $("#alert").after(
+            ' <div class="alert alert-danger alert-dismissible fade in" role="alert">'+
+               ' <button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+                    '<span aria-hidden="true">&times;</span>'+
+                '</button>'+
+                'Oops, we could not connect with the sever. try reloading the page.'+
+           ' </div>');
+           $btn.button('reset');
+        }
+       }
        })
        .done(function(response) {
      $("#items-ajax").load("/calendar/exam");
+     $(".pull-data").load("/calendar/data");
+
         })
        .fail(function(data) {
-  
+
            });
        });
 

@@ -1,6 +1,8 @@
 @extends('templates.default')
 @section('content')
 
+
+
 <style media="screen">
 
 /*the new styles*/
@@ -50,18 +52,29 @@ a.list-group-item:last-child {
 }
 </style>
 <script src="{{ URL::asset('src/ski-vendor/ski-notebook/js/script.js') }}" charset="utf-8"></script>
-
-<!-- NOTE: LOADING AI CSS AND JS CONFIGURATION -->
-<link href="{{ URL::asset('src/ski-vendor/ski-notebook/AI/ai.css') }}" rel="stylesheet">
-<script src="{{ URL::asset('src/ski-vendor/ski-notebook/AI/ai_fun.js') }}" ></script>
-<script src="{{ URL::asset('src/ski-vendor/ski-notebook/AI/config.js') }}" ></script>
-<script src="{{ URL::asset('src/ski-vendor/ski-notebook/js/script.js') }}" charset="utf-8"></script>
-
   <!-- Summernote CSS -->
     <link rel="stylesheet" href="/plugins/summernote/summernote.css">
 
+    <link rel="stylesheet" href="{{ URL::asset('src/ski-vendor/ski-notebook/css/ainote.css') }}">
 
-
+    <div class="container-fluid">
+      <div class="row">
+        <div class="row">
+  <div class="col-xs-12">
+  <div class="page-title-box">
+                    <h4 class="page-title">My Notes</h4>
+                    <ol class="breadcrumb p-0 m-0">
+                        <li>
+                            <a href="{{route('home')}}">Ski Learn</a>
+                        </li>
+                          <li class="active">
+                            My Notes
+                        </li>
+                    </ol>
+                    <div class="clearfix"></div>
+                </div>
+  </div>
+  </div>
 <!--       <img src="user-tools/load-ani/ajax-loader.gif" class="notes_loader" alt="" />
  -->
         <div class="ajax_point ">
@@ -70,102 +83,21 @@ a.list-group-item:last-child {
 
 
 <div class="col-sm-9 col-reader"></div>
-<!--     <div class="col-sm-9 col-reader">
- <div class="panel note-card">
-      <div class="panel-heading">
 
-          <h3 class="panel-title">Create new Note</h3>
-
-      </div>
-      <div class="panel-reader">
-
-    <form action="{{route('post.note')}}" id="new_note" method="post">
-
-
-             <input type="hidden" name="_token" value="{{ Session::token() }}">
-
-     <div class="form-group">
-          <label>Note Name</label>
-          <input type="text" class="form-control" required name="note_title" placeholder="Name of note"/>
-      </div>
-
-    <div class="form-group">
-                      <label>Explain your Note</label>
-                      <div>
-
- <textarea  name="note_body" required  class="summernote">
-
-
-</textarea>
-
-
-                      </div>
-                  </div>
-
-            <textarea type="text" style="display:none;" name="note_date"  id="notedate"> </textarea>
-             {{--GUEST TOKEN FOR SHARING NOTE --}}
-             <input type="hidden" name="guest_token" value="{{$guest_token}}">
-<button type="submit" class="btn btn-danger btn-rounded btn-lg btn-custom w-lg waves-effect waves-light save_note"> <i class=" mdi mdi-content-save"></i>Save </button>
-
-
-       </form>
-         </div>
-       </div>
-
-</div> -->
-
-<?php /* XXX: adela ajax
-<div class="ai-ajax animated fadeInLeft">
-<h3 class="text-lg text-info"><b>Ask Me Anything</b></h3>
-<div class="pull-right">
-
-</div>
-<div class="input-group">
-  <span class="input-group-addon"><button  id="rec" type="button" class="btn btn-default btn-sm btn-fab-sm btn-raised">
-<i class="material-icons">mic</i>
-  </button></span>
-    @if ($bg_number == 1)
-  <input id="input" type="text" class="form-control text-info " placeholder="Who is Barrack Obama">
-  @elseif ($bg_number == 2)
-  <input id="input" type="text" class="form-control text-info " placeholder="What is Hello in French">
-  @elseif ($bg_number == 3)
-  <input id="input" type="text" class="form-control text-info " placeholder="what is biology">
-  @else ($bg_number == 1)
-  <input id="input" type="text" class="form-control text-info " placeholder="What is Machine Learning">
-  @endif
-</div>
-<hr>
-<img src="user-tools/load-ani/ajax-loader.gif" class="ains_loader" alt="" style="display:none;"/>
-<div class="list-group nb-main-list ai_point">
-
-</div>
-
-</div>
-*/?>
 
  <script src="/plugins/summernote/summernote.min.js"></script>
 <script>
-//          jQuery(document).ready(function(){
-// // summer note js
-//                 $('.summernote').summernote({
-//                     height: 300,                 // set editor height
-//                     minHeight: null,             // set minimum height of editor
-//                     maxHeight: null,             // set maximum height of editor
-//                     focus: false ,                // set focus to editable area after initializing summernote
-//                    placeholder: 'write here...'
-//                 });
-// summernote js ends here
-// note date and time js
-var date = new Date();
 
-var month = date.getMonth();
-var day = date.getDate();
-var year = date.getFullYear();
+// var date = new Date();
 
-var monthNames = [ "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December" ];
+// var month = date.getMonth();
+// var day = date.getDate();
+// var year = date.getFullYear();
 
-document.getElementById("notedate").innerHTML = day+" "+monthNames[month]+" "+year;
+// var monthNames = [ "January", "February", "March", "April", "May", "June",
+//     "July", "August", "September", "October", "November", "December" ];
+
+// document.getElementById("notedate").innerHTML = day+" "+monthNames[month]+" "+year;
 // note date and time ends here
  // start savenote js
 
@@ -177,21 +109,58 @@ e.preventDefault();
 
     var formData = $(form).serialize();
 
- toastr.success("Saving Note, Please Holdon!");
+    SnackBar.show({text: 'saving note...',
+    actionText: ' ',
+      pos: 'bottom-left'
+      });
 
 
 $.ajax({
 type: 'POST',
 url: $(form).attr('action'),
-data: formData
+data: formData,
+statusCode:{
+ 400: function(){
+   $("#alert").after(
+     ' <div class="alert alert-danger alert-dismissible fade in  animated fadeIn" role="alert">'+
+        ' <button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+             '<span aria-hidden="true">&times;</span>'+
+         '</button>'+
+         'Oops, the Internet as been broken.'+
+    ' </div>');
+    $btn.button('reset');
+ },
+  422: function(){
+    $("#alert").after(
+     ' <div class="alert alert-danger alert-dismissible fade in animated fadeIn" role="alert">'+
+        ' <button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+             '<span aria-hidden="true">&times;</span>'+
+         '</button>'+
+         'Oops, One or two important lines are Empty. Fix this and try again.'+
+    ' </div>');
+    $btn.button('reset');
+ },
+
+ 500: function(){
+   $("#alert").after(
+     ' <div class="alert alert-danger alert-dismissible fade in animated fadeIn" role="alert">'+
+        ' <button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+             '<span aria-hidden="true">&times;</span>'+
+         '</button>'+
+         'Oops, we could not connect with the sever. try reloading the page.'+
+    ' </div>');
+    $btn.button('reset');
+ }
+}
 })
 .done(function(response) {
   $(".ajax_point").load("/Ainotes/callnotes");
- toastr.success("Note Added");
-
+  SnackBar.show({text: 'note added...',
+  actionText: ' ',
+    pos: 'bottom-left'
+    });
 })
 .fail(function(data) {
-  toastr.error("Oops there seems to be an error");
     });
 
   });

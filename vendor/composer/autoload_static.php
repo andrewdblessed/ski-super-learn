@@ -347,9 +347,7 @@ class ComposerStaticInit78ac7e836ac42bbc2767b0c9760b5b02
     );
 
     public static $classMap = array (
-        'CreateAdelaTable' => __DIR__ . '/../..' . '/database/migrations/2016_03_24_175223_create_adela_table.php',
         'CreateAdminTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_15_022020_create_admin_table.php',
-        'CreateAiDBTable' => __DIR__ . '/../..' . '/database/migrations/2016_03_24_175223_create_aidb_table.php',
         'CreateAinoteNoteTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_17_202252_create_ainote-note_table.php',
         'CreateAinoteTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_08_220025_create_ainote_table.php',
         'CreateClassTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_18_221242_create_class_table.php',
@@ -357,7 +355,7 @@ class ComposerStaticInit78ac7e836ac42bbc2767b0c9760b5b02
         'CreateExamTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_17_191433_create_exam_table.php',
         'CreateExpTable' => __DIR__ . '/../..' . '/database/migrations/2016_04_18_192537_create_exp_table.php',
         'CreateFactsTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_15_025335_create_facts_table.php',
-        'CreateFirebaseTable' => __DIR__ . '/../..' . '/database/migrations/2016_09_13_174302_create_Doc_table.php',
+        'CreateMyClassTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_18_232811_create_MyClass_table.php',
         'CreateNotesTable' => __DIR__ . '/../..' . '/database/migrations/2016_03_15_220608_create_notes_table.php',
         'CreatePublicNoteTable' => __DIR__ . '/../..' . '/database/migrations/2016_07_28_070351_create_public_note_table.php',
         'CreateSettingsTable' => __DIR__ . '/../..' . '/database/migrations/2016_01_16_161658_create_settings_table.php',
@@ -367,8 +365,7 @@ class ComposerStaticInit78ac7e836ac42bbc2767b0c9760b5b02
         'CreateTodoTable' => __DIR__ . '/../..' . '/database/migrations/2016_03_23_185036_create_todo_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2016_01_03_214313_create_users_table.php',
         'CreateZoneCategoriesTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_15_215058_create_zone_categories_table.php',
-        'CreateZonePostsTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_15_214808_create_zone_posts_table.php',
-        'CreateZoneQuesTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_14_154444_create_zone_ques_table.php',
+        'CreateZonePostTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_14_154444_create_zone_post_table.php',
         'CreateZoneTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_09_195623_create_zone_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',

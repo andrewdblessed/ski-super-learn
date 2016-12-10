@@ -1,12 +1,12 @@
-<form class="form-horizontal" role="form" method="post" action="{{route('post.exam')}}" id="new_exam">
+<form class="form-horizontal" role="form" method="post" action="{{route('post.class')}}" id="new_class">
           <input type="hidden" name="_token" value="{{ Session::token() }}">
 
   <div class="form-group">
-    <label class="control-label">Subject</label> 
+    <label class="control-label">Subject</label>
       <span>
         <button class="sub btn btn-icon btn-sm waves-effect btn-primary m-b-1 btn-rounded"><i class=" typcn   typcn typcn-plus"></i> </button>
     </span>
-<select required class="form-control select2" name="exam_subject">
+<select required class="form-control select2" name="class_subject">
 @if (!$my_subject->count())
 No subject here
 @else
@@ -19,95 +19,127 @@ No subject here
 
 </select>
 </div>
-<div class="form-group">
-<div class="col-md-6">
-<input class="form-control" name="exam_address" placeholder="exam address">
 
-</div>
-<div class="col-md-6">
-<input class="form-control" name="exam_seat" placeholder="Seat Number">
-</div>
-
-
-</div>
 <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+            <label>class Date</label>
+            <div>
+                <div class="input-group">
+                    <input name="class_date" type="text" required class="form-control" placeholder="mm/dd/yyyy" id="datepicker-autoclose">
+                    <span class="input-group-addon bg-primary b-0"><i class="mdi mdi-calendar text-white"></i></span>
+                </div><!-- input-group -->
+            </div>
+        </div>
+      </div>
 
-<div class="col-md-6">
-
-<div class="form-group">
-    <label>Exam Date</label>
-    <div>
-        <div class="input-group">
-            <input name="exam_date" type="text" required class="form-control" placeholder="mm/dd/yyyy" id="datepicker-autoclose">
-            <span class="input-group-addon bg-primary b-0"><i class="mdi mdi-calendar text-white"></i></span>
-        </div><!-- input-group -->
-    </div>
-</div>
-</div>
-
-<div class="col-md-6">
-  <label>Due Time</label>
-<div class="input-group clockpicker m-b-20" data-placement="top" data-align="top" data-autoclose="true">
-  <input type="text" class="form-control" value="13:14" name="exam_time">
-  <span class="input-group-addon bg-primary"> <span class="mdi mdi-clock"></span> </span>
-
-</div>
-
-  <div class="col-lg-8">
-  <label>Duration</label>
-  <input type="text" class="form-control" value="60" name="exam_timer">
-</div>
+      <div class="col-md-6">
+          <label>Due Time</label>
+          <div class="input-group clockpicker m-b-20" data-placement="top" data-align="top" data-autoclose="true">
+          <input type="text" class="form-control" value="13:14" name="class_time">
+          <span class="input-group-addon bg-primary"> <span class="mdi mdi-clock"></span> </span>
+        </div>
+      </div>
 
 </div>
-
-</div>
- <button class="btn btn-icon waves-effect btn-primary m-b-5 save_exam"><i class=" mdi mdi-content-save"></i> Add Exam</button>
+ <button class="btn btn-icon waves-effect btn-primary m-b-5 save_class"><i class=" mdi mdi-content-save"></i> Add class</button>
 
 </form>
 
 <script type="text/javascript">
 $(document).ready(function(){
 
-$(".nav-back").click(function(){
-    $(".loader2").css("display", "block");
-     $("#items-ajax").load("/calendar/main");
-    $(".loader2").css("display", "none");
-});
+  function ajaxfun(btn, url, location) {
+  $(btn).click(function(){
+   $("#loader").after(
+  '<div class="loader2" >'+ '<span class="circle1"></span>'+
+   '<span class="circle2"></span>'+
+   '<span class="circle3"></span>'+
+   '<span class="circle4"></span>'+
+   '<span class="circle5"></span>'+
+    '<span class="circle6"></span>'+
+     '<div>');
 
-$(".add").click(function(){
-    $(".loader2").css("display", "block");
-     $(".exam_viewer").load("/calendar/exam/new");
-    $(".loader2").css("display", "none");
-});
+      $(location).load(url, function( response, status, xhr ) {
+    if ( status == "error" ) {
+      $("#alert").after(
+              ' <div class="alert alert-danger alert-dismissible fade in" role="alert">'+
+                 ' <button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+                      '<span aria-hidden="true">&times;</span>'+
+                  '</button>'+
+                  'Oops, the Internet as been broken. Please reload the page'+
+             ' </div>');
+    }
+  });
 
-$(".sub").click(function(){
-    $(".loader2").css("display", "block");
-     $(".exam_viewer").load("/calendar/subject");
-    $(".loader2").css("display", "none");
-});
+  });
+
+  }
 
 
-// save exam ajax
+  ajaxfun(".nav-back", "/calendar/main", "#items-ajax");
+  ajaxfun(".add", "/calendar/class/new", ".class_viewer");
+  ajaxfun(".sub", "/calendar/subject", ".class_viewer");
 
-       var form = $('#new_exam');
+// save class ajax
+
+       var form = $('#new_class');
        // var formMessages = $('#activate_adela');
 
-       $(".save_exam").click(function(e) {
-                 var $btn = $(this).button('loading');
-
+       $(".save_class").click(function(e) {
+                 var $btn = $(this).button('saving');
+                 SnackBar.show({text: 'saving...',
+                 actionText: ' ',
+                   pos: 'bottom-left'
+                   });
        e.preventDefault();
 
            var formData = $(form).serialize();
        $.ajax({
        type: 'POST',
        url: $(form).attr('action'),
-       data: formData
+       data: formData,
+       statusCode:{
+        400: function(){
+          $("#alert").after(
+            ' <div class="alert alert-danger alert-dismissible fade in" role="alert">'+
+               ' <button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+                    '<span aria-hidden="true">&times;</span>'+
+                '</button>'+
+                'Oops, the Internet as been broken.'+
+           ' </div>');
+           $btn.button('reset');
+        },
+         422: function(){
+           $("#alert").after(
+            ' <div class="alert alert-danger alert-dismissible fade in" role="alert">'+
+               ' <button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+                    '<span aria-hidden="true">&times;</span>'+
+                '</button>'+
+                'Oops, One or two important lines are Empty. Fix this and try again.'+
+           ' </div>');
+           $btn.button('reset');
+        },
+
+        500: function(){
+          $("#alert").after(
+            ' <div class="alert alert-danger alert-dismissible fade in" role="alert">'+
+               ' <button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+                    '<span aria-hidden="true">&times;</span>'+
+                '</button>'+
+                'Oops, we could not connect with the sever. try reloading the page.'+
+           ' </div>');
+           $btn.button('reset');
+        }
+       }
        })
        .done(function(response) {
-     $("#items-ajax").load("/calendar/exam");
+     $("#items-ajax").load("/calendar/class");
+     $(".pull-data").load("/calendar/data");
+
         })
        .fail(function(data) {
-  
+
            });
        });
 

@@ -522,6 +522,14 @@ Route::get('/calendar/main', [
 'as'  => 'calendar.main',
 'middleware' => ['auth'],
 ]);
+
+//my calendar data view
+Route::get('/calendar/data', [
+'uses' => '\Skilearn\Http\controllers\CalendarController@data',
+'as'  => 'calendar.data',
+'middleware' => ['auth'],
+]);
+
   /**
     * CALENDAR SECTION /---------- TASK ---------/
     **/
@@ -618,6 +626,55 @@ Route::get('/deleteexam{id}', [
   /**
     * EXAM SECTION /---------- END ---------/
   **/
+
+  /**
+    * CALENDAR SECTION /---------- CLASS ---------/
+    **/
+
+  Route::get('/calendar/class', [
+'uses' => '\Skilearn\Http\controllers\CalendarController@Class',
+'as' => 'classes',
+'middleware' => ['auth'],
+]);
+//new CLASS
+Route::get('/calendar/class/new', [
+'uses' => '\Skilearn\Http\controllers\CalendarController@newClass',
+'as'  => 'calendar.newclass',
+'middleware' => ['auth'],
+]);
+
+  //CLASS post
+Route::post('/saveclass',['uses' => '\Skilearn\Http\Controllers\CalendarController@postClass',
+  'as' => 'post.class',
+  'middleware' => ['auth'],
+]);
+
+//single CLASS view
+Route::get('calendar/class/{id}',[
+'uses' => '\Skilearn\Http\controllers\CalendarController@getClass',
+'as' => 'class.get',
+'middleware' => ['auth'],
+]);
+
+//CLASS update
+Route::post('/update_class/{id}',[
+  'uses' => '\Skilearn\Http\Controllers\CalendarController@updateClass',
+  'as' => 'update.class',
+  'middleware' => ['auth'],
+]);
+
+// CLASS delete
+
+Route::get('/deleteclass{id}', [
+'uses' => '\Skilearn\Http\controllers\CalendarController@deleteClass',
+'as' => 'delete.class',
+'middleware' => ['auth'],
+]);
+
+  /**
+    * EXAM SECTION /---------- END ---------/
+  **/
+
  /**
     * CALENDAR SECTION /---------- SUBJECT ---------/
     **/

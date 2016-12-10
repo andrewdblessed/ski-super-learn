@@ -4,23 +4,19 @@ namespace Skilearn\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class MyTask extends Model
+class MyClass extends Model
 {
-     protected $table = 'my_tasks';
+        protected $table = 'my_class';
 
   protected $fillable =[
-    'task_title',
-    'task_subject',
-    'task_type',
-    'task_date',
-    'task_time',
-    'task_range',
-  ];
+   	'class_subject',
+    'class_date',
+    'class_time',
+     ];
 
 public function user()
 {
   return $this->belongsTo('Skilearn\Models\User', 'user_id');
 
 }
-
 }

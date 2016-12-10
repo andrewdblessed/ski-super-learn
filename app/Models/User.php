@@ -225,6 +225,12 @@ public function MyExam()
 return $this->hasMany('Skilearn\Models\MyExam', 'user_id');
 }
 
+//HACK subjects
+public function MyClass()
+{
+return $this->hasMany('Skilearn\Models\MyClass', 'user_id');
+}
+
     //HACK subjects
   public function MySubject()
   {

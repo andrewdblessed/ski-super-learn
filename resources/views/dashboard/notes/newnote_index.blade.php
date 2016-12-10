@@ -1,11 +1,6 @@
 
-@if ($errors->has())
-       <div class="alert alert-danger">
-           @foreach ($errors->all() as $error)
-               {{ $error }}<br>
-           @endforeach
-       </div>
-       @endif
+
+
  <div class="panel note-card">
       <div class="panel-heading">
 
@@ -14,7 +9,7 @@
 
       </div>
       <div class="panel-reader">
-
+     <div id="alert"></div>
     <form action="{{route('post.note')}}" id="new_note" method="post">
 
 
@@ -30,11 +25,11 @@
                       <div>
 
  <textarea  name="note_body" required  class="summernote">
-   
+
 
 </textarea>
 
-                         
+
                       </div>
                   </div>
 
@@ -42,7 +37,7 @@
              {{--GUEST TOKEN FOR SHARING NOTE --}}
              <input type="hidden" name="guest_token" value="{{$guest_token}}">
 
-              
+
        </form>
          </div>
        </div>
@@ -80,21 +75,59 @@ e.preventDefault();
 
     var formData = $(form).serialize();
 
- toastr.success("Saving Note, Please Holdon!");
-       
+    SnackBar.show({text: 'saving note...',
+    actionText: ' ',
+      pos: 'bottom-left'
+      });
+
 
 $.ajax({
 type: 'POST',
 url: $(form).attr('action'),
-data: formData
+data: formData,
+statusCode:{
+ 400: function(){
+   $("#alert").after(
+     ' <div class="alert alert-danger alert-dismissible fade in  animated fadeIn" role="alert">'+
+        ' <button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+             '<span aria-hidden="true">&times;</span>'+
+         '</button>'+
+         'Oops, the Internet as been broken.'+
+    ' </div>');
+    $btn.button('reset');
+ },
+  422: function(){
+    $("#alert").after(
+     ' <div class="alert alert-danger alert-dismissible fade in animated fadeIn" role="alert">'+
+        ' <button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+             '<span aria-hidden="true">&times;</span>'+
+         '</button>'+
+         'Notes most contain a title & body.'+
+    ' </div>');
+    $btn.button('reset');
+ },
+
+ 500: function(){
+   $("#alert").after(
+     ' <div class="alert alert-danger alert-dismissible fade in animated fadeIn" role="alert">'+
+        ' <button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+             '<span aria-hidden="true">&times;</span>'+
+         '</button>'+
+         'Oops, we could not connect with the sever. try reloading the page.'+
+    ' </div>');
+    $btn.button('reset');
+ }
+}
 })
 .done(function(response) {
   $(".ajax_point").load("/Ainotes/callnotes");
- toastr.success("Note Added");
+  SnackBar.show({text: 'note added...',
+  actionText: ' ',
+    pos: 'bottom-left'
+    });
 
 })
 .fail(function(data) {
-  toastr.error("Oops there seems to be an error");
     });
 
   });

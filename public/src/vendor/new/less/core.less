@@ -34,7 +34,7 @@ File: Core
 body {
   font-family: @font-primary;
   margin: 0;
-  padding-bottom: 65px;
+  padding-bottom: 60px;
   overflow-x: hidden;
   background-color: #f3f3f3;
   color: #797979;
@@ -919,32 +919,30 @@ a {
     }
 }
 
-
 /* =============
    Print css
 ============= */
 
 @media print {
-  #topnav,
-  .page-title,
-  .breadcrumb,.page-title-box,
-  .btn-default.dropdown-toggle {
-    display: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
+  .page-title-box,.topbar-left,.hidden-print,.breadcrumb,.page-title,.footer {
+    display: none;
+    margin: 0;
+    padding: 0;
   }
-  .wrapper {
-    padding-top: 0 !important;
-  }
-  .panel {
-    border: 0 !important;
 
-    .panel-body {
-      padding: 0 !important;
-    }
+  .left,.right-bar {
+    display: none;
   }
+  .content {
+    margin-top: 0 !important;
+    padding-top: 0;
+  }
+  .content-page {
+    margin-left: 0;
+    margin-top: 0;
+  }
+
 }
-
 
 
 /* =============
@@ -1212,4 +1210,3 @@ a {
     	        transform: rotate(360deg);
   	}
 }
-

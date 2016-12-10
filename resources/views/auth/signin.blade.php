@@ -222,7 +222,7 @@ button.btn.btn-default.btn-info.btn-lg {
 <div class="login-form">
 			<div class="login-top">
         <h3 class="log-intro">Welcome Back </h3>
-@if($errors->has('email'))
+@if($errors->has('username'))
             <div class="alert alert-danger">
               Incorrect email<br>
         </div>

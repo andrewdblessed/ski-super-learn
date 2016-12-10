@@ -16,12 +16,11 @@ class CreateTaskTable extends Migration
         $table->increments('id');
          $table->integer('user_id');
         $table->text('task_title');
-        $table->text('task_body');
         $table->text('task_subject');
         $table->text('task_type');
         $table->text('task_date');
         $table->time('task_time');
-        $table->time('task_range');
+        $table->integer('task_range');
         $table->timestamps();
       });
     }

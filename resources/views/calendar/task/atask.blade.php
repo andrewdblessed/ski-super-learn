@@ -6,7 +6,7 @@
               </div>
               @endif
 
-<form id="new_task" class="form-horizontal" role="form" method="post" action="/update_task/{{$task->id}}">
+<form id="update_task" class="form-horizontal" role="form" method="post" action="/update_task/{{$task->id}}">
           <input type="hidden" name="_token" value="{{ Session::token() }}">
 
     <div class="form-group">
@@ -17,24 +17,14 @@
   <div class="form-group">
       <label class="control-label">Task</label>
 
-<input type="text" required class="form-control" maxlength="70" name="task_title" id="defaultconfig" value="{{$task->task_title}}"/> 
-<span>
-
-                    <button class="btn btn-icon waves-effect btn-primary m-b-5 save_task"><i class=" mdi mdi-content-save"></i> </button>
-                    <a href="/deletetask{{$task->id}}" class="btn btn-icon waves-effect btn-danger m-b-5 "><i class=" typcn typcn-trash"></i></a>
-
-</span>
+<input type="text" required class="form-control" maxlength="70" name="task_title" id="defaultconfig" value="{{$task->task_title}}"/>
 
 </div>
-  <div class="form-group">
-  <label class="control-label">Optional Content</label>
 
-          <textarea id="textarea" class="form-control" maxlength="200" name="task_body">{{$task->task_body}}</textarea>
-  </div>
 <div class="row">
   <div class="form-group col-md-8">
 
-      <label class="control-label">Add Subject</label> 
+      <label class="control-label">Add Subject</label>
       <span>
         <button class="btn btn-icon btn-sm waves-effect btn-primary m-b-1 btn-rounded"><i class=" typcn   typcn typcn-plus"></i> </button>
 
@@ -76,39 +66,111 @@
 </div>
 
 </div>
+<button class="btn btn-icon waves-effect btn-primary m-b-5 save_task"><i class=" mdi mdi-content-save"></i>Update </button>
+<button class="btn btn-icon waves-effect btn-danger m-b-5 delete_task"><i class=" mdi mdi-delete-sweep"></i>Delete</button>
+
 </form>
 
 <script type="text/javascript">
 $(document).ready(function () {
-
-
-
-
-
 // save task ajax
-
-       var form = $('#new_task');
-       // var formMessages = $('#activate_adela');
+       var form = $('#update_task');
 
        $(".save_task").click(function(e) {
-                 var $btn = $(this).button('loading');
-
-       e.preventDefault();
-
+            e.preventDefault();
+            SnackBar.show({text: 'updating...',
+             actionText: ' ',
+              pos: 'bottom-left'
+              });
+                 var $btn = $(this).button('Updating');
            var formData = $(form).serialize();
        $.ajax({
        type: 'POST',
        url: $(form).attr('action'),
-       data: formData
+       data: formData,
+       statusCode:{
+        400: function(){
+          $("#alert").after(
+            ' <div class="alert alert-danger alert-dismissible fade in  animated fadeIn" role="alert">'+
+               ' <button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+                    '<span aria-hidden="true">&times;</span>'+
+                '</button>'+
+                'Oops, the Internet as been broken.'+
+           ' </div>');
+           $btn.button('reset');
+        },
+         422: function(){
+           $("#alert").after(
+            ' <div class="alert alert-danger alert-dismissible fade in animated fadeIn" role="alert">'+
+               ' <button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+                    '<span aria-hidden="true">&times;</span>'+
+                '</button>'+
+                'Oops, One or two important lines are Empty. Fix this and try again.'+
+           ' </div>');
+           $btn.button('reset');
+        },
+
+        500: function(){
+          $("#alert").after(
+            ' <div class="alert alert-danger alert-dismissible fade in animated fadeIn" role="alert">'+
+               ' <button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+                    '<span aria-hidden="true">&times;</span>'+
+                '</button>'+
+                'Oops, we could not connect with the sever. try reloading the page.'+
+           ' </div>');
+           $btn.button('reset');
+        }
+       }
        })
        .done(function(response) {
      $("#items-ajax").load("/calendar/task");
+     $(".pull-data").load("/calendar/data");
+
         })
        .fail(function(data) {
-  
+
            });
        });
+// delete task_date
+$(".delete_task").click(function(e) {
+        e.preventDefault();
+  var $btn = $(this).button('deleting');
 
+   swal({   title: "Are you sure?",
+     text: "This cannot be undone",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#DD6B55",
+      confirmButtonText: "Yes, delete it!",
+      closeOnConfirm: false },
+    function(){
+      SnackBar.show({text: 'deleting...',
+      actionText: ' ',
+        pos: 'bottom-left'
+        });
+
+
+     // if user hits confirm delete
+var  durl = "http://localhost:8000/deletetask{{$task->id}}";
+ $.ajax({
+ type: 'GET',
+ url: durl,
+ })
+ .done(function(response) {
+   // show the swal deleted animations
+
+      swal("Deleted!", "Task deleted.", "success");
+$(".task_viewer").load("/calendar/task/new");
+   $("#items-ajax").load("/calendar/task");
+   $(".pull-data").load("/calendar/data");
+
+  });
+
+ });
+
+
+
+       });
 
     $("#range_01").ionRangeSlider({
            from: {{$task->task_range}}

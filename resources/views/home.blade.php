@@ -2,6 +2,7 @@
 @section('content')  <!-- ============================================================== -->
   <!-- Start right Content here -->
   <!-- ============================================================== -->
+
   <style media="screen">
   .account-logo-box {
   padding: 10px;
@@ -34,7 +35,7 @@ body{
     position: fixed;
     top: 36.5%;
     right: 7%;
-    z-index: 10000;
+    z-index: 10;
 }
   </style>
   <div class="content-page">
@@ -160,11 +161,25 @@ body{
 <script type="text/javascript">
 
 $(function() {
+
+@if ($errors->has('username'))
+ SnackBar.show({
+  text: " Username and password does not match",
+ actionText: ' ',
+  pos: 'top-center'
+});
+@endif
+
        var form = $('#user');
 
        $(".save_user").click(function(e) {
-      console.log("loading");
+
+   SnackBar.show({text: 'Creating Account...',
+   actionText: ' ',
+  pos: 'top-center'});
        e.preventDefault();
+
+
            $(".ski_loader").css("display", "block");
            var formData = $(form).serialize();
        $.ajax({
@@ -173,13 +188,54 @@ $(function() {
        data: formData
        })
        .done(function(response) {
-        alert("account created");
+           SnackBar.show({text: 'Account Created, Please Sign In...',
+     actionText: ' ',
+  pos: 'top-center'});
+ location.reload();
          })
        .fail(function(data) {
-  alert("failed")
+   SnackBar.show({text: 'Account creation failed. One or two field might be required...',
+ actionText: ' ',
+  pos: 'top-center'});
 
            });
        });
+
+// sign in
+       var form = $('#signin');
+
+
+       $(".log_user").click(function(e) {
+
+   SnackBar.show({text: 'Loging you In.',
+           actionText: ' ',
+  pos: 'top-center'
+  });
+       e.preventDefault();
+
+
+           $(".ski_loader").css("display", "block");
+           var formData = $(form).serialize();
+       $.ajax({
+       type: 'POST',
+       url: $(form).attr('action'),
+       data: formData
+       })
+       .done(function(response) {
+           SnackBar.show({text: 'checking account',
+             actionText: ' ',
+            pos: 'top-center'   });
+ location.reload();
+         })
+       .fail(function(data) {
+   SnackBar.show({text: 'Oops!!! password and username required.',
+ actionText: ' ',
+  pos: 'top-center'
+  });
+
+           });
+       });
+
      });
 </script>
 

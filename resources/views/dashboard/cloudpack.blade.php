@@ -110,11 +110,17 @@ $(document).ready(function(){
                   </ul>
                   @endif
                   Formats supported: .pdf, .pptx, .docx, .epud and .excel
-
-                              <form action="handleupload" class="dropzone" id="my-awesome-dropzone">
+                  <form action="handleupload">
+                    <input name="file" type="file" />
+                    <input type="hidden" name="_token" value="{{ Session::token() }}">
+                    <button type="submit" class="btn btn-default">
+                      send
+                    </button>
+                  </form>
+                              <!-- <form action="handleupload" class="dropzone" id="my-awesome-dropzone">
                                 <input name="file" type="file" style="display:none;" />
                                 <input type="hidden" name="_token" value="{{ Session::token() }}">
-                              </form>
+                              </form> -->
                   </div>
                 <div class="modal-footer">
                   <a class="btn btn-primary btn-lg text-center waves-effect w-md btn-rounded file-done" data-dismiss="modal"><i class="mdi mdi-upload"></i> <span>DONE</span></a>

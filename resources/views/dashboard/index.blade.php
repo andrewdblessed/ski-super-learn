@@ -1,5 +1,7 @@
   @extends('templates.default')
   @section('content')
+
+
 <style type="text/css">
 img.icon-colored.nav-icon {
     width: 130px;
@@ -9,154 +11,154 @@ img.icon-colored.nav-icon {
     img.file-icon {
         width: 45%;
     }
+
 </style>
   <script src="/plugins/jquery-knob/jquery.knob.js"></script>
-<div class="row">
 
-
-<div class="row">
-  <div class="col-md-9 col-sm-push-1">
-    <div class="card-box">
-        <h3 class="cloud-h3 text-center">Your Quest Dashboard</h3>
-        <div class="row">
-
-        <div class="col-sm-8">
-
-          <img class="icon-colored nav-icon" src="{{ URL::asset('/src/vendor/new/images/icons/graduation_cap.svg')}}" title="folder.svg"/>
-          <h5 class="text-center">
-        There are currently no upcoming Educational Quests Today
-          </h5>
-        </div>
-        <div class="col-sm-4">
-          <h5 class="text-center">Your currently completed Quests</h5>
-          <div class="demo-box">
-            <input data-plugin="knob" data-width="220" data-height="220" data-linecap=round
-            data-fgColor="#7fc1fc" value="0" data-skin="tron" data-angleOffset="180"
-            data-readOnly=true data-thickness=".2"/>
-          </div>
-        </div>
-
-        </div>
-      </div>
-  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="row">
+<div class="col-xs-12">
+<div class="page-title-box">
+                  <h4 class="page-title">Dashboard</h4>
+                  <div class="clearfix"></div>
+              </div>
 </div>
+</div>
+      <!-- end row -->
+<div style="background-color: #fff;">
+
 
 <div class="row">
-  <div class="col-md-9 col-sm-push-1">
-    <div class="card-box">
-        <h3 class="cloud-h3 text-center">Your Cloud Pack Dashboard</h3>
-        <div class="row">
-
-        <div class="col-sm-8">
-          @if (!$last_files->count())
-
-          <img class="icon-colored nav-icon " src="{{ URL::asset('/src/vendor/new/images/icons/folder.svg')}}" title="folder.svg"/>
-          <h5 class="text-center">
-        Your cloud storage is Empty
-      </h5>
-      <h4 class="text-center"> Here are a couple of things to get you started</h4><br>
-        <a href="{{route('cloudupload')}}" class="btn btn-default btn-primary btn-lg waves-effect m-b-5">
-            <i class=" mdi mdi-upload"></i> Upload  file
-        </a>
-        <a href="{{route('cloudpack')}}" class="btn btn-default btn-primary btn-lg waves-effect m-b-5">
-            <i class=" mdi mdi-folder-upload"></i> View Cloudpack
-        </a>
-        <a href="{{route('cloudsetup')}}" class="btn btn-default btn-primary btn-lg waves-effect m-b-5">
-            <i class="  mdi mdi-settings"></i> Manage your files
-        </a>
-
-        @else
-        <div class="table-responsive" style="overflow: auto;
-        height: 55%;">
-          <table id="mainTable" class="table table-striped m-b-0">
-        <thead>
-            <a href="/cloudpack" class="btn btn-primary waves-effect w-md waves-light m-b-5"> <i class="mdi mdi-upload"></i> Upload</a>
-        <tr>
-        <th>Name</th><th>save</th><th>Delete</th>
-        </tr>
-        </thead>
-        <tbody class="list">
-        @foreach($last_files as $file)
-
-        <tr>
-              <td class="f-name" >
-                <a href="#" class="afile{{$file->id}}">
-                  <p class="f-name">{{$file->filename}}</p>
-                </a>
-                </td>
-              <td class="f-type"><i class=" mdi mdi-download"></i></td>
-
-                <td class="td-actions f-delete">
-                  <a class="btn waves-effect waves-light  btn-primary btn-sm deleteFile{{$file->id}}" href="#"><i class="fa fa-trash-o"></i></a>
-            </td>
-        </tr>
 
 
-              @endforeach
-        </tbody>
-
-      </table>
-                </div>
-                @endif
-
-        </div>
-        <div class="col-sm-4">
-          <h5 class="text-center">Files saved</h5>
-          <div class="demo-box">
-            <input data-plugin="knob" data-width="220" data-height="220" data-linecap=round
-            data-fgColor="#7fc1fc" value="{{ $files->count() }}" data-skin="tron" data-angleOffset="180"
-            data-readOnly=true data-thickness=".2"/>
-          </div>
-        </div>
-
-        </div>
+    <div class="col-md-4">
+    <h3 class="text-center">Quests</h3>
+      <div class="demo-box">
+          <input data-plugin="knob" data-width="150" data-height="150" data-linecap=round
+                 data-fgColor="#188ae2" value="0" data-skin="tron" data-angleOffset="180"
+                 data-readOnly=true data-thickness=".1"/>
 
       </div>
-  </div>
+    </div>
+
+    <div class="col-md-4">
+      <h3 class="">Files</h3>
+      <div class="demo-box">
+        <input data-plugin="knob" data-width="150" data-height="150" data-linecap=round
+               data-fgColor="#188ae2" value="{{ $files->count() }}" data-skin="tron" data-angleOffset="180"
+               data-readOnly=true data-thickness=".1"/>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <h3 class="">Saved Notes</h3>
+      <div class="demo-box">
+        <input data-plugin="knob" data-width="150" data-height="150" data-linecap=round
+               data-fgColor="#188ae2" value="{{ $files->count() }}" data-skin="tron" data-angleOffset="180"
+               data-readOnly=true data-thickness=".1"/>
+      </div>
+    </div>
+  </div> <!-- end row 1-->
+<hr>
+<div class="row">
+
+<div class="col-md-12 cal-data">
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $(".cal-data").load("/calendar/data");
+    });
+  </script>
+</div>
 </div>
 
+<hr>
+<div class="row">
 
+<div class="col-md-8 col-md-push-2">
+
+  @if (!$last_files->count())
+
+  <img class="icon-colored nav-icon " src="{{ URL::asset('/src/vendor/new/images/icons/folder.svg')}}" title="folder.svg"/>
+  <h5 class="text-center">
+Your cloud storage is Empty
+</h5>
+<h4 class="text-center"> Here are a couple of things to get you started</h4><br>
+<a href="{{route('cloudupload')}}" class="btn btn-default btn-primary btn-lg waves-effect m-b-5">
+    <i class=" mdi mdi-upload"></i> Upload  file
+</a>
+<a href="{{route('cloudpack')}}" class="btn btn-default btn-primary btn-lg waves-effect m-b-5">
+    <i class=" mdi mdi-folder-upload"></i> View Cloudpack
+</a>
+<a href="{{route('cloudsetup')}}" class="btn btn-default btn-primary btn-lg waves-effect m-b-5">
+    <i class="  mdi mdi-settings"></i> Manage your files
+</a>
+
+@else
+<div class="table-responsive" style="overflow: auto;
+height: 55%;">
+  <table id="mainTable" class="table table-striped m-b-0">
+<thead>
+    <a href="/cloudpack" class="btn btn-primary waves-effect w-md waves-light m-b-5"> <i class="mdi mdi-upload"></i> Upload</a>
+<tr>
+<th>Name</th><th>save</th><th>Delete</th>
+</tr>
+</thead>
+<tbody class="list">
+@foreach($last_files as $file)
+
+<tr>
+      <td class="f-name" >
+        <a href="#" class="afile{{$file->id}}">
+          <p class="f-name">{{$file->filename}}</p>
+        </a>
+        </td>
+      <td class="f-type"><i class=" mdi mdi-download"></i></td>
+
+        <td class="td-actions f-delete">
+          <a class="btn waves-effect waves-light  btn-primary btn-sm deleteFile{{$file->id}}" href="#"><i class="fa fa-trash-o"></i></a>
+    </td>
+</tr>
+
+
+      @endforeach
+</tbody>
+
+</table>
+        </div>
+        @endif
+      </div>
+</div> <!-- end row -->
+<hr>
 
 <div class="row">
-  <div class="col-md-9 col-sm-push-1">
-    <div class="card-box">
-        <h3 class="cloud-h3 text-center">Your Ski Zones Dash Board  <span class="label label-primary">Soon</span>  </h3>
-        <div class="row">
+  <div class="col-md-8 col-md-push-2">
 
-        <div class="col-sm-8">
-
-          <img class="icon-colored nav-icon" src="{{ URL::asset('/src/vendor/new/images/icons/voice_presentation.svg')}}" title="Ski Zones.svg"/>
-          <h5 >
-        Ski Zones is created to boost how you learn with a vibrant community, Here is a brief list of what you can do with Ski Zones
-        <ul>
-          <li>Ask other students Questions</li>
-          <li>partake in Quizes</li>
-          <li>share your notes and start a new discussion</li>
-          <li> Answer questions from other students </li>
-          <li>share files to various Zones</li>
-          <li>Create or join any Zones of your choice</li>
-          <li>Reach out to students around the world</li>
-          <li>and much more to come</li>
-        </ul>
-          </h5>
-        </div>
-        <div class="col-sm-4">
-          <h5 class="text-center">Your currently completed Quests</h5>
-          <div class="demo-box">
-            <input data-plugin="knob" data-width="220" data-height="220" data-linecap=round
-            data-fgColor="#7fc1fc" value="100" data-skin="tron" data-angleOffset="180"
-            data-readOnly=true data-thickness=".2"/>
-          </div>
-        </div>
-
-        </div>
-      </div>
+    <img class="icon-colored nav-icon" src="{{ URL::asset('/src/vendor/new/images/icons/voice_presentation.svg')}}" title="Ski Zones.svg"/>
+    <h5 >
+  Ski Zones is created to boost how you learn with a vibrant community, Here is a brief list of what you can do with Ski Zones
+  <ul>
+    <li>Ask other students Questions</li>
+    <li>partake in Quizes</li>
+    <li>share your notes and start a new discussion</li>
+    <li> Answer questions from other students </li>
+    <li>share files to various Zones</li>
+    <li>Create or join any Zones of your choice</li>
+    <li>Reach out to students around the world</li>
+    <li>and much more to come</li>
+  </ul>
+    </h5>
   </div>
+</div><!-- end row-->
+
+  </div><!-- end col - 9 -->
+
+
+
+</div><!-- end row -->
 </div>
 
 
-<!-- end row -->
-</div>
 
 
 
@@ -200,6 +202,7 @@ img.icon-colored.nav-icon {
         @endif
         </div>
 @endif
+
 
 
 

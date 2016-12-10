@@ -22,7 +22,8 @@ use Skilearn\Models\MyTask;
 use Skilearn\Models\MyExam;
 // USING THE SUBJECT MODEL TO CALL SUBJECT DETAILS
 use Skilearn\Models\MySubject;
-
+// USING THE EXAM MODEL TO CALL EXAMS DETAILS
+use Skilearn\Models\MyClass;
 class CalendarController extends Controller
 {
 
@@ -40,11 +41,11 @@ class CalendarController extends Controller
     $skiSearch_placehold = "";
 
          return view ('calendar.index')
-        
+
       ->with('title', $title)
     ->with('skiSearch', $skiSearch)
     ->with('skiSearch_placehold',   $skiSearch_placehold);
-   
+
  }
 
  // *
@@ -57,6 +58,8 @@ class CalendarController extends Controller
   public function main()
    {
      if (Auth::check()) {
+
+       // task
               $my_tasks = MyTask::where(function($query)
                   {
                     return $query->where('user_id', Auth::user()->id);
@@ -70,10 +73,55 @@ class CalendarController extends Controller
         })
       ->orderBy('created_at', 'desc')
         ->paginate(5);
+
+        // class
+                    $my_class = MyClass::where(function($query)
+                {
+                  return $query->where('user_id', Auth::user()->id);
+                })
+              ->orderBy('created_at', 'desc')
+                ->paginate(5);
+
             return view ('calendar.main')
-          ->with('my_tasks', $my_tasks)->with('my_exams', $my_exams);
+          ->with('my_tasks', $my_tasks)
+          ->with('my_exams', $my_exams)
+           ->with('my_class', $my_class);
    }
  }
+
+ public function data()
+  {
+    if (Auth::check()) {
+
+      // task
+             $my_tasks = MyTask::where(function($query)
+                 {
+                   return $query->where('user_id', Auth::user()->id);
+                 })
+             ->orderBy('created_at', 'desc')
+                 ->paginate();
+// exams
+           $my_exams = MyExam::where(function($query)
+       {
+         return $query->where('user_id', Auth::user()->id);
+       })
+     ->orderBy('created_at', 'desc')
+       ->paginate();
+
+       // class
+                   $my_class = MyClass::where(function($query)
+               {
+                 return $query->where('user_id', Auth::user()->id);
+               })
+             ->orderBy('created_at', 'desc')
+               ->paginate();
+
+           return view ('calendar.data')
+         ->with('my_tasks', $my_tasks)
+         ->with('my_exams', $my_exams)
+         ->with('my_class', $my_class);
+  }
+}
 
  public function myCalendar()
    {
@@ -116,16 +164,34 @@ class CalendarController extends Controller
                   })
                 ->orderBy('created_at', 'desc')
                   ->paginate(30);
+                  $my_subject = MySubject::where(function($query)
+                      {
+                        return $query->where('user_id', Auth::user()->id);
+                      })
+                    ->orderBy('created_at', 'desc')
+                      ->paginate(10);
 
             return view ('calendar.task.mytask')
-          ->with('my_tasks', $my_tasks);
+          ->with('my_tasks', $my_tasks)
+                  ->with('my_subject', $my_subject);
    }
  }
 
 // NEW TASK
 public function newTask()
    {
-            return view ('calendar.task.new');
+
+            if (Auth::check()) {
+            $my_subject = MySubject::where(function($query)
+                {
+                  return $query->where('user_id', Auth::user()->id);
+                })
+              ->orderBy('created_at', 'desc')
+                ->paginate(10);
+
+            return view ('calendar.task.new')
+            ->with('my_subject', $my_subject);
+          }
  }
 
 // POST TASKS
@@ -167,7 +233,6 @@ public function newTask()
   $updateTask = MyTask::find($id);
        $this->validate($request, [
        'task_title' => 'required',
-     'task_body' => 'required',
      'task_subject' => 'required',
      'task_range' => 'required',
      'task_date' => 'required',
@@ -175,7 +240,6 @@ public function newTask()
   ]);
   $updateTask->update([
    'task_title' => $request->input('task_title'),
-      'task_body' => $request->input('task_body'),
      'task_subject' => $request->input('task_subject'),
      'task_range' => $request->input('task_range'),
      'task_date' => $request->input('task_date'),
@@ -195,7 +259,7 @@ public function deleteTask ($id){
 
    // end of tasks
 
- 
+
 
 
 
@@ -331,6 +395,134 @@ public function deleteExam ($id){
 
 
 
+     // *
+     // *REVIEW:
+     // * CLASS FUNCTION BEGINS
+     // *
+     // *
+     public function Class()
+      {
+   if (Auth::check()) {
+       $my_class = MyClass::where(function($query)
+           {
+             return $query->where('user_id', Auth::user()->id);
+           })
+         ->orderBy('created_at', 'desc')
+           ->paginate(30);
+   // SUBJECT
+       $my_subject = MySubject::where(function($query)
+           {
+             return $query->where('user_id', Auth::user()->id);
+           })
+         ->orderBy('created_at', 'desc')
+           ->paginate(30);
+
+
+               return view ('calendar.class.class')
+   ->with('my_class', $my_class)
+   ->with('my_subject', $my_subject);
+
+   }
+   }
+
+   // NEW Class
+   public function newClass()
+      {
+
+       if (Auth::check()) {
+       $my_subject = MySubject::where(function($query)
+           {
+             return $query->where('user_id', Auth::user()->id);
+           })
+         ->orderBy('created_at', 'desc')
+           ->paginate(30);
+
+               return view ('calendar.class.new')
+   ->with('my_subject', $my_subject);
+   }
+
+    }
+
+
+   // POST ClassS
+      public function postClass(Request $request)
+      {
+      $this->validate($request, [
+        'class_subject' => 'required',
+        'class_date' => 'required',
+        'class_time' => 'required',
+      ]);
+      Auth::user()->MyClass()->create([
+        'class_subject' => $request->input('class_subject'),
+        'class_date' => $request->input('class_date'),
+        'class_time' => $request->input('class_time'),
+
+      ]);
+
+         return redirect()->route('calendar');
+     // dd('all ok');
+       }
+
+
+
+   // GET A Classs
+            public function getClass($id)
+                  {
+                    $class = MyClass::findorFail($id);
+
+                    if (is_null($class)) {
+
+                      abort(404);
+                    }
+
+
+   // SUBJECT
+       $my_subject = MySubject::where(function($query)
+           {
+             return $query->where('user_id', Auth::user()->id);
+           })
+         ->orderBy('created_at', 'desc')
+           ->paginate(30);
+
+
+              return view('calendar.class.aclass', compact('class'))
+                            ->with('class', $class)
+                            ->with('my_subject', $my_subject);
+   ;
+
+            }
+   // UPDATE Class
+     public function updateClass (Request $request, $id ){
+     $updateClass = MyClass::find($id);
+          $this->validate($request, [
+        'class_subject' => 'required',
+        'class_date' => 'required',
+        'class_time' => 'required',
+     ]);
+     $updateClass->update([
+       'class_subject' => $request->input('class_subject'),
+        'class_date' => $request->input('class_date'),
+        'class_time' => $request->input('class_time'),
+
+     ]);
+           return redirect()->route('calendar');
+
+   }
+
+   // DELETE Class
+
+   public function deleteClass ($id){
+     $deleteClass = MyClass::find($id);
+        $deleteClass->delete();
+     return redirect()->route('calendar');
+   }
+
+      // end of Classs
+
+
+
+
+
   // *
   // *REVIEW:
   // * SUBJECT FUNCTION BEGINS
@@ -361,7 +553,7 @@ if (Auth::check()) {
    ]);
    Auth::user()->MySubject()->create([
      'subject' => $request->input('subject'),
-    
+
    ]);
 
       return redirect()->route('calendar');
@@ -554,7 +746,7 @@ public function deleteSubject ($id){
 //    }
 //  }
 
-// // THE LABEL AJAX 
+// // THE LABEL AJAX
 //  public function getLabelList()
 //    {
 //  // NOTE:: PULLING CALENDAR LABELS OF THE USER

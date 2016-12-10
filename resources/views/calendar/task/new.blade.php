@@ -2,29 +2,22 @@
           <input type="hidden" name="_token" value="{{ Session::token() }}">
 
   <div class="form-group">
-<input type="text" required class="form-control" maxlength="70" name="task_title" id="defaultconfig" placeholder="Task Title..."/> 
-<span>
-                    <button class=" save_task btn btn-icon waves-effect btn-primary m-b-5 "><i class=" mdi mdi-content-save"></i> </button>
-
-</span>
-
+<input type="text" required class="form-control" maxlength="70" name="task_title" id="defaultconfig" placeholder="Task Title..."/>
 </div>
-  <div class="form-group">
-  <label class="control-label">Optional Content</label>
 
-          <textarea id="textarea" class="form-control" maxlength="200" name="task_body"></textarea>
-  </div>
 <div class="row">
   <div class="form-group col-md-8">
 
-      <label class="control-label">Add Subject</label> 
-      <span>
-        <button class=" btn btn-icon btn-sm waves-effect btn-primary m-b-1 btn-rounded"><i class=" typcn   typcn typcn-plus"></i> </button>
-
-    </span>
-
+      <label class="control-label">Add Subject</label>
      <select required class="form-control" name="task_subject">
+       @if (!$my_subject->count())
       <option>No Subject</option>
+      @else
+      @foreach($my_subject as $subject)
+      <option> {{$subject->subject}} </option>
+      @endforeach
+
+      @endif
     </select>
  </div>
 
@@ -60,8 +53,9 @@
     </div>
 </div>
 </div>
-
 </div>
+
+<button class=" save_task btn btn-icon waves-effect btn-primary m-b-5 "><i class=" mdi mdi-content-save"></i> Save</button>
 </form>
 
 <script type="text/javascript">
@@ -78,25 +72,62 @@ $(document).ready(function () {
 
        $(".save_task").click(function(e) {
        e.preventDefault();
-
+       SnackBar.show({
+         text: 'saving...',
+         pos: 'bottom-left',
+         actionText: ' ',
+         });
+            var $btn = $(this).button('saving');
            var formData = $(form).serialize();
        $.ajax({
        type: 'POST',
        url: $(form).attr('action'),
-       data: formData
+       data: formData,
+       statusCode:{
+        400: function(){
+          $("#alert").after(
+            ' <div class="alert alert-danger alert-dismissible fade in  animated fadeIn" role="alert">'+
+               ' <button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+                    '<span aria-hidden="true">&times;</span>'+
+                '</button>'+
+                'Oops, the Internet as been broken.'+
+           ' </div>');
+           $btn.button('reset');
+        },
+         422: function(){
+           $("#alert").after(
+            ' <div class="alert alert-danger alert-dismissible fade in animated fadeIn" role="alert">'+
+               ' <button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+                    '<span aria-hidden="true">&times;</span>'+
+                '</button>'+
+                'Oops, One or two important lines are Empty. Fix this and try again.'+
+           ' </div>');
+           $btn.button('reset');
+        },
+
+        500: function(){
+          $("#alert").after(
+            ' <div class="alert alert-danger alert-dismissible fade in animated fadeIn" role="alert">'+
+               ' <button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+                    '<span aria-hidden="true">&times;</span>'+
+                '</button>'+
+                'Oops, we could not connect with the sever. try reloading the page.'+
+           ' </div>');
+           $btn.button('reset');
+        }
+       }
        })
        .done(function(response) {
      $("#items-ajax").load("/calendar/task");
+     $(".pull-data").load("/calendar/data");
+
         })
        .fail(function(data) {
-  
+
            });
        });
 
 
-    $("#range_01").ionRangeSlider({
-           from: {{$task->task_range}}
-    });
 
 
 

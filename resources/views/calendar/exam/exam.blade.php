@@ -20,12 +20,12 @@
           <div class="panel-body point-panel">
 
             <div class="col-md-5">
-         
-   
+
+
       @if (!$my_exams->count())
   <img class=" animated pulse infinite no-exam" src="{{ URL::asset('/src/vendor/new/images/icons/inspection.svg')}}" title="No exams.svg"/>
 <h5>No upcoming Exams</h5>
- 
+
  @else
 
 <div class="list-group exam-items">
@@ -50,7 +50,7 @@
           <input type="hidden" name="_token" value="{{ Session::token() }}">
 
   <div class="form-group">
-    <label class="control-label">Subject</label> 
+    <label class="control-label">Subject</label>
       <span>
         <button class="sub btn btn-icon btn-sm waves-effect btn-primary m-b-1 btn-rounded"><i class=" typcn   typcn typcn-plus"></i> </button>
     </span>
@@ -129,9 +129,9 @@ function ajaxfun(btn, url, location) {
 $(btn).click(function(){
  $("#loader").after(
 '<div class="loader2" >'+ '<span class="circle1"></span>'+
- '<span class="circle2"></span>'+ 
- '<span class="circle3"></span>'+ 
- '<span class="circle4"></span>'+ 
+ '<span class="circle2"></span>'+
+ '<span class="circle3"></span>'+
+ '<span class="circle4"></span>'+
  '<span class="circle5"></span>'+
   '<span class="circle6"></span>'+
    '<div>');
@@ -157,27 +157,16 @@ ajaxfun(".add", "/calendar/exam/new", ".exam_viewer");
 ajaxfun(".sub", "/calendar/subject", ".exam_viewer");
 
 
-// $(".add").click(function(){
-//     $(".loader2").css("display", "block");
-//      $().load("/calendar/exam/new");
-//     $(".loader2").css("display", "none");
-// });
-
-// $(".sub").click(function(e){
-//     e.preventDefault();
-//     $(".loader2").css("display", "block");
-//      $(".exam_viewer").load("/calendar/subject");
-//     $(".loader2").css("display", "none");
-// });
 
 
 @foreach($my_exams as $exams)
 
                $("#exam{{$exams->id}}").click(function(){
-   toastr.info("Loading exam. this Might take a while!");
-        
+                 SnackBar.show({text: 'loading...',
+                 actionText: ' ',
+                   pos: 'bottom-left'
+                   });
                      $(".exam_viewer").load('calendar/exam/{{$exams->id}}');
-           toastr.success("Load Completed.");
               });
 @endforeach
 
@@ -188,8 +177,11 @@ ajaxfun(".sub", "/calendar/subject", ".exam_viewer");
        // var formMessages = $('#activate_adela');
 
        $(".save_exam").click(function(e) {
-                 var $btn = $(this).button('loading');
-
+                 var $btn = $(this).button('saving');
+                 SnackBar.show({text: 'saving...',
+                 actionText: ' ',
+                   pos: 'bottom-left'
+                   });
        e.preventDefault();
 
            var formData = $(form).serialize();
@@ -200,7 +192,7 @@ ajaxfun(".sub", "/calendar/subject", ".exam_viewer");
        statusCode:{
         400: function(){
           $("#alert").after(
-            ' <div class="alert alert-danger alert-dismissible fade in" role="alert">'+
+            ' <div class="alert alert-danger alert-dismissible fade in  animated fadeIn" role="alert">'+
                ' <button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
                     '<span aria-hidden="true">&times;</span>'+
                 '</button>'+
@@ -210,7 +202,7 @@ ajaxfun(".sub", "/calendar/subject", ".exam_viewer");
         },
          422: function(){
            $("#alert").after(
-            ' <div class="alert alert-danger alert-dismissible fade in" role="alert">'+
+            ' <div class="alert alert-danger alert-dismissible fade in animated fadeIn" role="alert">'+
                ' <button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
                     '<span aria-hidden="true">&times;</span>'+
                 '</button>'+
@@ -221,7 +213,7 @@ ajaxfun(".sub", "/calendar/subject", ".exam_viewer");
 
         500: function(){
           $("#alert").after(
-            ' <div class="alert alert-danger alert-dismissible fade in" role="alert">'+
+            ' <div class="alert alert-danger alert-dismissible fade in animated fadeIn" role="alert">'+
                ' <button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
                     '<span aria-hidden="true">&times;</span>'+
                 '</button>'+
@@ -232,6 +224,8 @@ ajaxfun(".sub", "/calendar/subject", ".exam_viewer");
        }
        })
        .done(function(response) {
+         $(".pull-data").load("/calendar/data");
+
      $("#items-ajax").load("/calendar/exam");
         })
    });
